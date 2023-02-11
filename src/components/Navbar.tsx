@@ -4,7 +4,7 @@ import { HiOutlineMagnifyingGlass } from 'react-icons/hi2'
 import { Link } from 'react-router-dom'
 
 export const Navbar = () => {
-  const [isNavbarOpen, setIsNavbarOpen] = useState(true)
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false)
 
   const menuItems = [
     { to: '/movies', text: 'Movies' },
