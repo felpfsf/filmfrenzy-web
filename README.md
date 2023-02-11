@@ -15,10 +15,10 @@ FilmFrenzy is an app that provides users with information about movies and TV sh
 
 ## How to Use
 
-- Clone the repository to your local machine using git clone https://github.com/felpfsf/filmfrenzy-web.git
+- Clone the repository to your local machine using git clone <https://github.com/felpfsf/filmfrenzy-web.git>
 - Install the dependencies by running npm install or yarn install in the project directory
 - Start the development server by running npm start or yarn start
-- Access the app by navigating to http://localhost:5173/ in your browser
+- Access the app by navigating to <http://localhost:5173/> in your browser
 
 ## Contributions
 
