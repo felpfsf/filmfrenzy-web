@@ -1,6 +1,12 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
+import {
+  fetchMoviesNowPlaying,
+  fetchMoviesPopular,
+  fetchTvShowsOnAir,
+  fetchTvShowsPopular
+} from '../data/queries'
 import { TMDB_API_KEY, TMDB_BACKDROP_POSTER, TMDB_BASE_URL } from '../utils/env'
 
 interface HeroProps {
@@ -24,31 +30,45 @@ export const Hero = ({ type }: HeroProps) => {
 
   // TODO - TRANSFORM INTO fetchMoviesPopular, fetchMoviesNowPlaying, fetchTvShowsOnAir, fetchTvShowsPopular
 
-  const { data: items } = useQuery(
+  // const { data: items, status } = useQuery(
+  //   type === 'movies_now_playing'
+  //     ? '/movie/now_playing'
+  //     : type === 'movies'
+  //     ? '/movie/popular'
+  //     : type === 'tvshows_on_air'
+  //     ? '/tv/on_the_air'
+  //     : '/tv/popular',
+  //   async () => {
+  //     const response = await axios.get(
+  //       `${TMDB_BASE_URL}/${
+  //         type === 'movies_now_playing'
+  //           ? 'movie/now_playing'
+  //           : type === 'tvshows_on_air'
+  //           ? 'tv/on_the_air'
+  //           : type === 'movies'
+  //           ? 'movie/popular'
+  //           : 'tv/popular'
+  //       }?api_key=${TMDB_API_KEY}&language=pt-BR&page=1&include_adult=false`
+  //     )
+  //     return response.data.results
+  //   }
+  // )
+
+  const { data: items, status } = useQuery(
+    'api_data',
     type === 'movies_now_playing'
-      ? '/movie/now_playing'
+      ? fetchMoviesNowPlaying
       : type === 'movies'
-      ? '/movie/popular'
+      ? fetchMoviesPopular
       : type === 'tvshows_on_air'
-      ? '/tv/on_the_air'
-      : '/tv/popular',
-    async () => {
-      const response = await axios.get(
-        `${TMDB_BASE_URL}/${
-          type === 'movies_now_playing'
-            ? 'movie/now_playing'
-            : type === 'tvshows_on_air'
-            ? 'tv/on_the_air'
-            : type === 'movies'
-            ? 'movie/popular'
-            : 'tv/popular'
-        }?api_key=${TMDB_API_KEY}&language=pt-BR&page=1&include_adult=false`
-      )
-      return response.data.results
-    }
+      ? fetchTvShowsOnAir
+      : fetchTvShowsPopular
   )
 
-  const currentItem: ItemProps = items ? items[currentIndex] : {}
+  // console.log(test)
+
+  const currentItem: ItemProps =
+    status === 'success' && items ? items[currentIndex] : {}
 
   // slideshow
   useEffect(() => {
@@ -116,7 +136,7 @@ export const Hero = ({ type }: HeroProps) => {
             </div>
             {currentItem.overview ? (
               <p className='hidden md:block'>
-                truncateOverviewText(currentItem.overview, 160){' '}
+                {truncateOverviewText(currentItem.overview, 160)}
               </p>
             ) : null}
             <div className='mt-2 flex gap-4'>
