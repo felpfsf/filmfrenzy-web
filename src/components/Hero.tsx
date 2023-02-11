@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
+import { TMDB_API_KEY, TMDB_BACKDROP_POSTER, TMDB_BASE_URL } from '../utils/env'
 
 interface HeroProps {
   type: 'movies' | 'tvshows' | 'movies_now_playing' | 'tvshows_on_air'
@@ -16,10 +17,6 @@ interface ItemProps {
   number_of_seasons: number
   backdrop_path: string
 }
-
-const TMDB_API_KEY = import.meta.env.VITE_TMDB_KEY
-const TMDB_BASE_URL = import.meta.env.VITE_BASE_URL
-const TMDB_BACKDROP_POSTER = import.meta.env.VITE_POSTER_URL
 
 export const Hero = ({ type }: HeroProps) => {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -40,10 +37,10 @@ export const Hero = ({ type }: HeroProps) => {
         `${TMDB_BASE_URL}/${
           type === 'movies_now_playing'
             ? 'movie/now_playing'
-            : type === 'movies'
-            ? 'movie/popular'
             : type === 'tvshows_on_air'
             ? 'tv/on_the_air'
+            : type === 'movies'
+            ? 'movie/popular'
             : 'tv/popular'
         }?api_key=${TMDB_API_KEY}&language=pt-BR&page=1&include_adult=false`
       )
@@ -86,10 +83,12 @@ export const Hero = ({ type }: HeroProps) => {
         backgroundImage: `url(${TMDB_BACKDROP_POSTER}/${currentItem?.backdrop_path})`,
         opacity: imageLoaded ? 1 : 0
       }}
-      className='easy-in-out h-screen w-full bg-cover transition-all duration-500'
+      className='easy-in-out h-screen w-full bg-cover bg-center transition-all duration-500'
+      aria-live='polite'
+      aria-atomic='true'
       aria-label={
         currentItem?.title
-          ? `image of ${currentItem.title}`
+          ? `image of ${currentItem?.title}`
             ? currentItem.name
             : `image of ${currentItem?.name}`
           : 'image placeholder'
@@ -115,9 +114,11 @@ export const Hero = ({ type }: HeroProps) => {
                 }`}</p>
               ) : null}
             </div>
-            {currentItem.overview
-              ? truncateOverviewText(currentItem.overview, 160)
-              : null}
+            {currentItem.overview ? (
+              <p className='hidden md:block'>
+                truncateOverviewText(currentItem.overview, 160){' '}
+              </p>
+            ) : null}
             <div className='mt-2 flex gap-4'>
               <button className='rounded-md bg-neutral-200 py-2 px-4'>
                 ▶ Review
