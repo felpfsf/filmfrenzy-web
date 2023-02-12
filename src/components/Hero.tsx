@@ -1,13 +1,12 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
+import { QueryObserverSuccessResult, useQuery } from 'react-query'
 import {
   fetchMoviesNowPlaying,
   fetchMoviesPopular,
   fetchTvShowsOnAir,
   fetchTvShowsPopular
 } from '../data/queries'
-import { TMDB_API_KEY, TMDB_BACKDROP_POSTER, TMDB_BASE_URL } from '../utils/env'
+import { TMDB_BACKDROP_POSTER } from '../utils/env'
 
 interface HeroProps {
   type: 'movies' | 'tvshows' | 'movies_now_playing' | 'tvshows_on_air'
@@ -54,7 +53,9 @@ export const Hero = ({ type }: HeroProps) => {
   //   }
   // )
 
-  const { data: items, status } = useQuery(
+  // TODO - INTERFACE DATA TYPES FOR FETCHING
+
+  const { data: items } = useQuery(
     'api_data',
     type === 'movies_now_playing'
       ? fetchMoviesNowPlaying
@@ -63,12 +64,9 @@ export const Hero = ({ type }: HeroProps) => {
       : type === 'tvshows_on_air'
       ? fetchTvShowsOnAir
       : fetchTvShowsPopular
-  )
+  ) as QueryObserverSuccessResult<any, unknown>
 
-  // console.log(test)
-
-  const currentItem: ItemProps =
-    status === 'success' && items ? items[currentIndex] : {}
+  const currentItem: ItemProps = items ? items[currentIndex] : {}
 
   // slideshow
   useEffect(() => {
@@ -140,10 +138,10 @@ export const Hero = ({ type }: HeroProps) => {
               </p>
             ) : null}
             <div className='mt-2 flex gap-4'>
-              <button className='rounded-md bg-neutral-200 py-2 px-4'>
+              <button className='rounded-md bg-neutral-200 py-2 px-4  duration-500 hover:ring-1'>
                 ▶ Review
               </button>
-              <button className='rounded-md bg-neutral-200 py-2 px-4'>
+              <button className='rounded-md bg-neutral-200 py-2 px-4  duration-500 hover:ring-1'>
                 + Mais Info
               </button>
             </div>
