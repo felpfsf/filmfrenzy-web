@@ -10,14 +10,14 @@ FilmFrenzy is an app that provides users with information about movies and TV sh
 
 - Display information about movies and TV shows including top-rated, featured, and upcoming releases
 - User reviews and ratings for movies and TV shows
-- Consume data from a third-party API and custom REST API
-- Built with React, TypeScript, react-query, axios, and router-dom for a smooth user experience
+- Consume data from a third-party API and a custom REST API
+- Built with React, TypeScript, react-query, axios, and router-dom
 
 ## How to Use
 
 - Clone the repository to your local machine using git clone <https://github.com/felpfsf/filmfrenzy-web.git>
-- Install the dependencies by running npm install or yarn install in the project directory
-- Start the development server by running npm start or yarn start
+- Install the dependencies by running yarn add in the project directory
+- Start the development server by running yarn dev
 - Access the app by navigating to <http://localhost:5173/> in your browser
 
 ## Contributions
