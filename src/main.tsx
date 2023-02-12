@@ -5,7 +5,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App'
 import queryClient from './lib/queryClient'
 import { Home } from './pages/Home'
+import { Movies } from './pages/Movies'
 import { NotFound } from './pages/NotFound'
+import { TVShows } from './pages/TVShows'
 import './styles/index.css'
 
 const routes = createBrowserRouter([
@@ -17,6 +19,14 @@ const routes = createBrowserRouter([
       {
         path: '/',
         element: <Home />
+      },
+      {
+        path: '/movies',
+        element: <Movies />
+      },
+      {
+        path: '/tvshows',
+        element: <TVShows />
       }
     ]
   }
