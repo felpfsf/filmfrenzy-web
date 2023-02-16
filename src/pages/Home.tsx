@@ -4,7 +4,6 @@ import { useQuery } from 'react-query'
 import { Hero } from '../components/Hero'
 import { TMDB_API_KEY, TMDB_BASE_URL } from '../utils/env'
 
-
 interface ItemProps {
   release_date: string
   first_air_date: string
@@ -15,6 +14,7 @@ interface ItemProps {
   overview: string
   number_of_seasons: number
   backdrop_path: string
+  id: string
 }
 
 export const Home = () => {
@@ -42,7 +42,7 @@ export const Home = () => {
     if (!items) return
     const intervalID = setInterval(() => {
       setCurrentIndex(currentIndex === items.length - 1 ? 0 : currentIndex + 1)
-    }, 3000)
+    }, 5000)
 
     return () => clearInterval(intervalID)
   })

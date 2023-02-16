@@ -21,6 +21,7 @@ interface ItemProps {
   overview: string
   number_of_seasons: number
   backdrop_path: string
+  id: string
 }
 
 export const Hero = ({ type }: HeroProps) => {
@@ -73,7 +74,7 @@ export const Hero = ({ type }: HeroProps) => {
     if (!items) return
     const intervalID = setInterval(() => {
       setCurrentIndex(currentIndex === items.length - 1 ? 0 : currentIndex + 1)
-    }, 3000)
+    }, 5000)
     return () => clearInterval(intervalID)
   }, [currentIndex, items])
 
@@ -93,6 +94,10 @@ export const Hero = ({ type }: HeroProps) => {
       return overview.substring(0, length) + '...'
     }
     return overview
+  }
+
+  const handleClick = () => {
+    console.log("movie id ->",currentItem.id)
   }
 
   return (
@@ -138,11 +143,13 @@ export const Hero = ({ type }: HeroProps) => {
               </p>
             ) : null}
             <div className='mt-2 flex gap-4'>
-              <button className='rounded-md bg-neutral-200 py-2 px-4  duration-500 hover:ring-1'>
-                ▶ Review
+              <button className='rounded-md bg-button px-4 py-2 font-semibold duration-500 hover:bg-button_hover hover:ring-1 ring-[#FFB500]'>
+                ▶ Watch Trailer
               </button>
-              <button className='rounded-md bg-neutral-200 py-2 px-4  duration-500 hover:ring-1'>
-                + Mais Info
+              <button
+                className='rounded-md bg-button px-4 py-2 font-semibold duration-500 hover:bg-button_hover hover:ring-1 ring-[#FFB500]'
+                onClick={handleClick}>
+                + More Info
               </button>
             </div>
           </div>
