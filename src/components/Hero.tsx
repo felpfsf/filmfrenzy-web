@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { QueryObserverSuccessResult, useQuery } from 'react-query'
+import { useNavigate } from 'react-router-dom'
 import {
   fetchMoviesNowPlaying,
   fetchMoviesPopular,
@@ -27,35 +28,7 @@ interface ItemProps {
 export const Hero = ({ type }: HeroProps) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [imageLoaded, setImageLoaded] = useState(false)
-
-  // TODO - TRANSFORM INTO fetchMoviesPopular, fetchMoviesNowPlaying, fetchTvShowsOnAir, fetchTvShowsPopular
-
-  // const { data: items, status } = useQuery(
-  //   type === 'movies_now_playing'
-  //     ? '/movie/now_playing'
-  //     : type === 'movies'
-  //     ? '/movie/popular'
-  //     : type === 'tvshows_on_air'
-  //     ? '/tv/on_the_air'
-  //     : '/tv/popular',
-  //   async () => {
-  //     const response = await axios.get(
-  //       `${TMDB_BASE_URL}/${
-  //         type === 'movies_now_playing'
-  //           ? 'movie/now_playing'
-  //           : type === 'tvshows_on_air'
-  //           ? 'tv/on_the_air'
-  //           : type === 'movies'
-  //           ? 'movie/popular'
-  //           : 'tv/popular'
-  //       }?api_key=${TMDB_API_KEY}&language=pt-BR&page=1&include_adult=false`
-  //     )
-  //     return response.data.results
-  //   }
-  // )
-
   // TODO - INTERFACE DATA TYPES FOR FETCHING
-
   const { data: items } = useQuery(
     'api_data',
     type === 'movies_now_playing'
@@ -96,8 +69,14 @@ export const Hero = ({ type }: HeroProps) => {
     return overview
   }
 
+  const nav = useNavigate()
   const handleClick = () => {
-    console.log("movie id ->",currentItem.id)
+    // console.log('movie id ->', currentItem.id)
+    if (currentItem.title) {
+      nav(`/movies/${currentItem.id}`)
+    } else {
+      nav(`/tvshows/${currentItem.id}`)
+    }
   }
 
   return (
@@ -143,11 +122,11 @@ export const Hero = ({ type }: HeroProps) => {
               </p>
             ) : null}
             <div className='mt-2 flex gap-4'>
-              <button className='rounded-md bg-button px-4 py-2 font-semibold duration-500 hover:bg-button_hover hover:ring-1 ring-[#FFB500]'>
+              <button className='rounded-md bg-button px-4 py-2 font-semibold ring-[#FFB500] duration-500 hover:bg-button_hover hover:ring-1'>
                 ▶ Watch Trailer
               </button>
               <button
-                className='rounded-md bg-button px-4 py-2 font-semibold duration-500 hover:bg-button_hover hover:ring-1 ring-[#FFB500]'
+                className='rounded-md bg-button px-4 py-2 font-semibold ring-[#FFB500] duration-500 hover:bg-button_hover hover:ring-1'
                 onClick={handleClick}>
                 + More Info
               </button>
