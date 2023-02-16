@@ -19,7 +19,9 @@ export const Navbar = () => {
   return (
     <div className='fixed m-auto flex w-full items-center justify-between bg-gradient-to-r from-[#111]/30 to-transparent/5 py-4 px-8'>
       <Link to='/'>
-        <h1 className='text-4xl font-black tracking-widest'>FILMFRENZY</h1>
+        <h1 className='bg-gradient-to-r from-[#A20025] via-[#F40009] to-[#FFB500] bg-clip-text font-logo text-4xl font-black tracking-widest text-fill-transparent'>
+          FILMFRENZY
+        </h1>
       </Link>
       <button
         className='z-10 block h-8 w-8 xl:hidden'
@@ -60,12 +62,12 @@ export const Navbar = () => {
         </div>
         <div className='flex gap-2'>
           <button
-            className='rounded-md bg-neutral-200 px-4 py-2 duration-500 hover:ring-1'
+            className='rounded-md bg-button px-4 py-2 font-semibold ring-[#FFB500] duration-500 hover:bg-button_hover hover:ring-1'
             aria-label='Sign In button'>
             Sign In
           </button>
           <button
-            className='rounded-md bg-neutral-200 px-4 py-2 duration-500 hover:ring-1'
+            className='rounded-md bg-button px-4 py-2 font-semibold ring-[#FFB500] duration-500 hover:bg-button_hover hover:ring-1'
             aria-label='Sign Up button'>
             Sign Up
           </button>
@@ -106,12 +108,12 @@ export const Navbar = () => {
         </div>
         <div className='flex gap-2'>
           <button
-            className='rounded-md bg-neutral-200 px-4 py-2 duration-500 hover:ring-1'
+            className='rounded-md bg-button px-4 py-2 font-semibold ring-[#FFB500] duration-500 hover:bg-button_hover hover:ring-1'
             aria-label='Sign In button'>
             Sign In
           </button>
           <button
-            className='rounded-md bg-neutral-200 px-4 py-2 duration-500 hover:ring-1'
+            className='rounded-md bg-button px-4 py-2 font-semibold ring-[#FFB500] duration-500 hover:bg-button_hover hover:ring-1'
             aria-label='Sign Up button'>
             Sign Up
           </button>
