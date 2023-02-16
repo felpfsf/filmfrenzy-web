@@ -790,6 +790,11 @@ fill-range@^7.0.1:
   dependencies:
     to-regex-range "^5.0.1"
 
+flatten-tailwindcss-theme@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/flatten-tailwindcss-theme/-/flatten-tailwindcss-theme-1.0.0.tgz#e1ce77c4b4979fe432e799cc2dad469a7a664b86"
+  integrity sha512-7B795m0qzLF0yQYGkfGanO3NOisEI4EaVObnr3DBq7Qc8Ygq4yWGa0Gpx2rtb10NSgIcimUqu4Xaqh+0bkC87w==
+
 follow-redirects@^1.15.0:
   version "1.15.2"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
@@ -1418,6 +1423,13 @@ supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
+
+tailwindcss-text-fill@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/tailwindcss-text-fill/-/tailwindcss-text-fill-0.2.0.tgz#2e91228e265c947babc2ffcd523a147b5c4407b4"
+  integrity sha512-3lo6a/9jXSx4+24onFv7xnHO/1DZCk6qM+LoCsEUxn79sAeoc/ts74LSH0vRhLvWe4Yn+YglFfT+lxDv6wn2sQ==
+  dependencies:
+    flatten-tailwindcss-theme "^1.0.0"
 
 tailwindcss@^3.2.6:
   version "3.2.6"
