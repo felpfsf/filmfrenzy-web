@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useQuery } from 'react-query'
+import { Params } from 'react-router-dom'
 import { TMDB_API_KEY, TMDB_BASE_URL } from '../utils/env'
 
 // TODO - TRANSFORM INTO fetchMoviesPopular, fetchMoviesNowPlaying, fetchTvShowsOnAir, fetchTvShowsPopular
@@ -27,4 +28,24 @@ export const fetchTvShowsPopular = async () => {
     `${TMDB_BASE_URL}/tv/popular?api_key=${TMDB_API_KEY}&language=pt-BR&page=1&include_adult=false`
   )
   return response.data.results
+}
+
+export const fetchMovieDetails = async ({
+  movie_id
+}: Readonly<Params<string>>) => {
+  const response = await axios.get(`
+  https://api.themoviedb.org/3/movie/${movie_id}?api_key=${TMDB_API_KEY}&language=pt-BR
+  `)
+
+  return response.data
+}
+
+export const fetchTvDetails = async ({
+  tvshow_id
+}: Readonly<Params<string>>) => {
+  const response = await axios.get(`
+  https://api.themoviedb.org/3/tv/${tvshow_id}?api_key=${TMDB_API_KEY}&language=pt-BR
+  `)
+
+  return response.data
 }
