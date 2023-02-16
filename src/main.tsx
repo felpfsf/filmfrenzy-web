@@ -5,8 +5,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App'
 import queryClient from './lib/queryClient'
 import { Home } from './pages/Home'
+import { Movie } from './pages/Movie'
 import { Movies } from './pages/Movies'
 import { NotFound } from './pages/NotFound'
+import { TVShow } from './pages/TVShow'
 import { TVShows } from './pages/TVShows'
 import './styles/index.css'
 
@@ -25,8 +27,16 @@ const routes = createBrowserRouter([
         element: <Movies />
       },
       {
+        path: '/movies/:movie_id',
+        element: <Movie />
+      },
+      {
         path: '/tvshows',
         element: <TVShows />
+      },
+      {
+        path: '/tvshows/:tvshow_id',
+        element: <TVShow />
       }
     ]
   }
