@@ -22,7 +22,7 @@ select:-webkit-autofill:focus {
 @tailwind utilities;
 
 body {
-  @apply bg-neutral-900 text-neutral-100 font-main;
+  @apply bg-background text-paragraph font-main;
 }
 
 
