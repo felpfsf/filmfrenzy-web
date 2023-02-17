@@ -75,19 +75,19 @@ export const Hero = ({ type }: HeroProps) => {
     // console.log('movie id ->', currentItem.id)
     if (currentItem.title) {
       nav(
-        `/movies/${slugify(currentItem.title, {
+        `/movies/${currentItem.id}/${slugify(currentItem.title, {
           replacement: '-',
-          remove: /:/
-        })}`,
-        { state: { id: currentItem.id } }
+          remove: /:/,
+          lower: true
+        })}`
       )
     } else {
       nav(
-        `/tvshows/${slugify(currentItem.name, {
+        `/tvshows/${currentItem.id}/${slugify(currentItem.name, {
           replacement: '-',
-          remove: /:/
-        })}`,
-        { state: { id: currentItem.id } }
+          remove: /:/,
+          lower: true
+        })}`
       )
     }
   }

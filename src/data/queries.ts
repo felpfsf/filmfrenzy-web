@@ -28,7 +28,7 @@ export const fetchTvShowsPopular = async () => {
   return response.data.results
 }
 
-export const fetchMovieDetails = async (movie_id: number) => {
+export const fetchMovieDetails = async (movie_id: string) => {
   const response = await axios.get(`
   https://api.themoviedb.org/3/movie/${movie_id}?api_key=${TMDB_API_KEY}&language=pt-BR
   `)
@@ -36,7 +36,7 @@ export const fetchMovieDetails = async (movie_id: number) => {
   return response.data
 }
 
-export const fetchTvDetails = async (tvshow_id: number) => {
+export const fetchTvDetails = async (tvshow_id: string) => {
   const response = await axios.get(`
   https://api.themoviedb.org/3/tv/${tvshow_id}?api_key=${TMDB_API_KEY}&language=pt-BR
   `)

@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query'
-import { useLocation } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { fetchTvDetails } from '../data/queries'
 
 export const TVShow = () => {
@@ -14,14 +14,13 @@ export const TVShow = () => {
 
   // https://api.themoviedb.org/3/tv/{tvshow_id}?api_key=${TMDB_API_KEY}&language=pt-BR
 
-  const { state } = useLocation()
-  const tvshow_id = state && state.id
+  const { tvshow_id } = useParams()
 
   const {
     data: tvshow,
     isLoading,
     isError
-  } = useQuery('tvshow_details', () => fetchTvDetails(tvshow_id))
+  } = useQuery('tvshow_details', () => fetchTvDetails(tvshow_id || ''))
 
   if (isError) {
     return (
