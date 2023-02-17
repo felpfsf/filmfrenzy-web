@@ -43,6 +43,7 @@ export const TVShow = () => {
       <h1>TV Show Details</h1>
       <p>{tvshow.name}</p>
       <p>{tvshow.tagline}</p>
+      <p>{tvshow.overview}</p>
     </div>
   )
 }

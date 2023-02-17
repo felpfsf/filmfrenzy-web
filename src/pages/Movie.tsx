@@ -41,6 +41,7 @@ export const Movie = () => {
     <div className='mx-auto h-full w-full max-w-screen-2xl pt-32'>
       <h1>Movie Details</h1>
       <p>{movie.title}</p>
+      <p>{movie.overview}</p>
     </div>
   )
 }
