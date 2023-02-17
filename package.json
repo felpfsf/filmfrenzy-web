@@ -16,6 +16,7 @@
     "react-query": "^3.39.3",
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.8.1",
+    "slugify": "^1.6.5",
     "tailwindcss-text-fill": "^0.2.0"
   },
   "devDependencies": {
