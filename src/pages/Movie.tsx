@@ -1,8 +1,7 @@
-import axios from 'axios'
+import slugify from 'slugify'
 import { useQuery } from 'react-query'
-import { useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { fetchMovieDetails } from '../data/queries'
-import { TMDB_API_KEY } from '../utils/env'
 
 export const Movie = () => {
   /**
@@ -15,12 +14,14 @@ export const Movie = () => {
 
   // `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=pt-BR`
 
-  const params = useParams()
+  const {state} = useLocation()
+  const movie_id = state && state.id
+  
   const {
     data: movie,
     isLoading,
     isError
-  } = useQuery('movie_details', () => fetchMovieDetails(params))
+  } = useQuery('movie_details', () => fetchMovieDetails(movie_id))
 
   if (isLoading) {
     return (
@@ -38,7 +39,7 @@ export const Movie = () => {
     )
   }
 
-  // console.log(movie.title)
+  console.log(slugify(movie.title, { replacement: '-', remove: /:/g }))
 
   return (
     <div className='mx-auto h-full w-full max-w-screen-2xl pt-32'>

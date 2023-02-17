@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { QueryObserverSuccessResult, useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+import slugify from 'slugify'
 import {
   fetchMoviesNowPlaying,
   fetchMoviesPopular,
@@ -73,9 +74,21 @@ export const Hero = ({ type }: HeroProps) => {
   const handleClick = () => {
     // console.log('movie id ->', currentItem.id)
     if (currentItem.title) {
-      nav(`/movies/${currentItem.id}`)
+      nav(
+        `/movies/${slugify(currentItem.title, {
+          replacement: '-',
+          remove: /:/
+        })}`,
+        { state: { id: currentItem.id } }
+      )
     } else {
-      nav(`/tvshows/${currentItem.id}`)
+      nav(
+        `/tvshows/${slugify(currentItem.name, {
+          replacement: '-',
+          remove: /:/
+        })}`,
+        { state: { id: currentItem.id } }
+      )
     }
   }
 
