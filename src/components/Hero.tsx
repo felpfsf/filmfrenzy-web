@@ -110,7 +110,7 @@ export const Hero = ({ type }: HeroProps) => {
           : 'image placeholder'
       }>
       <div className='h-full w-full bg-posterGradient'>
-        <div className='duration-600 flex h-full w-full flex-col justify-end bg-contentPosterGradient pl-8 pb-16 transition-all ease-in-out'>
+        <div className='duration-600 flex h-full w-full flex-col justify-end bg-contentPosterGradient pl-8 pb-32 md:pb-16 transition-all ease-in-out'>
           <h1 className='font-bold md:text-6xl'>
             {currentItem?.title || currentItem?.name}
           </h1>
