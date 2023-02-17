@@ -1,6 +1,4 @@
 import axios from 'axios'
-import { useQuery } from 'react-query'
-import { Params } from 'react-router-dom'
 import { TMDB_API_KEY, TMDB_BASE_URL } from '../utils/env'
 
 // TODO - TRANSFORM INTO fetchMoviesPopular, fetchMoviesNowPlaying, fetchTvShowsOnAir, fetchTvShowsPopular
