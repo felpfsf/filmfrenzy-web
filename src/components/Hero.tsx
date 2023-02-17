@@ -9,6 +9,7 @@ import {
   fetchTvShowsPopular
 } from '../data/queries'
 import { TMDB_BACKDROP_POSTER } from '../utils/env'
+import { Button } from './ui/Button'
 
 interface HeroProps {
   type: 'movies' | 'tvshows' | 'movies_now_playing' | 'tvshows_on_air'
@@ -135,14 +136,8 @@ export const Hero = ({ type }: HeroProps) => {
               </p>
             ) : null}
             <div className='mt-2 flex gap-4'>
-              <button className='rounded-md bg-button px-4 py-2 font-semibold ring-[#FFB500] duration-500 hover:bg-button_hover hover:ring-1'>
-                ▶ Watch Trailer
-              </button>
-              <button
-                className='rounded-md bg-button px-4 py-2 font-semibold ring-[#FFB500] duration-500 hover:bg-button_hover hover:ring-1'
-                onClick={handleClick}>
-                + More Info
-              </button>
+              <Button label='▶ Watch Trailer' />
+              <Button label='+ More Info' handleClick={handleClick} />
             </div>
           </div>
         </div>

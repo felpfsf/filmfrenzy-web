@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { RxCross1, RxHamburgerMenu } from 'react-icons/rx'
 import { HiOutlineMagnifyingGlass } from 'react-icons/hi2'
 import { Link, NavLink } from 'react-router-dom'
+import { Button } from './ui/Button'
 
 export const Navbar = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false)
@@ -107,16 +108,8 @@ export const Navbar = () => {
           </div>
         </div>
         <div className='flex gap-2'>
-          <button
-            className='rounded-md bg-button px-4 py-2 font-semibold ring-[#FFB500] duration-500 hover:bg-button_hover hover:ring-1'
-            aria-label='Sign In button'>
-            Sign In
-          </button>
-          <button
-            className='rounded-md bg-button px-4 py-2 font-semibold ring-[#FFB500] duration-500 hover:bg-button_hover hover:ring-1'
-            aria-label='Sign Up button'>
-            Sign Up
-          </button>
+          <Button label='Sign In' />
+          <Button label='Sign Up' />
         </div>
       </nav>
     </div>
