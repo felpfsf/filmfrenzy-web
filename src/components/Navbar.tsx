@@ -18,7 +18,7 @@ export const Navbar = () => {
   }
 
   return (
-    <div className='fixed m-auto flex w-full items-center justify-between bg-gradient-to-r from-[#111]/30 to-transparent/5 py-4 px-8'>
+    <div className='fixed m-auto flex w-full items-center justify-between bg-gradient-to-r from-[#111]/30 to-transparent/5 py-4 px-4 md:px-8'>
       <Link to='/'>
         <h1 className='bg-gradient-to-r from-[#A20025] via-[#F40009] to-[#FFB500] bg-clip-text font-logo text-4xl font-black tracking-widest text-fill-transparent'>
           FILMFRENZY
@@ -62,16 +62,8 @@ export const Navbar = () => {
           </div>
         </div>
         <div className='flex gap-2'>
-          <button
-            className='rounded-md bg-button px-4 py-2 font-semibold ring-[#FFB500] duration-500 hover:bg-button_hover hover:ring-1'
-            aria-label='Sign In button'>
-            Sign In
-          </button>
-          <button
-            className='rounded-md bg-button px-4 py-2 font-semibold ring-[#FFB500] duration-500 hover:bg-button_hover hover:ring-1'
-            aria-label='Sign Up button'>
-            Sign Up
-          </button>
+          <Button label='Sign In' />
+          <Button label='Sign Up' />
         </div>
       </nav>
       {/* mobile menu */}
