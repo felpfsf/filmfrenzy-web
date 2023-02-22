@@ -8,6 +8,7 @@ import { Home } from './pages/Home'
 import { Movie } from './pages/Movie'
 import { Movies } from './pages/Movies'
 import { NotFound } from './pages/NotFound'
+import { Search } from './pages/Search'
 import { TVShow } from './pages/TVShow'
 import { TVShows } from './pages/TVShows'
 import './styles/index.css'
@@ -37,7 +38,11 @@ const routes = createBrowserRouter([
       {
         path: '/tvshows/:tvshow_id/:tvshow_slug',
         element: <TVShow />
-      }
+      },
+      {
+        path: '/search',
+        element: <Search />
+      },
     ]
   }
 ])
