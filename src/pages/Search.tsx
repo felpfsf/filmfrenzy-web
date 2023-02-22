@@ -1,10 +1,6 @@
-import { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useSearchParams } from "react-router-dom";
 import { fetchSearch } from "../data/queries";
-
-// SEARCH_URL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=${pageNumber}&include_adult=false&query=${queryParam}`
-// BASE_URL, API_KEY and query='queryParam
 
 interface SearchResult {
   id: number;
@@ -13,22 +9,34 @@ interface SearchResult {
   name?: string;
 }
 
+interface SearchResults {
+  movies: SearchResult[];
+  tvShows: SearchResult[];
+}
+
+const fetchSearchResults = async (query: string) => {
+  const searchResult = await fetchSearch(query);
+  const movies = searchResult?.filter(
+    (result: SearchResult) => result.media_type === "movie"
+  );
+  const tvShows = searchResult?.filter(
+    (result: SearchResult) => result.media_type === "tv"
+  );
+
+  return { movies, tvShows };
+};
+
 export const Search = () => {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q");
 
   const {
-    data: search_result,
+    data: searchResult,
     isLoading,
     isError,
-  } = useQuery("search", () => fetchSearch(query || ""));
-
-  const movies = search_result?.filter(
-    (result: SearchResult) => result.media_type === "movie"
-  );
-  const tvShows = search_result?.filter(
-    (result: SearchResult) => result.media_type === "tv"
-  );
+  } = useQuery(["search", query], () => fetchSearchResults(query || ""), {
+    enabled: !!query,
+  });
 
   if (isLoading) {
     return (
@@ -41,17 +49,33 @@ export const Search = () => {
   if (isError) {
     return (
       <div className='mx-auto h-full w-full max-w-screen-2xl pt-32'>
-        <p>Error loading movie details</p>
+        <p>Error loading search results</p>
       </div>
     );
   }
+  
+  // Se o resultado vier undefined exibe essa mensagem
+  if (!searchResult) {
+    return (
+      <div className='mx-auto h-full w-full max-w-screen-2xl pt-32'>
+        <p>No results were found.</p>
+      </div>
+    );
+  }
+
+  const { movies, tvShows } = (searchResult || {}) as SearchResults;
+
   return (
-    <div className='mx-auto h-full w-full max-w-screen-2xl pt-32'>
+    <div className='mx-auto h-full w-full max-w-screen-2xl px-4 pt-32 md:px-8'>
       <strong>
         Results for <em className='underline underline-offset-2'>{query}</em>
       </strong>
-      <div className='mt-4 grid gap-4'>
-        {movies ? (
+      <div
+        className={`mt-4 grid gap-4 opacity-0 transition-opacity duration-300 ease-in-out ${
+          movies.length || tvShows.length ? "opacity-100" : ""
+        }`}
+      >
+        {movies && (
           <div className='border border-red-600'>
             <strong>Movies</strong>
             <div className='mt-4 grid grid-cols-4'>
@@ -62,9 +86,9 @@ export const Search = () => {
               ))}
             </div>
           </div>
-        ) : null}
+        )}
 
-        {tvShows ? (
+        {tvShows && (
           <div className='border border-red-600'>
             <strong>TV Shows</strong>
             <div className='mt-4 grid grid-cols-4'>
@@ -75,7 +99,7 @@ export const Search = () => {
               ))}
             </div>
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );
