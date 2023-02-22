@@ -39,6 +39,7 @@ export const fetchMovieDetails = async (movie_id: string) => {
 export const fetchTvDetails = async (tvshow_id: string) => {
   const response = await axios.get(`
   ${TMDB_BASE_URL}/tv/${tvshow_id}?api_key=${TMDB_API_KEY}&language=pt-BR
+  
   `);
 
   return response.data;
