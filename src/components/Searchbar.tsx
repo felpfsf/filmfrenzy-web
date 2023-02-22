@@ -8,7 +8,7 @@ export const Searchbar = () => {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    if (!query) return navigate("/");
+    if (!query) return;
     navigate(`/search/?q=${query}`);
     setQuery("");
   };
