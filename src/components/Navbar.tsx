@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
-import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
 import { Link, NavLink } from "react-router-dom";
 import { Button } from "./ui/Button";
 import { Searchbar } from "./Searchbar";
@@ -11,7 +10,7 @@ export const Navbar = () => {
   const menuItems = [
     { to: "/movies", text: "Movies" },
     { to: "/tvshows", text: "Tv Shows" },
-    { to: "/upcomming", text: "Up Comming" },
+    { to: "/", text: "Up Comming" },
   ];
 
   const toggleNavMenu = () => {
