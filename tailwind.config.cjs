@@ -21,5 +21,5 @@ module.exports = {
       }
     }
   },
-  plugins: [require('tailwindcss-text-fill')]
+  plugins: [require('tailwindcss-text-fill'),require('tailwind-scrollbar'),require('@tailwindcss/line-clamp'),]
 }
