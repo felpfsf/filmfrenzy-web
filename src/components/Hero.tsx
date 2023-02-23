@@ -103,7 +103,7 @@ export const Hero = ({ type }: HeroProps) => {
     >
       <div className='h-full w-full bg-posterGradient'>
         <div className='duration-600 flex h-full w-full flex-col justify-end bg-contentPosterGradient px-8 md:pl-8 pb-14 transition-all ease-in-out md:pb-32'>
-          <h1 className='font-bold text-3xl md:text-6xl'>
+          <h1 className='font-bold text-lg md:text-6xl'>
             {currentItem?.title || currentItem?.name}
           </h1>
           <div className='mt-2 flex flex-col gap-2 md:w-[50%]'>
