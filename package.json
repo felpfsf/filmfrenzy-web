@@ -17,9 +17,11 @@
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.8.1",
     "slugify": "^1.6.5",
+    "swiper": "^9.0.5",
     "tailwindcss-text-fill": "^0.2.0"
   },
   "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",

@@ -2,18 +2,38 @@ import { useQuery } from "react-query";
 import { fetchMoviesPopular } from "../data/queries";
 import { MovieCard } from "./MovieCard";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+
 export const MoviesRow = ({ title }: { title: string }) => {
   const { data: movies } = useQuery("getPop", () => fetchMoviesPopular());
-  console.log(movies);
+  // console.log(movies);
   return (
-    <section className='px-4 pt-0 lg:px-8'>
-      <h2 className='font-bold text-white md:text-xl'>{title}</h2>
-      <div className='mx-auto h-full w-full overflow-x-scroll whitespace-nowrap'>
+    <section className='w-full px-4 pt-0 lg:px-8'>
+      <h2 className='my-4 text-2xl font-bold'>{title}</h2>
+      <Swiper
+        spaceBetween={6}
+        slidesPerView={2.2}
+        breakpoints={{
+          1024: { // screen min-width 1024px
+            slidesPerView: 4,
+            spaceBetween: 4,
+          },
+          1440:{
+            slidesPerView: 5.4,
+            spaceBetween: 4,
+          }
+        }}
+      >
+        {/* map */}
         {movies &&
           movies.map((movie: any) => (
-            <MovieCard key={movie.id} {...movie} />
-        ))}
-      </div>
+            <SwiperSlide key={movie.id}>
+              <MovieCard {...movie} />
+            </SwiperSlide>
+          ))}
+        {/* map */}
+      </Swiper>
     </section>
   );
 };
