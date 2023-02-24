@@ -23,13 +23,23 @@ export const MovieCard = (props: any) => {
     }
   };
   return (
-    <div className='max-w-40 inline-block h-64 p-4' onClick={handleClick}>
-      <img
-        src={`https://image.tmdb.org/t/p/original/${props.backdrop_path}`}
-        alt=''
-        className='h-full max-h-52 w-full rounded-lg object-cover'
-      />
-      <p className='py-1.5 line-clamp-2'>{props.title}</p>
+    <div
+      className='h-auto w-full max-w-xs'
+      onClick={handleClick}
+    >
+      <div className='relative overflow-hidden rounded-lg bg-background'>
+        <div className=''>
+          <img
+            src={`https://image.tmdb.org/t/p/original/${props.poster_path}`}
+            alt=''
+            className='h-full w-full object-cover'
+          />
+        </div>
+        <div className='absolute bottom-0 z-10 h-20 w-full bg-movieCardGradient md:bg-none p-4 md:static'>
+          <h3 className='text-xs md:text-base font-bold'>{props.title}</h3>
+          {/* <p className='text-sm'>{props.release_date}</p> */}
+        </div>
+      </div>
     </div>
   );
 };
