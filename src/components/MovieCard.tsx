@@ -6,7 +6,7 @@ export const MovieCard = (props: any) => {
   const handleClick = () => {
     if (props.title) {
       nav(
-        `/movies/${props.id}/${slugify(props.title, {
+        `/movie/${props.id}/${slugify(props.title, {
           replacement: "-",
           remove: /:/,
           lower: true,
@@ -14,7 +14,7 @@ export const MovieCard = (props: any) => {
       );
     } else {
       nav(
-        `/tvshows/${props.id}/${slugify(props.name, {
+        `/tvshow/${props.id}/${slugify(props.name, {
           replacement: "-",
           remove: /:/,
           lower: true,
@@ -23,10 +23,7 @@ export const MovieCard = (props: any) => {
     }
   };
   return (
-    <div
-      className='h-auto w-full max-w-xs'
-      onClick={handleClick}
-    >
+    <div className='h-auto w-full max-w-xs' onClick={handleClick}>
       <div className='relative overflow-hidden rounded-lg bg-background'>
         <div className=''>
           <img
@@ -35,8 +32,8 @@ export const MovieCard = (props: any) => {
             className='h-full w-full object-cover'
           />
         </div>
-        <div className='absolute bottom-0 z-10 h-20 w-full bg-movieCardGradient md:bg-none p-4 md:static'>
-          <h3 className='text-xs md:text-base font-bold'>{props.title}</h3>
+        <div className='absolute bottom-0 z-10 h-20 w-full bg-movieCardGradient p-4 md:static md:bg-none'>
+          <h3 className='text-xs font-bold md:text-base'>{props.title}</h3>
           {/* <p className='text-sm'>{props.release_date}</p> */}
         </div>
       </div>
