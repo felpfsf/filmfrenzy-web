@@ -23,7 +23,7 @@ export const MovieCard = (props: any) => {
     }
   };
   return (
-    <div className='h-auto w-full max-w-xs' onClick={handleClick}>
+    <div className='h-auto w-full max-w-xs cursor-pointer' onClick={handleClick}>
       <div className='relative overflow-hidden rounded-lg bg-background'>
         <div className=''>
           <img
