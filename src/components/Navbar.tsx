@@ -18,7 +18,7 @@ export const Navbar = () => {
   };
 
   return (
-    <div className='fixed m-auto flex w-full items-center justify-between bg-gradient-to-r from-[#111]/30 to-transparent/5 py-4 px-4 md:px-8'>
+    <div className='fixed m-auto flex w-full items-center justify-between bg-gradient-to-r from-[#111]/30 to-transparent/5 py-4 px-4 md:px-8 z-[2]'>
       <Link to='/'>
         <h1 className='bg-gradient-to-r from-[#A20025] via-[#F40009] to-[#FFB500] bg-clip-text font-logo text-4xl font-black tracking-widest text-fill-transparent'>
           FILMFRENZY
