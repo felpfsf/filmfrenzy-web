@@ -4,6 +4,8 @@ import { Hero } from "../components/Hero";
 import { MoviesRow } from "../components/MoviesRow";
 import { TMDB_API_KEY, TMDB_BASE_URL } from "../utils/env";
 
+import { motion } from "framer-motion";
+
 export const Home = () => {
   const { data: items } = useQuery(["movies", "tvShows"], async () => {
     const [moviesResponse, tvShowsResponse] = await Promise.all([
@@ -21,9 +23,14 @@ export const Home = () => {
   const shuffledItems = items && items.sort(() => Math.random() - 0.5);
 
   return (
-    <main className='w-full'>
+    <motion.main
+      className='w-full'
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, transition: { duration: 0.5 } }}
+    >
       <Hero type={""} shuffledItems={shuffledItems} />
       <MoviesRow title='Most Popular' />
-    </main>
+    </motion.main>
   );
 };

@@ -10,7 +10,7 @@ export const Navbar = () => {
   const menuItems = [
     { to: "/movies", text: "Movies" },
     { to: "/tvshows", text: "Tv Shows" },
-    { to: "/", text: "Up Comming" },
+    // { to: "/", text: "Up Comming" },
   ];
 
   const toggleNavMenu = () => {

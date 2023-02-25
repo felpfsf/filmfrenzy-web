@@ -1,6 +1,12 @@
 import { useQuery } from "react-query";
 import { useSearchParams } from "react-router-dom";
 import { fetchSearch } from "../data/queries";
+import { motion } from "framer-motion";
+import {
+  MOTION_OPACITY_ANIMATE,
+  MOTION_OPACITY_INITIAL,
+  MOTION_TRANSITION_DURATION,
+} from "../utils/motionProps";
 
 interface SearchResult {
   id: number;
@@ -53,7 +59,7 @@ export const Search = () => {
       </div>
     );
   }
-  
+
   // Se o resultado vier undefined exibe essa mensagem
   if (!searchResult) {
     return (
@@ -66,7 +72,15 @@ export const Search = () => {
   const { movies, tvShows } = (searchResult || {}) as SearchResults;
 
   return (
-    <div className='mx-auto h-full w-full max-w-screen-2xl px-4 pt-32 md:px-8'>
+    <motion.div
+      className='mx-auto h-full w-full max-w-screen-2xl px-4 pt-32 md:px-8'
+      initial={{ opacity: MOTION_OPACITY_INITIAL }}
+      animate={{ opacity: MOTION_OPACITY_ANIMATE }}
+      exit={{
+        opacity: MOTION_OPACITY_ANIMATE,
+        transition: { duration: MOTION_TRANSITION_DURATION },
+      }}
+    >
       <strong>
         Results for <em className='underline underline-offset-2'>{query}</em>
       </strong>
@@ -101,6 +115,6 @@ export const Search = () => {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };

@@ -1,9 +1,15 @@
-import { Hero } from '../components/Hero'
+import { Hero } from "../components/Hero";
+import { motion } from "framer-motion";
 
 export const TVShows = () => {
   return (
-    <div>
+    <motion.div
+      className='w-full'
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, transition: { duration: 0.5 } }}
+    >
       <Hero type='tvshows' />
-    </div>
-  )
-}
+    </motion.div>
+  );
+};
