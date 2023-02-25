@@ -1,0 +1,3 @@
+export const MOTION_TRANSITION_DURATION = 0.8
+export const MOTION_OPACITY_INITIAL = 0
+export const MOTION_OPACITY_ANIMATE = 1
