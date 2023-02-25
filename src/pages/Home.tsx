@@ -1,26 +1,10 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Hero } from "../components/Hero";
 import { MoviesRow } from "../components/MoviesRow";
 import { TMDB_API_KEY, TMDB_BASE_URL } from "../utils/env";
 
-interface ItemProps {
-  release_date: string;
-  first_air_date: string;
-  vote_average: number;
-  name: string;
-  original_title: string;
-  title: string;
-  overview: string;
-  number_of_seasons: number;
-  backdrop_path: string;
-  id: string;
-}
-
 export const Home = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
   const { data: items } = useQuery(["movies", "tvShows"], async () => {
     const [moviesResponse, tvShowsResponse] = await Promise.all([
       axios.get(
@@ -35,26 +19,10 @@ export const Home = () => {
   });
 
   const shuffledItems = items && items.sort(() => Math.random() - 0.5);
-  const currentItem: ItemProps = shuffledItems
-    ? shuffledItems[currentIndex]
-    : {};
-
-  useEffect(() => {
-    if (!items) return;
-    const intervalID = setInterval(() => {
-      setCurrentIndex(currentIndex === items.length - 1 ? 0 : currentIndex + 1);
-    }, 5000);
-
-    return () => clearInterval(intervalID);
-  });
 
   return (
     <main className='w-full'>
-      <Hero
-        type={
-          currentItem.original_title ? "movies_now_playing" : "tvshows_on_air"
-        }
-      />
+      <Hero type={""} shuffledItems={shuffledItems} />
       <MoviesRow title='Most Popular' />
     </main>
   );
