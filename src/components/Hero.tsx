@@ -64,7 +64,7 @@ export const Hero = ({ type, shuffledItems }: HeroProps) => {
 
   const handleClick = () => {
     nav(
-      `/${type === "movies" ? "movies" : "tvshows"}/${currentItem?.id}/${
+      `/${currentItem?.title ? "movie" : "tvshow"}/${currentItem?.id}/${
         currentItem
           ? slugify(currentItem?.title ?? currentItem?.name ?? "", {
               replacement: "-",
