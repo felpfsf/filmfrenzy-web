@@ -90,7 +90,7 @@ export const Hero = ({ type, shuffledItems }: HeroProps) => {
               style={{
                 backgroundImage: `url(${TMDB_BACKDROP_POSTER}/${currentItem?.backdrop_path})`,
               }}
-              className='easy-in-out h-screen w-full bg-cover bg-center transition-all duration-500'
+              className='h-screen w-full bg-cover bg-center'
               aria-live='polite'
               aria-atomic='true'
               aria-label={
@@ -102,7 +102,7 @@ export const Hero = ({ type, shuffledItems }: HeroProps) => {
               }
             >
               <div className='h-full w-full bg-posterGradient'>
-                <div className='duration-600 flex h-full w-full flex-col justify-end bg-contentPosterGradient px-8 pb-14 transition-all ease-in-out md:pl-8 md:pb-32'>
+                <div className='flex h-full w-full flex-col justify-end bg-contentPosterGradient px-8 pb-14 md:pl-8 md:pb-32'>
                   <h1 className='text-lg font-bold md:text-6xl'>
                     {currentItem?.title || currentItem?.name}
                   </h1>
