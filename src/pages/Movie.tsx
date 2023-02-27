@@ -2,7 +2,12 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { fetchMovieDetails } from "../data/queries";
 import { motion } from "framer-motion";
-import { MOTION_OPACITY_ANIMATE, MOTION_OPACITY_INITIAL, MOTION_TRANSITION_DURATION } from "../utils/motionProps";
+import {
+  MOTION_OPACITY_ANIMATE,
+  MOTION_OPACITY_INITIAL,
+  MOTION_TRANSITION_DURATION,
+} from "../utils/motionProps";
+import { TMDB_BACKDROP_POSTER } from "../utils/env";
 
 export const Movie = () => {
   /**
@@ -25,6 +30,12 @@ export const Movie = () => {
     fetchMovieDetails(movie_id || "")
   );
 
+  console.log(movie && movie?.backdrop_path);
+
+  const movie_backdrop = `${TMDB_BACKDROP_POSTER}${movie?.backdrop_path}`;
+
+  console.log(movie_backdrop);
+
   if (isLoading) {
     return (
       <div className='mx-auto h-full w-full max-w-screen-2xl pt-32'>
@@ -43,7 +54,7 @@ export const Movie = () => {
 
   return (
     <motion.div
-      className='mx-auto h-full w-full max-w-screen-2xl pt-32'
+      className='mx-auto h-full w-full max-w-screen-2xl px-4 pt-32'
       initial={{ opacity: MOTION_OPACITY_INITIAL }}
       animate={{ opacity: MOTION_OPACITY_ANIMATE }}
       exit={{
@@ -51,9 +62,24 @@ export const Movie = () => {
         transition: { duration: MOTION_TRANSITION_DURATION },
       }}
     >
-      <h1>Movie Details</h1>
-      <p>{movie.title}</p>
-      <p>{movie.overview}</p>
+      <img
+        src={movie_backdrop}
+        alt=''
+        className='absolute inset-0 -z-10 h-1/2 w-full object-cover object-center'
+      />
+      <div className='flex flex-col items-center gap-4 lg:flex-row lg:items-start'>
+        <img
+          src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+          alt=''
+          className='w-full min-w-[192px] max-w-sm rounded-xl drop-shadow-sm'
+        />
+        <div className='flex flex-col gap-4'>
+          <h1>
+            <strong>{movie.title}</strong>
+          </h1>
+          <p>{movie.overview}</p>
+        </div>
+      </div>
     </motion.div>
   );
 };
