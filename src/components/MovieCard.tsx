@@ -28,16 +28,13 @@ export const MovieCard = (props: any) => {
       onClick={handleClick}
     >
       <div className='relative overflow-hidden rounded-lg bg-background'>
-        <div className=''>
-          <img
-            src={`https://image.tmdb.org/t/p/original/${props.poster_path}`}
-            alt=''
-            className='h-full w-full object-cover'
-          />
-        </div>
+        <img
+          src={`https://image.tmdb.org/t/p/original/${props.poster_path}`}
+          alt=''
+          className='h-full w-full object-cover'
+        />
         <div className='absolute bottom-0 z-10 flex h-20 w-full items-center bg-movieCardGradient p-4 md:static md:bg-none'>
           <h3 className='text-xs font-bold md:text-base'>{props.title}</h3>
-          {/* <p className='text-sm'>{props.release_date}</p> */}
         </div>
       </div>
     </div>
