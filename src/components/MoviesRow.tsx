@@ -15,14 +15,23 @@ export const MoviesRow = ({ title }: { title: string }) => {
         spaceBetween={6}
         slidesPerView={2.2}
         breakpoints={{
-          1024: { // screen min-width 1024px
+          1024: {
+            // screen min-width 1024px ...
             slidesPerView: 4,
             spaceBetween: 4,
           },
-          1440:{
-            slidesPerView: 5.4,
-            spaceBetween: 4,
-          }
+          1440: {
+            slidesPerView: 5.6,
+            spaceBetween: 1,
+          },
+          2560: {
+            slidesPerView: 7.5,
+            spaceBetween: 0,
+          },
+          3180: {
+            slidesPerView: 9.3,
+            spaceBetween: 0,
+          },
         }}
       >
         {/* map */}
