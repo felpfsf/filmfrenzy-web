@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { fetchTvDetails } from "../data/queries";
+import { fetchCast, fetchDetails } from "../data/queries";
 import { motion } from "framer-motion";
 import {
   MOTION_OPACITY_ANIMATE,
@@ -9,6 +9,9 @@ import {
 } from "../utils/motionProps";
 import { TMDB_BACKDROP_POSTER } from "../utils/env";
 import { TVShowDetails } from "../types";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 export const TVShow = () => {
   /**
@@ -22,6 +25,8 @@ export const TVShow = () => {
 
   // https://api.themoviedb.org/3/tv/{tvshow_id}?api_key=${TMDB_API_KEY}&language=pt-BR
 
+  // https://api.themoviedb.org/3/tv/{tv_id}/credits?api_key=<<api_key>>&language=en-US
+
   const { tvshow_id } = useParams();
 
   const {
@@ -30,8 +35,12 @@ export const TVShow = () => {
     isError,
   } = useQuery<TVShowDetails>(
     "tvshow_details",
-    () => fetchTvDetails(tvshow_id || ""),
+    () => fetchDetails(tvshow_id || "", "tv"),
     { staleTime: 0, cacheTime: 0 }
+  );
+
+  const { data: cast_data } = useQuery(["cast", tvshow_id], () =>
+    fetchCast(tvshow_id || "", "tv")
   );
 
   if (isError) {
@@ -70,18 +79,63 @@ export const TVShow = () => {
         className='absolute inset-0 -z-10 h-1/2 w-full object-cover object-center'
       />
       <div className='absolute inset-0 -z-10 h-1/2 w-full bg-posterGradient' />
-      <div className='flex flex-col items-center justify-around lg:flex-row lg:items-center'>
+      <div className='flex flex-col items-center gap-8 lg:flex-row lg:items-center lg:gap-24'>
         <img
           src={`https://image.tmdb.org/t/p/original/${tvshow?.poster_path}`}
           alt={`Poster of ${tvshow?.poster_path}`}
-          className='w-full min-w-[10rem] max-w-sm rounded-xl drop-shadow-sm'
+          className='w-full min-w-[10rem] max-w-xs rounded-xl border-l-2 border-b-2 drop-shadow-sm'
         />
-        <div className='mt-8 flex max-w-3xl flex-col gap-4 px-2 lg:mt-0'>
+        <div className='flex max-w-3xl flex-col gap-4 px-2 lg:mt-0'>
           <h1 className='text-2xl font-semibold md:text-3xl'>{tvshow?.name}</h1>
-          <em>"{tvshow?.tagline}"</em>
+          {tvshow?.tagline && <em>"{tvshow?.tagline}"</em>}
           <p className='text-justify md:text-lg'>{tvshow?.overview}</p>
         </div>
       </div>
+      {/* Cast */}
+      <div className='my-8 flex flex-col gap-4'>
+        <h1 className='text-2xl font-semibold'>Cast</h1>
+        <div className='w-full'>
+          <Swiper
+            slidesPerView={1.9}
+            spaceBetween={10}
+            breakpoints={{
+              768: {
+                slidesPerView: 4.2,
+                spaceBetween: 10,
+              },
+              1024: {
+                // screen min-width 1024px ...
+                slidesPerView: 6,
+                spaceBetween: 10,
+              },
+              1440: {
+                slidesPerView: 8.5,
+                spaceBetween: 10,
+              },
+            }}
+          >
+            {cast_data &&
+              cast_data.map((cast: any) => (
+                <SwiperSlide key={cast.id}>
+                  <div className='relative h-56 w-40 bg-slate-400'>
+                    <img
+                      src={
+                        cast.profile_path
+                          ? `https://image.tmdb.org/t/p/original/${cast.profile_path}`
+                          : `https://dummyimage.com/2000x3000/000/fff.png&text=Placeholder+of+${cast.name}`
+                      }
+                      alt={`Image+Placeholder+of+${cast.name}`}
+                    />
+                    <p className='absolute bottom-0 flex h-12 w-full items-center bg-posterGradient px-2 text-paragraph'>
+                      {cast.name}
+                    </p>
+                  </div>
+                </SwiperSlide>
+              ))}
+          </Swiper>
+        </div>
+      </div>
+      {/* Cast */}
     </motion.div>
   );
 };

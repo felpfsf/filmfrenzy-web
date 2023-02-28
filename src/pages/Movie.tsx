@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { fetchMovieDetails } from "../data/queries";
+import { fetchCast, fetchDetails } from "../data/queries";
 import { motion } from "framer-motion";
 import {
   MOTION_OPACITY_ANIMATE,
@@ -9,6 +9,9 @@ import {
 } from "../utils/motionProps";
 import { TMDB_BACKDROP_POSTER } from "../utils/env";
 import { MovieDetails } from "../types";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 export const Movie = () => {
   /**
@@ -21,6 +24,8 @@ export const Movie = () => {
 
   // `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=pt-BR`
 
+  // https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=${API_KEY}&language=pt-BR
+
   const { movie_id } = useParams();
 
   const {
@@ -29,11 +34,15 @@ export const Movie = () => {
     isError,
   } = useQuery<MovieDetails>(
     ["movie_details", movie_id],
-    () => fetchMovieDetails(movie_id || ""),
+    () => fetchDetails(movie_id || "", "movie"),
     { staleTime: 0 }
   );
 
-  const movie_backdrop = `${TMDB_BACKDROP_POSTER}${movie?.backdrop_path}`;
+  const { data: cast_data } = useQuery(["cast", movie_id], () =>
+    fetchCast(movie_id || "", "movie")
+  );
+
+  console.log(cast_data);
 
   if (isLoading) {
     return (
@@ -71,17 +80,62 @@ export const Movie = () => {
         className='absolute inset-0 -z-10 h-1/2 w-full object-cover object-center'
       />
       <div className='absolute inset-0 -z-10 h-1/2 w-full bg-posterGradient' />
-      <div className='flex flex-col items-center justify-around lg:flex-row lg:items-center'>
+      <div className='flex flex-col items-center gap-8 lg:flex-row lg:items-center lg:gap-24'>
         <img
           src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
           alt={`Poster of ${movie?.title}`}
-          className='w-full min-w-[10rem] max-w-xs rounded-xl drop-shadow-sm'
+          className='w-full min-w-[10rem] max-w-xs rounded-xl border-l-2 border-b-2 drop-shadow-sm'
         />
-        <div className='mt-8 flex max-w-3xl flex-col gap-4 px-2 lg:mt-0'>
+        <div className='flex max-w-3xl flex-col gap-4 px-2 lg:mt-0'>
           <h1 className='text-2xl font-semibold md:text-3xl'>{movie?.title}</h1>
           <p className='text-justify md:text-lg'>{movie?.overview}</p>
         </div>
       </div>
+      {/* Cast */}
+      <div className='my-8 flex flex-col gap-4'>
+        <h1 className='text-2xl font-semibold'>Cast</h1>
+        <div className='w-full'>
+          <Swiper
+            slidesPerView={1.9}
+            spaceBetween={10}
+            breakpoints={{
+              768: {
+                slidesPerView: 4.2,
+                spaceBetween: 10,
+              },
+              1024: {
+                // screen min-width 1024px ...
+                slidesPerView: 6,
+                spaceBetween: 10,
+              },
+              1440: {
+                slidesPerView: 8.5,
+                spaceBetween: 10,
+              },
+            }}
+          >
+            {cast_data &&
+              cast_data.map((cast: any) => (
+                <SwiperSlide key={cast.id}>
+                  <div className='relative h-56 w-40 bg-slate-400'>
+                    <img
+                      src={
+                        cast.profile_path
+                          ? `https://image.tmdb.org/t/p/original/${cast.profile_path}`
+                          : `https://dummyimage.com/2000x3000/000/fff.png&text=Placeholder+of+${cast.name}`
+                      }
+                      alt={`Image+Placeholder+of+${cast.name}`}
+                    />
+                    <p className='absolute bottom-0 h-12 w-full bg-posterGradient px-2 text-paragraph flex items-center'>
+                      {cast.name}
+                    </p>
+                  </div>
+                </SwiperSlide>
+              ))}
+          </Swiper>
+        </div>
+      </div>
+      {/* Cast */}
     </motion.div>
   );
 };
