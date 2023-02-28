@@ -24,17 +24,25 @@ export const MovieCard = (props: any) => {
   };
   return (
     <div
-      className='h-auto w-full max-w-xs cursor-pointer border-transparent duration-200 ease-in-out md:rounded-xl md:border-l-8 md:border-b-8 md:hover:translate-x-2 md:hover:translate-y-[2px] md:hover:border-primary'
+      className='h-auto w-full max-w-xs cursor-pointer border-transparent duration-200 ease-in-out md:rounded-xl md:border-l-8 md:border-b-8 md:hover:translate-x-2 md:hover:translate-y-[.125rem] md:hover:border-primary'
       onClick={handleClick}
     >
       <div className='relative overflow-hidden rounded-lg bg-background'>
         <img
-          src={`https://image.tmdb.org/t/p/original/${props.poster_path}`}
+          src={
+            props.poster_path
+              ? `https://image.tmdb.org/t/p/original/${props.poster_path}`
+              : `https://dummyimage.com/2000x3000/000/fff.png&text=Image+Placeholder+of+${
+                  (props && props.title) || props.name
+                }`
+          }
           alt=''
           className='h-full w-full object-cover'
         />
-        <div className='absolute bottom-0 z-10 flex h-20 w-full items-center bg-movieCardGradient p-4 md:static md:bg-none'>
-          <h3 className='text-xs font-bold md:text-base'>{props.title}</h3>
+        <div className='hidden h-20 w-full items-center md:flex md:bg-none'>
+          <h3 className='text-xs font-bold md:text-base'>
+            {(props && props.title) || props.name}
+          </h3>
         </div>
       </div>
     </div>
