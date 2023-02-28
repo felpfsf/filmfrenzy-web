@@ -27,15 +27,13 @@ export const Movie = () => {
     data: movie,
     isLoading,
     isError,
-  } = useQuery<MovieDetails>(["movie_details", movie_id], () =>
-    fetchMovieDetails(movie_id || "")
+  } = useQuery<MovieDetails>(
+    ["movie_details", movie_id],
+    () => fetchMovieDetails(movie_id || ""),
+    { staleTime: 0 }
   );
 
-  console.log(movie && movie?.backdrop_path);
-
   const movie_backdrop = `${TMDB_BACKDROP_POSTER}${movie?.backdrop_path}`;
-
-  console.log(movie_backdrop);
 
   if (isLoading) {
     return (

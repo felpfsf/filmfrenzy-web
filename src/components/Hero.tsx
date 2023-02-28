@@ -32,7 +32,8 @@ export const Hero = ({ type, shuffledItems }: HeroProps) => {
       ? fetchMoviesPopular
       : type === "tvshows_on_air"
       ? fetchTvShowsOnAir
-      : fetchTvShowsPopular
+      : fetchTvShowsPopular,
+    { staleTime: 0, cacheTime: 0 }
   );
 
   const currentItem = shuffledItems

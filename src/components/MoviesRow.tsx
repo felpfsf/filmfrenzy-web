@@ -7,7 +7,11 @@ import "swiper/css";
 import { CardProps } from "../types";
 
 export const MoviesRow = ({ title }: { title: string }) => {
-  const { data: movies } = useQuery<CardProps[]>("getPop", () => fetchMoviesPopular());
+  const { data: movies } = useQuery<CardProps[]>(
+    "getPop",
+    () => fetchMoviesPopular(),
+    { staleTime: 0, cacheTime: 0 }
+  );
   // console.log(movies);
   return (
     <section className='w-full px-4 pb-4 lg:px-8'>

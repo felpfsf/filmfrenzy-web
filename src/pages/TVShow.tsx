@@ -28,8 +28,10 @@ export const TVShow = () => {
     data: tvshow,
     isLoading,
     isError,
-  } = useQuery<TVShowDetails>("tvshow_details", () =>
-    fetchTvDetails(tvshow_id || "")
+  } = useQuery<TVShowDetails>(
+    "tvshow_details",
+    () => fetchTvDetails(tvshow_id || ""),
+    { staleTime: 0, cacheTime: 0 }
   );
 
   if (isError) {
