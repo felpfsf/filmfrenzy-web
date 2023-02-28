@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { fetchSearch } from "../data/queries";
 import { motion } from "framer-motion";
 import {
@@ -7,6 +7,12 @@ import {
   MOTION_OPACITY_INITIAL,
   MOTION_TRANSITION_DURATION,
 } from "../utils/motionProps";
+import { MovieCard } from "../components/MovieCard";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Grid } from "swiper";
+import "swiper/css";
+import "swiper/css/grid";
 
 interface SearchResult {
   id: number;
@@ -85,35 +91,74 @@ export const Search = () => {
         Results for <em className='underline underline-offset-2'>{query}</em>
       </strong>
       <div
-        className={`mt-4 grid gap-4 opacity-0 transition-opacity duration-300 ease-in-out ${
+        className={`mt-4 flex flex-col gap-10 opacity-0 transition-opacity duration-300 ease-in-out ${
           movies.length || tvShows.length ? "opacity-100" : ""
         }`}
       >
-        {movies && (
-          <div className='border border-red-600'>
-            <strong>Movies</strong>
-            <div className='mt-4 grid grid-cols-4'>
-              {movies.map((movie: any) => (
-                <div key={movie.id}>
-                  <strong>{movie.title}</strong>
-                </div>
+        <div className=''>
+          <h1 className='text-2xl font-semibold'>Movies</h1>
+          <Swiper
+            slidesPerView={4}
+            spaceBetween={5}
+            modules={[Grid]}
+            className='mt-4'
+            breakpoints={{
+              1024: {
+                grid: {
+                  rows: 2,
+                  fill: "row",
+                },
+              },
+            }}
+          >
+            {movies &&
+              movies.map((movie: any) => (
+                <SwiperSlide key={movie.id}>
+                  <MovieCard {...movie} />
+                </SwiperSlide>
               ))}
-            </div>
-          </div>
-        )}
+          </Swiper>
+        </div>
 
-        {tvShows && (
-          <div className='border border-red-600'>
-            <strong>TV Shows</strong>
-            <div className='mt-4 grid grid-cols-4'>
-              {tvShows.map((tvshow: any) => (
-                <div key={tvshow.id}>
-                  <strong>{tvshow.name}</strong>
-                </div>
+        <div className=''>
+          <h1 className='text-2xl font-semibold'>TV Shows</h1>
+          <Swiper
+            slidesPerView={4}
+            grid={{
+              rows: 2,
+              fill: "row",
+            }}
+            spaceBetween={5}
+            modules={[Grid]}
+            className='mt-4'
+            breakpoints={{
+              1024: {
+                // screen min-width 1024px ...
+                slidesPerView: 4,
+                spaceBetween: 4,
+              },
+              1440: {
+                slidesPerView: 5.6,
+                spaceBetween: 1,
+              },
+              2560: {
+                slidesPerView: 7.5,
+                spaceBetween: 0,
+              },
+              3180: {
+                slidesPerView: 9.3,
+                spaceBetween: 0,
+              },
+            }}
+          >
+            {tvShows &&
+              tvShows.map((tvshow: any) => (
+                <SwiperSlide key={tvshow.id}>
+                  <MovieCard {...tvshow} />
+                </SwiperSlide>
               ))}
-            </div>
-          </div>
-        )}
+          </Swiper>
+        </div>
       </div>
     </motion.div>
   );
