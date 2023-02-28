@@ -1,25 +1,15 @@
-import { useNavigate } from "react-router-dom";
-import slugify from "slugify";
+import { CardProps } from "../types";
+import { useNavigateToMedia } from "../hooks/useNavigateToMedia";
 
-export const MovieCard = (props: any) => {
-  const nav = useNavigate();
+export const MovieCard = ({ title, name, poster_path, id }: CardProps) => {
+  const navigateToMedia = useNavigateToMedia();
+
   const handleClick = () => {
-    if (props.title) {
-      nav(
-        `/movie/${props.id}/${slugify(props.title, {
-          replacement: "-",
-          remove: /[^\w\s-]/,
-          lower: true,
-        })}`
-      );
+    if (title) {
+      navigateToMedia(title, id, "movie");
+      // console.log('movie card clicked');
     } else {
-      nav(
-        `/tvshow/${props.id}/${slugify(props.name, {
-          replacement: "-",
-          remove: /[^\w\s-]/,
-          lower: true,
-        })}`
-      );
+      navigateToMedia(name, id, "tvshow");
     }
   };
   return (
@@ -30,19 +20,17 @@ export const MovieCard = (props: any) => {
       <div className='relative overflow-hidden rounded-lg bg-background'>
         <img
           src={
-            props.poster_path
-              ? `https://image.tmdb.org/t/p/original/${props.poster_path}`
+            poster_path
+              ? `https://image.tmdb.org/t/p/original/${poster_path}`
               : `https://dummyimage.com/2000x3000/000/fff.png&text=Image+Placeholder+of+${
-                  (props && props.title) || props.name
+                  title || name
                 }`
           }
           alt=''
           className='h-full w-full object-cover'
         />
         <div className='hidden h-20 w-full items-center md:flex md:bg-none'>
-          <h3 className='text-xs font-bold md:text-base'>
-            {(props && props.title) || props.name}
-          </h3>
+          <h3 className='text-xs font-bold md:text-base'>{title || name}</h3>
         </div>
       </div>
     </div>

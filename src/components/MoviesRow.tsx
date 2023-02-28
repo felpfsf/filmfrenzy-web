@@ -4,9 +4,10 @@ import { MovieCard } from "./MovieCard";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { CardProps } from "../types";
 
 export const MoviesRow = ({ title }: { title: string }) => {
-  const { data: movies } = useQuery("getPop", () => fetchMoviesPopular());
+  const { data: movies } = useQuery<CardProps[]>("getPop", () => fetchMoviesPopular());
   // console.log(movies);
   return (
     <section className='w-full px-4 pb-4 lg:px-8'>
@@ -36,7 +37,7 @@ export const MoviesRow = ({ title }: { title: string }) => {
       >
         {/* map */}
         {movies &&
-          movies.map((movie: any) => (
+          movies.map((movie) => (
             <SwiperSlide key={movie.id}>
               <MovieCard {...movie} />
             </SwiperSlide>
