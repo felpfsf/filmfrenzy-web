@@ -9,7 +9,7 @@ export const MoviesRow = ({ title }: { title: string }) => {
   const { data: movies } = useQuery("getPop", () => fetchMoviesPopular());
   // console.log(movies);
   return (
-    <section className='w-full px-4 pt-0 lg:px-8'>
+    <section className='w-full px-4 pb-4 lg:px-8'>
       <h2 className='my-4 text-2xl font-bold'>{title}</h2>
       <Swiper
         spaceBetween={6}
