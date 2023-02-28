@@ -8,7 +8,7 @@ export const MovieCard = (props: any) => {
       nav(
         `/movie/${props.id}/${slugify(props.title, {
           replacement: "-",
-          remove: /:/,
+          remove: /[^\w\s-]/,
           lower: true,
         })}`
       );
@@ -16,7 +16,7 @@ export const MovieCard = (props: any) => {
       nav(
         `/tvshow/${props.id}/${slugify(props.name, {
           replacement: "-",
-          remove: /:/,
+          remove: /[^\w\s-]/,
           lower: true,
         })}`
       );
