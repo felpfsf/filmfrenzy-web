@@ -8,6 +8,7 @@ import {
   MOTION_TRANSITION_DURATION,
 } from "../utils/motionProps";
 import { TMDB_BACKDROP_POSTER } from "../utils/env";
+import { MovieDetails } from "../types";
 
 export const Movie = () => {
   /**
@@ -26,7 +27,7 @@ export const Movie = () => {
     data: movie,
     isLoading,
     isError,
-  } = useQuery(["movie_details", movie_id], () =>
+  } = useQuery<MovieDetails>(["movie_details", movie_id], () =>
     fetchMovieDetails(movie_id || "")
   );
 
@@ -71,17 +72,16 @@ export const Movie = () => {
         alt=''
         className='absolute inset-0 -z-10 h-1/2 w-full object-cover object-center'
       />
-      <div className='flex flex-col items-center gap-4 lg:flex-row lg:items-start'>
+      <div className='absolute inset-0 -z-10 h-1/2 w-full bg-posterGradient' />
+      <div className='flex flex-col items-center justify-around lg:flex-row lg:items-center'>
         <img
-          src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+          src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
           alt={`Poster of ${movie?.title}`}
           className='w-full min-w-[10rem] max-w-xs rounded-xl drop-shadow-sm'
         />
-        <div className='flex flex-col gap-4'>
-          <h1>
-            <strong>{movie.title}</strong>
-          </h1>
-          <p>{movie.overview}</p>
+        <div className='mt-8 flex max-w-3xl flex-col gap-4 px-2 lg:mt-0'>
+          <h1 className='text-2xl font-semibold md:text-3xl'>{movie?.title}</h1>
+          <p className='text-justify md:text-lg'>{movie?.overview}</p>
         </div>
       </div>
     </motion.div>
