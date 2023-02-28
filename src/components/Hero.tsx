@@ -1,21 +1,20 @@
 import { useMemo, useState } from "react";
-import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import slugify from "slugify";
+import { useQuery } from "react-query";
 import {
   fetchMoviesNowPlaying,
   fetchMoviesPopular,
   fetchTvShowsOnAir,
   fetchTvShowsPopular,
 } from "../data/queries";
+import { HeroProps, MediaDetails } from "../types";
 import { TMDB_BACKDROP_POSTER } from "../utils/env";
 import { Button } from "./ui/Button";
-
+import { useNavigateToMedia } from "../hooks/useNavigateToMedia";
+import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import SwiperCore, { Autoplay } from "swiper";
 import "swiper/swiper-bundle.css";
-import { HeroProps, ItemProps } from "../types/HeroProps";
 SwiperCore.use([Autoplay]);
 
 const HERO_OVERVIEW_TRUNCATE_LENGTH = 160;
@@ -25,7 +24,7 @@ export const Hero = ({ type, shuffledItems }: HeroProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const nav = useNavigate();
 
-  const { data: itemsData } = useQuery<ItemProps[]>(
+  const { data: itemsData } = useQuery<MediaDetails[]>(
     ["api_data"],
     type === "movies_now_playing"
       ? fetchMoviesNowPlaying
@@ -62,18 +61,17 @@ export const Hero = ({ type, shuffledItems }: HeroProps) => {
     [currentItem?.overview]
   );
 
+  const navigateToMedia = useNavigateToMedia();
+
   const handleClick = () => {
-    nav(
-      `/${currentItem?.title ? "movie" : "tvshow"}/${currentItem?.id}/${
-        currentItem
-          ? slugify(currentItem?.title ?? currentItem?.name ?? "", {
-              replacement: "-",
-              remove: /[^\w\s-]/,
-              lower: true,
-            })
-          : ""
-      }`
-    );
+    if (currentItem) {
+      const { id, title, name } = currentItem;
+      if (title) {
+        navigateToMedia(title, id, "movie");
+      } else if (name) {
+        navigateToMedia(name, id, "tvshow");
+      }
+    }
   };
 
   return (
@@ -84,11 +82,15 @@ export const Hero = ({ type, shuffledItems }: HeroProps) => {
       className='-z-2'
     >
       {itemsData &&
-        itemsData.map((item: ItemProps) => (
+        itemsData.map((item) => (
           <SwiperSlide key={item.id}>
             <div
               style={{
-                backgroundImage: `url(${TMDB_BACKDROP_POSTER}/${currentItem?.backdrop_path})`,
+                backgroundImage: currentItem?.backdrop_path
+                  ? `url(${TMDB_BACKDROP_POSTER}/${currentItem?.backdrop_path})`
+                  : `https://dummyimage.com/2000x3000/000/fff.png&text=Image+Placeholder+of+${
+                      currentItem?.title || currentItem?.name
+                    }`,
               }}
               className='h-screen w-full bg-cover bg-center'
               aria-live='polite'
