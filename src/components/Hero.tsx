@@ -68,7 +68,7 @@ export const Hero = ({ type, shuffledItems }: HeroProps) => {
         currentItem
           ? slugify(currentItem?.title ?? currentItem?.name ?? "", {
               replacement: "-",
-              remove: /:/,
+              remove: /[^\w\s-]/,
               lower: true,
             })
           : ""
