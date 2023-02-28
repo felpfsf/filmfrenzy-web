@@ -39,7 +39,7 @@ export interface MediaDetails {
   vote_average: string;
 }
 
-export interface Movie {
+export interface MovieDetails {
   id: number;
   title: string;
   backdrop_path: string;
@@ -53,11 +53,12 @@ export interface Movie {
   trailers: Trailer[];
 }
 
-export interface TVShow {
+export interface TVShowDetails {
   id: number;
   name: string;
   backdrop_path: string;
   poster_path: string;
+  tagline: string;
   overview: string;
   first_air_date: string;
   genres: string[];
