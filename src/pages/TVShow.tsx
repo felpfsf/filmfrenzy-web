@@ -56,15 +56,19 @@ export const TVShow = () => {
       }}
     >
       <img
-        src={`${TMDB_BACKDROP_POSTER}${tvshow?.backdrop_path}`}
+        src={
+          tvshow?.backdrop_path
+            ? `${TMDB_BACKDROP_POSTER}${tvshow?.backdrop_path}`
+            : `https://dummyimage.com/2000x3000/000/fff.png&text=Image+Placeholder+of+${tvshow?.title}`
+        }
         alt=''
         className='absolute inset-0 -z-10 h-1/2 w-full object-cover object-center'
       />
       <div className='flex flex-col items-center gap-4 lg:flex-row lg:items-start'>
         <img
           src={`https://image.tmdb.org/t/p/original/${tvshow.poster_path}`}
-          alt=''
-          className='w-full min-w-[192px] max-w-sm rounded-xl drop-shadow-sm'
+          alt={`Poster of ${tvshow.poster_path}`}
+          className='w-full min-w-[10rem] max-w-sm rounded-xl drop-shadow-sm'
         />
         <div className='flex flex-col gap-4'>
           <h1>
