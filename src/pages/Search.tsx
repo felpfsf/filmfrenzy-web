@@ -66,6 +66,17 @@ export const Search = () => {
     );
   }
 
+  if (searchResult?.movies.length === 0 && searchResult?.tvShows.length === 0) {
+    return (
+      <div className='mx-auto h-full w-full max-w-screen-2xl pt-32'>
+        <p>
+          No results were found for{" "}
+          <em className='underline underline-offset-2'>{query}</em>.
+        </p>
+      </div>
+    );
+  }
+
   // Se o resultado vier undefined exibe essa mensagem
   if (!searchResult) {
     return (
@@ -95,70 +106,59 @@ export const Search = () => {
           movies.length || tvShows.length ? "opacity-100" : ""
         }`}
       >
-        <div className=''>
-          <h1 className='text-2xl font-semibold'>Movies</h1>
-          <Swiper
-            slidesPerView={4}
-            spaceBetween={5}
-            modules={[Grid]}
-            className='mt-4'
-            breakpoints={{
-              1024: {
-                grid: {
-                  rows: 2,
-                  fill: "row",
+        {movies.length > 0 && (
+          <div className=''>
+            <h1 className='text-2xl font-semibold'>Movies</h1>
+            <Swiper
+              slidesPerView={4}
+              spaceBetween={5}
+              modules={[Grid]}
+              className='mt-4'
+              breakpoints={{
+                1024: {
+                  grid: {
+                    rows: 2,
+                    fill: "row",
+                  },
                 },
-              },
-            }}
-          >
-            {movies &&
-              movies.map((movie: any) => (
-                <SwiperSlide key={movie.id}>
-                  <MovieCard {...movie} />
-                </SwiperSlide>
-              ))}
-          </Swiper>
-        </div>
+              }}
+            >
+              {movies &&
+                movies.map((movie: any) => (
+                  <SwiperSlide key={movie.id}>
+                    <MovieCard {...movie} />
+                  </SwiperSlide>
+                ))}
+            </Swiper>
+          </div>
+        )}
 
-        <div className=''>
-          <h1 className='text-2xl font-semibold'>TV Shows</h1>
-          <Swiper
-            slidesPerView={4}
-            grid={{
-              rows: 2,
-              fill: "row",
-            }}
-            spaceBetween={5}
-            modules={[Grid]}
-            className='mt-4'
-            breakpoints={{
-              1024: {
-                // screen min-width 1024px ...
-                slidesPerView: 4,
-                spaceBetween: 4,
-              },
-              1440: {
-                slidesPerView: 5.6,
-                spaceBetween: 1,
-              },
-              2560: {
-                slidesPerView: 7.5,
-                spaceBetween: 0,
-              },
-              3180: {
-                slidesPerView: 9.3,
-                spaceBetween: 0,
-              },
-            }}
-          >
-            {tvShows &&
-              tvShows.map((tvshow: any) => (
-                <SwiperSlide key={tvshow.id}>
-                  <MovieCard {...tvshow} />
-                </SwiperSlide>
-              ))}
-          </Swiper>
-        </div>
+        {tvShows.length > 0 && (
+          <div className=''>
+            <h1 className='text-2xl font-semibold'>TV Shows</h1>
+            <Swiper
+              slidesPerView={4}
+              spaceBetween={5}
+              modules={[Grid]}
+              className='mt-4'
+              breakpoints={{
+                1024: {
+                  grid: {
+                    rows: 2,
+                    fill: "row",
+                  },
+                },
+              }}
+            >
+              {tvShows &&
+                tvShows.map((tvshow: any) => (
+                  <SwiperSlide key={tvshow.id}>
+                    <MovieCard {...tvshow} />
+                  </SwiperSlide>
+                ))}
+            </Swiper>
+          </div>
+        )}
       </div>
     </motion.div>
   );
