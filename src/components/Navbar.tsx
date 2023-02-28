@@ -63,8 +63,8 @@ export const Navbar = () => {
       <nav
         className={
           isNavbarOpen
-            ? "fixed top-0 right-0 flex h-screen w-full flex-col items-center gap-y-10 bg-red-500 duration-200 ease-in-out"
-            : "fixed top-0 -right-full flex h-screen w-full flex-col items-center gap-y-10 bg-red-500 duration-200 ease-in-out"
+            ? "fixed top-0 right-0 flex h-screen w-full flex-col items-center gap-y-10 bg-background duration-200 ease-in-out"
+            : "fixed top-0 -right-full flex h-screen w-full flex-col items-center gap-y-10 bg-background duration-200 ease-in-out"
         }
       >
         <div className='flex flex-col items-center gap-8 pt-24'>
