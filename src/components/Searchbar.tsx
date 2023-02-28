@@ -2,7 +2,11 @@ import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const Searchbar = () => {
+interface SearchbarProps {
+  onSearchSubmitted?: () => void;
+}
+
+export const Searchbar = ({ onSearchSubmitted }: SearchbarProps) => {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
 
@@ -11,6 +15,10 @@ export const Searchbar = () => {
     if (!query) return;
     navigate(`/search/?q=${query}`);
     setQuery("");
+    // Fecha o menu depois de clicar em pesquisar
+    if (onSearchSubmitted) {
+      onSearchSubmitted();
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
