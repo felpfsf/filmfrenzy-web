@@ -7,7 +7,7 @@ import {
   MOTION_OPACITY_INITIAL,
   MOTION_TRANSITION_DURATION,
 } from "../utils/motionProps";
-import { MovieCard } from "../components/MovieCard";
+import { Card } from "../components/Card";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Grid } from "swiper";
@@ -126,7 +126,7 @@ export const Search = () => {
               {movies &&
                 movies.map((movie: any) => (
                   <SwiperSlide key={movie.id}>
-                    <MovieCard {...movie} />
+                    <Card {...movie} />
                   </SwiperSlide>
                 ))}
             </Swiper>
@@ -153,7 +153,7 @@ export const Search = () => {
               {tvShows &&
                 tvShows.map((tvshow: any) => (
                   <SwiperSlide key={tvshow.id}>
-                    <MovieCard {...tvshow} />
+                    <Card {...tvshow} />
                   </SwiperSlide>
                 ))}
             </Swiper>

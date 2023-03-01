@@ -1,7 +1,7 @@
 import { CardProps } from "../types";
 import { useNavigateToMedia } from "../hooks/useNavigateToMedia";
 
-export const MovieCard = ({ title, name, poster_path, id }: CardProps) => {
+export const Card = ({ title, name, poster_path, id }: CardProps) => {
   const navigateToMedia = useNavigateToMedia();
 
   const handleClick = () => {
