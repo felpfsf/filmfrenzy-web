@@ -54,6 +54,7 @@ export const Movie = () => {
     fetchVideo(movie_id || "", "movie")
   );
 
+  console.log(video_data);
 
   if (isLoading) {
     return (
@@ -136,22 +137,21 @@ export const Movie = () => {
       </div>
       {/* Cast */}
       {/* Trailers */}
-      <div className='my-8 flex flex-col gap-4'>
-        <h1 className='text-2xl font-semibold'>Trailers</h1>
-        <div className='w-full'>
-          <Swiper
-            slidesPerView={1}
-            spaceBetween={10}
-          >
-            {video_data &&
-              video_data.map((trailer) => (
-                <SwiperSlide key={trailer.id}>
-                  <TrailerCard trailer_key={trailer.key} />
-                </SwiperSlide>
-              ))}
-          </Swiper>
+      {video_data?.length != 0 && (
+        <div className='my-8 flex flex-col gap-4'>
+          <h1 className='text-2xl font-semibold'>Trailers</h1>
+          <div className='w-full'>
+            <Swiper slidesPerView={1} spaceBetween={10}>
+              {video_data &&
+                video_data.map((trailer) => (
+                  <SwiperSlide key={trailer.id}>
+                    <TrailerCard trailer_key={trailer.key} />
+                  </SwiperSlide>
+                ))}
+            </Swiper>
+          </div>
         </div>
-      </div>
+      )}
       {/* Trailers */}
     </motion.div>
   );
