@@ -52,10 +52,10 @@ export const fetchCast = async (movie_id: string, media_type: string) => {
   return response.data.cast;
 };
 
-export const fetchVideo = async (media_id:string, media_type:string) => {
+export const fetchVideo = async (media_id: string, media_type: string) => {
   const response = await axios.get(`
-  https://api.themoviedb.org/3/movie/${media_id}/videos?api_key=${TMDB_API_KEY}&language=pt-BR
+  https://api.themoviedb.org/3/${media_type}/${media_id}/videos?api_key=${TMDB_API_KEY}&language=pt-BR
   `);
 
-  return response.data.results
+  return response.data.results;
 };
