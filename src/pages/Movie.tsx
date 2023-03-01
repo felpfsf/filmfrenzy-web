@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { fetchCast, fetchDetails } from "../data/queries";
+import { fetchCast, fetchDetails, fetchVideo } from "../data/queries";
 import { motion } from "framer-motion";
 import {
   MOTION_OPACITY_ANIMATE,
@@ -8,10 +8,16 @@ import {
   MOTION_TRANSITION_DURATION,
 } from "../utils/motionProps";
 import { TMDB_BACKDROP_POSTER } from "../utils/env";
-import { MovieDetails } from "../types";
+import { Cast, MovieDetails, Trailer } from "../types";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { CastCard } from "../components/CastCard";
+
+import { TrailerCard } from "../components/TrailerCard";
+
+import { DefaultUi, Player, Youtube } from "@vime/react";
+import "@vime/core/themes/default.css";
 
 export const Movie = () => {
   /**
@@ -26,6 +32,8 @@ export const Movie = () => {
 
   // https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=${API_KEY}&language=pt-BR
 
+  // https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=${TMDB_API_KEY}&language=pt-BR
+
   const { movie_id } = useParams();
 
   const {
@@ -38,11 +46,15 @@ export const Movie = () => {
     { staleTime: 0 }
   );
 
-  const { data: cast_data } = useQuery(["cast", movie_id], () =>
+  const { data: cast_data } = useQuery<Cast[]>(["cast", movie_id], () =>
     fetchCast(movie_id || "", "movie")
   );
 
-  console.log(cast_data);
+  const { data: video_data } = useQuery<Trailer[]>(["video", movie_id], () =>
+    fetchVideo(movie_id || "", "movie")
+  );
+
+  console.log(video_data);
 
   if (isLoading) {
     return (
@@ -115,27 +127,32 @@ export const Movie = () => {
             }}
           >
             {cast_data &&
-              cast_data.map((cast: any) => (
+              cast_data.map((cast) => (
                 <SwiperSlide key={cast.id}>
-                  <div className='relative h-56 w-40 bg-slate-400'>
-                    <img
-                      src={
-                        cast.profile_path
-                          ? `https://image.tmdb.org/t/p/original/${cast.profile_path}`
-                          : `https://dummyimage.com/2000x3000/000/fff.png&text=Placeholder+of+${cast.name}`
-                      }
-                      alt={`Image+Placeholder+of+${cast.name}`}
-                    />
-                    <p className='absolute bottom-0 h-12 w-full bg-posterGradient px-2 text-paragraph flex items-center'>
-                      {cast.name}
-                    </p>
-                  </div>
+                  <CastCard {...cast} />
                 </SwiperSlide>
               ))}
           </Swiper>
         </div>
       </div>
       {/* Cast */}
+      {/* Trailers */}
+      {video_data?.length != 0 && (
+        <div className='my-8 flex flex-col gap-4'>
+          <h1 className='text-2xl font-semibold'>Trailers</h1>
+          <div className='w-full'>
+            <Swiper slidesPerView={1} spaceBetween={10}>
+              {video_data &&
+                video_data.map((trailer) => (
+                  <SwiperSlide key={trailer.id}>
+                    <TrailerCard trailer_key={trailer.key} />
+                  </SwiperSlide>
+                ))}
+            </Swiper>
+          </div>
+        </div>
+      )}
+      {/* Trailers */}
     </motion.div>
   );
 };
