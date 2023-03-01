@@ -28,10 +28,7 @@ export const fetchTvShowsPopular = async () => {
   return response.data.results;
 };
 
-export const fetchDetails = async (
-  movie_id: string,
-  media_type: string
-) => {
+export const fetchDetails = async (movie_id: string, media_type: string) => {
   const response = await axios.get(`
   ${TMDB_BASE_URL}/${media_type}/${movie_id}?api_key=${TMDB_API_KEY}&language=pt-BR
   `);
@@ -53,4 +50,12 @@ export const fetchCast = async (movie_id: string, media_type: string) => {
   `);
 
   return response.data.cast;
+};
+
+export const fetchVideo = async (media_id:string, media_type:string) => {
+  const response = await axios.get(`
+  https://api.themoviedb.org/3/movie/${media_id}/videos?api_key=${TMDB_API_KEY}&language=pt-BR
+  `);
+
+  return response.data.results
 };
