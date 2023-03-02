@@ -46,7 +46,7 @@ export interface MovieDetails {
   poster_path: string;
   overview: string;
   release_date: string;
-  genres: string[];
+  genres: Genres[];
   runtime: number;
   vote_average: number;
   cast: Cast[];
@@ -61,11 +61,16 @@ export interface TVShowDetails {
   tagline: string;
   overview: string;
   first_air_date: string;
-  genres: string[];
+  genres: Genres[];
   vote_average: number;
   seasons: Season[];
   cast: Cast[];
   trailers: Trailer[];
+}
+
+export interface Genres {
+  id: number;
+  name: string;
 }
 
 export interface Cast {
