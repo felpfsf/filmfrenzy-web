@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { fetchMoviesPopular } from "../data/queries";
-import { Card } from "./Card";
+import { MediaCard } from "./MediaCard";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -43,7 +43,7 @@ export const MoviesRow = ({ title }: { title: string }) => {
         {movies &&
           movies.map((movie) => (
             <SwiperSlide key={movie.id}>
-              <Card {...movie} />
+              <MediaCard {...movie} />
             </SwiperSlide>
           ))}
         {/* map */}
