@@ -18,6 +18,7 @@ import { TrailerCard } from "../components/TrailerCard";
 
 import { DefaultUi, Player, Youtube } from "@vime/react";
 import "@vime/core/themes/default.css";
+import { useCallback, useState } from "react";
 
 export const Movie = () => {
   /**
@@ -45,7 +46,9 @@ export const Movie = () => {
     () => fetchDetails(movie_id || "", "movie"),
     { staleTime: 0 }
   );
+
   console.log(movie);
+
   const { data: cast_data } = useQuery<Cast[]>(["cast", movie_id], () =>
     fetchCast(movie_id || "", "movie")
   );
@@ -54,7 +57,10 @@ export const Movie = () => {
     fetchVideo(movie_id || "", "movie")
   );
 
-  console.log(video_data);
+  const getFullYearReleaseDate = useCallback((date: string) => {
+    const year = new Date(date).getFullYear();
+    return year;
+  }, []);
 
   if (isLoading) {
     return (
@@ -71,6 +77,13 @@ export const Movie = () => {
       </div>
     );
   }
+
+  const convertMinutesToHour = (runtime: number) => {
+    const hours = Math.floor(runtime / 60);
+    const minutes = Math.floor(runtime % 60);
+    return `${hours}h ${minutes}m`;
+  };
+  console.log(convertMinutesToHour(162));
 
   return (
     <motion.div
@@ -99,7 +112,30 @@ export const Movie = () => {
           className='w-full min-w-[10rem] max-w-xs rounded-xl border-l-2 border-b-2 drop-shadow-sm'
         />
         <div className='flex max-w-3xl flex-col gap-4 px-2 lg:mt-0'>
-          <h1 className='text-2xl font-semibold md:text-3xl'>{movie?.title}</h1>
+          <div>
+            <h1 className='text-2xl font-semibold md:text-3xl'>
+              {movie?.title}{" "}
+              <span>
+                (
+                {movie?.release_date &&
+                  getFullYearReleaseDate(movie?.release_date)}
+                )
+              </span>
+            </h1>
+            <div className='mt-1 flex gap-2'>
+              {movie?.genres.map(({ id, name }) => (
+                <span
+                  key={id}
+                  className='rounded bg-genreCaption px-2 py-1 text-xs'
+                >
+                  {name}
+                </span>
+              ))}
+              <span>
+                - {movie?.runtime && convertMinutesToHour(movie?.runtime)}
+              </span>
+            </div>
+          </div>
           <p className='text-justify md:text-lg'>{movie?.overview}</p>
         </div>
       </div>
