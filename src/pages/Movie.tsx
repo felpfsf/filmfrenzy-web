@@ -45,7 +45,7 @@ export const Movie = () => {
     () => fetchDetails(movie_id || "", "movie"),
     { staleTime: 0 }
   );
-
+  console.log(movie);
   const { data: cast_data } = useQuery<Cast[]>(["cast", movie_id], () =>
     fetchCast(movie_id || "", "movie")
   );
@@ -127,8 +127,8 @@ export const Movie = () => {
             }}
           >
             {cast_data &&
-              cast_data.map((cast) => (
-                <SwiperSlide key={cast.id}>
+              cast_data.map((cast, index) => (
+                <SwiperSlide key={`${cast.id}_${cast.name}${index}`}>
                   <CastCard {...cast} />
                 </SwiperSlide>
               ))}
