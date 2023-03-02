@@ -20,6 +20,7 @@ module.exports = {
         accent: "#800000",
         paragraph: "#FAEBD7",
         background: "#171717",
+        genreCaption: "#A16207",
       },
     },
   },
