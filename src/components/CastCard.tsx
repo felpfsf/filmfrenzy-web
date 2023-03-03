@@ -2,7 +2,7 @@ import { Cast } from "../types";
 
 export const CastCard = ({ name, profile_path }: Cast) => {
   return (
-    <div className='relative h-56 w-40 bg-slate-400'>
+    <div className='relative h-56 w-40 overflow-hidden bg-slate-400 md:rounded-xl'>
       <img
         src={
           profile_path
