@@ -62,6 +62,13 @@ export const Movie = () => {
     return year;
   }, []);
 
+  const convertMinutesToHour = (runtime: number) => {
+    const hours = Math.floor(runtime / 60);
+    const minutes = Math.floor(runtime % 60);
+    return `${hours}h ${minutes}m`;
+  };
+  console.log(convertMinutesToHour(162));
+
   if (isLoading) {
     return (
       <div className='mx-auto h-full w-full max-w-screen-2xl pt-32'>
@@ -77,13 +84,6 @@ export const Movie = () => {
       </div>
     );
   }
-
-  const convertMinutesToHour = (runtime: number) => {
-    const hours = Math.floor(runtime / 60);
-    const minutes = Math.floor(runtime % 60);
-    return `${hours}h ${minutes}m`;
-  };
-  console.log(convertMinutesToHour(162));
 
   return (
     <motion.div
@@ -115,12 +115,9 @@ export const Movie = () => {
           <div>
             <h1 className='text-2xl font-semibold md:text-3xl'>
               {movie?.title}{" "}
-              <span>
-                (
-                {movie?.release_date &&
-                  getFullYearReleaseDate(movie?.release_date)}
-                )
-              </span>
+              {movie?.release_date && (
+                <span>({getFullYearReleaseDate(movie?.release_date)})</span>
+              )}
             </h1>
             <div className='mt-1 flex gap-2'>
               {movie?.genres.map(({ id, name }) => (
