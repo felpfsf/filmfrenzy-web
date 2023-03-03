@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { fetchCast, fetchDetails, fetchVideo } from "../data/queries";
@@ -14,6 +15,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { CastCard } from "../components/CastCard";
 import { TrailerCard } from "../components/TrailerCard";
+import { getFullYearReleaseDate } from "../utils/GetFullYearReleaseDate";
 
 export const TVShow = () => {
   /**
@@ -50,6 +52,11 @@ export const TVShow = () => {
   const { data: video_data } = useQuery<Trailer[]>(["video", tvshow_id], () =>
     fetchVideo(tvshow_id || "", "tv")
   );
+
+  // const getFullYearReleaseDate = useCallback((date: string) => {
+  //   const year = new Date(date).getFullYear();
+  //   return year;
+  // }, []);
 
   if (isError) {
     return (
@@ -94,8 +101,30 @@ export const TVShow = () => {
           className='w-full min-w-[10rem] max-w-xs rounded-xl border-l-2 border-b-2 drop-shadow-sm'
         />
         <div className='flex max-w-3xl flex-col gap-4 px-2 lg:mt-0'>
-          <h1 className='text-2xl font-semibold md:text-3xl'>{tvshow?.name}</h1>
-          {tvshow?.tagline && <em>"{tvshow?.tagline}"</em>}
+          <div>
+            <h1 className='text-2xl font-semibold md:text-3xl'>
+              {tvshow?.name}{" "}
+              {tvshow?.first_air_date &&
+              <span>
+                (
+                  {getFullYearReleaseDate(tvshow.first_air_date)}
+                )
+              </span>}
+            </h1>
+            <div className='my-1 flex gap-2'>
+              {tvshow?.genres.map(({ id, name }) => (
+                <span
+                  key={id}
+                  className='rounded bg-genreCaption px-2 py-1 text-xs'
+                >
+                  {name}
+                </span>
+              ))}
+              <span>- Total Seasons: {tvshow?.seasons.length}</span>
+            </div>
+            {tvshow?.tagline && <em>"{tvshow?.tagline}"</em>}
+          </div>
+
           <p className='text-justify md:text-lg'>{tvshow?.overview}</p>
         </div>
       </div>
