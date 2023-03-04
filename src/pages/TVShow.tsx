@@ -104,7 +104,7 @@ export const TVShow = () => {
                 <span>({getFullYearReleaseDate(tvshow.first_air_date)})</span>
               )}
             </h1>
-            <div className='my-1 flex gap-2'>
+            <div className='my-1 flex gap-2 flex-wrap'>
               {tvshow?.genres.map(({ id, name }) => (
                 <span
                   key={id}

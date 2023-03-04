@@ -44,7 +44,7 @@ export const Movie = () => {
     { staleTime: 0 }
   );
 
-  console.log(movie);
+  // console.log(movie);
 
   const { data: cast_data } = useQuery<Cast[]>(["cast", movie_id], () =>
     fetchCast(movie_id || "", "movie")
@@ -104,7 +104,7 @@ export const Movie = () => {
                 <span>({getFullYearReleaseDate(movie?.release_date)})</span>
               )}
             </h1>
-            <div className='mt-1 flex gap-2'>
+            <div className='mt-1 flex gap-2 flex-wrap'>
               {movie?.genres.map(({ id, name }) => (
                 <span
                   key={id}
@@ -114,7 +114,7 @@ export const Movie = () => {
                 </span>
               ))}
               <span>
-                - {movie?.runtime && convertMinutesToHour(movie?.runtime)}
+                - Duration: {movie?.runtime && convertMinutesToHour(movie?.runtime)}
               </span>
             </div>
           </div>
