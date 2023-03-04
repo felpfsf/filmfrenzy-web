@@ -16,6 +16,7 @@ import "swiper/css";
 import { CastCard } from "../components/CastCard";
 import { TrailerCard } from "../components/TrailerCard";
 import { getFullYearReleaseDate } from "../utils/GetFullYearReleaseDate";
+import { SwiperButtons } from "../components/SwiperButtons";
 
 export const TVShow = () => {
   /**
@@ -52,11 +53,6 @@ export const TVShow = () => {
   const { data: video_data } = useQuery<Trailer[]>(["video", tvshow_id], () =>
     fetchVideo(tvshow_id || "", "tv")
   );
-
-  // const getFullYearReleaseDate = useCallback((date: string) => {
-  //   const year = new Date(date).getFullYear();
-  //   return year;
-  // }, []);
 
   if (isError) {
     return (
@@ -104,12 +100,9 @@ export const TVShow = () => {
           <div>
             <h1 className='text-2xl font-semibold md:text-3xl'>
               {tvshow?.name}{" "}
-              {tvshow?.first_air_date &&
-              <span>
-                (
-                  {getFullYearReleaseDate(tvshow.first_air_date)}
-                )
-              </span>}
+              {tvshow?.first_air_date && (
+                <span>({getFullYearReleaseDate(tvshow.first_air_date)})</span>
+              )}
             </h1>
             <div className='my-1 flex gap-2'>
               {tvshow?.genres.map(({ id, name }) => (
@@ -124,7 +117,6 @@ export const TVShow = () => {
             </div>
             {tvshow?.tagline && <em>"{tvshow?.tagline}"</em>}
           </div>
-
           <p className='text-justify md:text-lg'>{tvshow?.overview}</p>
         </div>
       </div>
@@ -150,6 +142,7 @@ export const TVShow = () => {
                 spaceBetween: 10,
               },
             }}
+            className='group relative'
           >
             {cast_data &&
               cast_data.map((cast) => (
@@ -157,6 +150,7 @@ export const TVShow = () => {
                   <CastCard {...cast} />
                 </SwiperSlide>
               ))}
+            <SwiperButtons />
           </Swiper>
         </div>
       </div>
@@ -166,13 +160,18 @@ export const TVShow = () => {
         <div className='my-8 flex flex-col gap-4'>
           <h1 className='text-2xl font-semibold'>Trailers</h1>
           <div className='w-full'>
-            <Swiper slidesPerView={1} spaceBetween={10}>
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={10}
+              className='group relative'
+            >
               {video_data &&
                 video_data.map((trailer) => (
                   <SwiperSlide key={trailer.id}>
                     <TrailerCard trailer_key={trailer.key} />
                   </SwiperSlide>
                 ))}
+              <SwiperButtons />
             </Swiper>
           </div>
         </div>

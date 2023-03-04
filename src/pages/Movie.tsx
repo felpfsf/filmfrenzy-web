@@ -9,16 +9,13 @@ import {
 } from "../utils/motionProps";
 import { TMDB_BACKDROP_POSTER } from "../utils/env";
 import { Cast, MovieDetails, Trailer } from "../types";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { CastCard } from "../components/CastCard";
-
 import { TrailerCard } from "../components/TrailerCard";
-
-import { DefaultUi, Player, Youtube } from "@vime/react";
-import "@vime/core/themes/default.css";
-import { useCallback, useState } from "react";
+import { SwiperButtons } from "../components/SwiperButtons";
+import { getFullYearReleaseDate } from "../utils/GetFullYearReleaseDate";
+import { convertMinutesToHour } from "../utils/ConvertMinutesToHour";
 
 export const Movie = () => {
   /**
@@ -56,18 +53,6 @@ export const Movie = () => {
   const { data: video_data } = useQuery<Trailer[]>(["video", movie_id], () =>
     fetchVideo(movie_id || "", "movie")
   );
-
-  const getFullYearReleaseDate = useCallback((date: string) => {
-    const year = new Date(date).getFullYear();
-    return year;
-  }, []);
-
-  const convertMinutesToHour = (runtime: number) => {
-    const hours = Math.floor(runtime / 60);
-    const minutes = Math.floor(runtime % 60);
-    return `${hours}h ${minutes}m`;
-  };
-  console.log(convertMinutesToHour(162));
 
   if (isLoading) {
     return (
@@ -158,6 +143,7 @@ export const Movie = () => {
                 spaceBetween: 10,
               },
             }}
+            className='group relative'
           >
             {cast_data &&
               cast_data.map((cast, index) => (
@@ -165,6 +151,7 @@ export const Movie = () => {
                   <CastCard {...cast} />
                 </SwiperSlide>
               ))}
+            <SwiperButtons />
           </Swiper>
         </div>
       </div>
@@ -174,13 +161,18 @@ export const Movie = () => {
         <div className='my-8 flex flex-col gap-4'>
           <h1 className='text-2xl font-semibold'>Trailers</h1>
           <div className='w-full'>
-            <Swiper slidesPerView={1} spaceBetween={10}>
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={10}
+              className='group relative'
+            >
               {video_data &&
                 video_data.map((trailer) => (
                   <SwiperSlide key={trailer.id}>
                     <TrailerCard trailer_key={trailer.key} />
                   </SwiperSlide>
                 ))}
+              <SwiperButtons />
             </Swiper>
           </div>
         </div>
