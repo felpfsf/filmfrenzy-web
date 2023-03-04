@@ -6,7 +6,7 @@ const SwiperPrevButton = () => {
   return (
     <button
       className='z-10 flex h-full w-14 items-center justify-center bg-gradient-to-r from-[#111]/95  to-transparent/5  focus:ring-2'
-      aria-aria-labelledby='Go back to previous slide'
+      aria-labelledby='Go back to previous slide'
       onClick={() => swiper.slidePrev()}
     >
       <RxCaretLeft size={48} />
@@ -19,7 +19,7 @@ const SwiperNextButton = () => {
   return (
     <button
       className='z-10 flex h-full w-14 items-center justify-center bg-gradient-to-l from-[#111]/95  to-transparent/5 focus:ring-2'
-      aria-aria-labelledby='Go foward to next slide'
+      aria-labelledby='Go foward to next slide'
       onClick={() => swiper.slideNext()}
     >
       <RxCaretRight size={48} />
