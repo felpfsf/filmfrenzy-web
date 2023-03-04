@@ -15,14 +15,18 @@ import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/swiper-bundle.css";
+import { getFullYearReleaseDate } from "../utils/GetFullYearReleaseDate";
+import { SwiperButtons } from "./SwiperButtons";
+import { truncateOverviewText } from "../utils/truncateOverviewText";
 SwiperCore.use([Autoplay]);
 
 const HERO_OVERVIEW_TRUNCATE_LENGTH = 160;
 const HERO_SLIDER_DELAY = 5000;
 
 export const Hero = ({ type, shuffledItems }: HeroProps) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const nav = useNavigate();
+  const navigateToMedia = useNavigateToMedia();
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const { data: itemsData } = useQuery<MediaDetails[]>(
     ["api_data"],
@@ -42,28 +46,6 @@ export const Hero = ({ type, shuffledItems }: HeroProps) => {
     ? itemsData[currentIndex]
     : undefined;
 
-  const getFullYearReleaseDate = useMemo(
-    () =>
-      (dateString: string): string => {
-        if (!dateString) return "";
-        const date = new Date(dateString);
-        return date.getFullYear().toString();
-      },
-    [currentItem?.release_date]
-  );
-
-  const truncateOverviewText = useMemo(
-    () =>
-      (text: string, length: number): string => {
-        if (text.length <= length) return text;
-
-        return text.substring(0, length) + "...";
-      },
-    [currentItem?.overview]
-  );
-
-  const navigateToMedia = useNavigateToMedia();
-
   const handleClick = () => {
     if (currentItem) {
       const { id, title, name } = currentItem;
@@ -80,7 +62,7 @@ export const Hero = ({ type, shuffledItems }: HeroProps) => {
       slidesPerView={1}
       autoplay={{ delay: HERO_SLIDER_DELAY }}
       onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
-      className='-z-2'
+      className='-z-2 group relative'
     >
       {itemsData &&
         itemsData.map((item) => (
@@ -145,6 +127,7 @@ export const Hero = ({ type, shuffledItems }: HeroProps) => {
             </div>
           </SwiperSlide>
         ))}
+      <SwiperButtons />
     </Swiper>
   );
 };
