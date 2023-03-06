@@ -1,5 +1,5 @@
-import { Outlet } from 'react-router-dom'
-import { Navbar } from './components/Navbar'
+import { Outlet } from "react-router-dom";
+import { Navbar } from "./components/Navbar/Navbar";
 
 function App() {
   return (
@@ -7,7 +7,7 @@ function App() {
       <Navbar />
       <Outlet />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

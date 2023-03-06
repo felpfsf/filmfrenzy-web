@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 import { Link, NavLink } from "react-router-dom";
-import { Button } from "./ui/Button";
-import { Searchbar } from "./Searchbar";
+import { Button } from "../ui/Button";
+import { Searchbar } from "../Searchbar";
+import { useNavbarColor } from "./useNavbarColor";
 
 export const Navbar = () => {
+  const navbarColor: string = useNavbarColor();
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
   const menuItems = [
@@ -22,7 +24,9 @@ export const Navbar = () => {
   };
 
   return (
-    <div className='fixed z-[2] m-auto flex w-full items-center justify-between bg-gradient-to-r from-[#111]/30 to-transparent/5 py-4 px-4 md:px-8'>
+    <div
+      className={`fixed z-[2] m-auto flex w-full items-center justify-between py-4 px-4 md:px-8 ${navbarColor} transition-colors ease-in-out duration-500`}
+    >
       <Link to='/' tabIndex={0}>
         <h1 className='bg-gradient-to-r from-[#A20025] via-[#F40009] to-[#FFB500] bg-clip-text font-logo text-4xl font-black tracking-widest text-fill-transparent'>
           FILMFRENZY
