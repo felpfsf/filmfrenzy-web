@@ -24,6 +24,10 @@ export const MoviesRow = ({ title }: { title: string }) => {
         spaceBetween={6}
         slidesPerView={1.2}
         breakpoints={{
+          768: {
+            slidesPerView: 2.2,
+            spaceBetween: 5,
+          },
           1024: {
             // screen min-width 1024px ...
             slidesPerView: 4,

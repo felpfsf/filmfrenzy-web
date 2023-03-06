@@ -13,6 +13,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Grid } from "swiper";
 import "swiper/css";
 import "swiper/css/grid";
+import { SwiperButtons } from "../components/SwiperButtons";
 
 interface SearchResult {
   id: number;
@@ -115,6 +116,14 @@ export const Search = () => {
               modules={[Grid]}
               className='mt-4'
               breakpoints={{
+                320: {
+                  slidesPerView: 1.2,
+                  spaceBetween: 5,
+                },
+                768: {
+                  slidesPerView: 2.2,
+                  spaceBetween: 5,
+                },
                 1024: {
                   grid: {
                     rows: 2,
@@ -129,6 +138,7 @@ export const Search = () => {
                     <MediaCard {...movie} />
                   </SwiperSlide>
                 ))}
+              <SwiperButtons />
             </Swiper>
           </div>
         )}
@@ -142,6 +152,14 @@ export const Search = () => {
               modules={[Grid]}
               className='mt-4'
               breakpoints={{
+                320: {
+                  slidesPerView: 1.2,
+                  spaceBetween: 5,
+                },
+                768: {
+                  slidesPerView: 2.2,
+                  spaceBetween: 5,
+                },
                 1024: {
                   grid: {
                     rows: 2,
