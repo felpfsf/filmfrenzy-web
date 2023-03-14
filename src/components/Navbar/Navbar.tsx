@@ -25,7 +25,7 @@ export const Navbar = () => {
 
   return (
     <div
-      className={`fixed z-[2] m-auto flex w-full items-center justify-between py-4 px-4 md:px-8 ${navbarColor} transition-colors ease-in-out duration-500`}
+      className={`fixed z-[2] m-auto flex w-full items-center justify-between py-4 px-4 md:px-8 ${navbarColor} transition-colors duration-500 ease-in-out`}
     >
       <Link to='/' tabIndex={0}>
         <h1 className='bg-gradient-to-r from-[#A20025] via-[#F40009] to-[#FFB500] bg-clip-text font-logo text-4xl font-black tracking-widest text-fill-transparent'>
@@ -63,8 +63,12 @@ export const Navbar = () => {
           <Searchbar />
         </div>
         <div className='flex gap-2'>
-          <Button label='Sign In' />
-          <Button label='Sign Up' />
+          <Link to={"/signin"}>
+            <Button label='Sign In' />
+          </Link>
+          <Link to={"/signup"}>
+            <Button label='Sign Up' />
+          </Link>
         </div>
       </nav>
       {/* mobile menu */}
@@ -94,8 +98,12 @@ export const Navbar = () => {
           <Searchbar onSearchSubmitted={handleSearchSubmitted} />
         </div>
         <div className='flex gap-2'>
-          <Button label='Sign In' />
-          <Button label='Sign Up' />
+          <Link to={"/signin"}>
+            <Button label='Sign In' />
+          </Link>
+          <Link to={"/signup"}>
+            <Button label='Sign Up' />
+          </Link>
         </div>
       </nav>
     </div>
