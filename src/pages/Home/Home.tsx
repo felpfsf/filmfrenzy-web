@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useQuery } from "react-query";
 import { Hero } from "../../components/Hero/Hero";
-import { MediaRow } from "../../components/MediaRow/MoviesRow";
+import { MediaRow } from "../../components/MediaRow/MediaRow";
 import { TMDB_API_KEY, TMDB_BASE_URL } from "../../utils";
 import { motion } from "framer-motion";
 import {
@@ -41,7 +41,7 @@ export const Home = () => {
       }}
     >
       <Hero type={""} shuffledItems={shuffledItems} />
-      <MediaRow title='Most Popular' />
+      <MediaRow title='Mais Populares' />
     </motion.main>
   );
 };
