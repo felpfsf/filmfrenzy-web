@@ -10,8 +10,8 @@ export const Navbar = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
   const menuItems = [
-    { to: "/movies", text: "Movies" },
-    { to: "/tvshows", text: "Tv Shows" },
+    { to: "/movies", text: "Filmes" },
+    { to: "/tvshows", text: "Séries" },
     // { to: "/", text: "Up Comming" },
   ];
 
@@ -63,11 +63,11 @@ export const Navbar = () => {
           <Searchbar />
         </div>
         <div className='flex gap-2'>
-          <Link to={"/signin"}>
-            <Button label='Sign In' />
+          <Link to={"/login"}>
+            <Button label='Entrar' />
           </Link>
-          <Link to={"/signup"}>
-            <Button label='Sign Up' />
+          <Link to={"/register"}>
+            <Button label='Registrar' />
           </Link>
         </div>
       </nav>
@@ -98,10 +98,10 @@ export const Navbar = () => {
           <Searchbar onSearchSubmitted={handleSearchSubmitted} />
         </div>
         <div className='flex gap-2'>
-          <Link to={"/signin"}>
+          <Link to={"/login"} onClick={toggleNavMenu}>
             <Button label='Sign In' />
           </Link>
-          <Link to={"/signup"}>
+          <Link to={"/register"} onClick={toggleNavMenu}>
             <Button label='Sign Up' />
           </Link>
         </div>
