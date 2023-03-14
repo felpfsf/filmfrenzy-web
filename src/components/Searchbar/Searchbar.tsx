@@ -1,6 +1,6 @@
-import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
 
 interface SearchbarProps {
   onSearchSubmitted?: () => void;
@@ -28,12 +28,12 @@ export const Searchbar = ({ onSearchSubmitted }: SearchbarProps) => {
     <div>
       <form className='relative' onSubmit={handleSubmit}>
         <input
-          className='border-b border-b-neutral-200 bg-transparent px-2 placeholder-neutral-300 placeholder:italic'
+          className='border-b border-b-neutral-200 bg-transparent px-2 placeholder-neutral-300 placeholder:italic placeholder:text-sm'
           type='text'
-          placeholder='Search title here'
-          aria-placeholder='Search title here'
-          aria-label='Search for Movies and TV shows by title'
-          aria-describedby='Search'
+          placeholder='Pesquise pelo nome aqui'
+          aria-placeholder='Pesquise pelo nome aqui'
+          aria-label='Pesquise filmes e séries pelo título'
+          aria-describedby='Pequisa'
           onChange={(e) => handleChange(e)}
           value={query}
         />
