@@ -15,7 +15,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { CastCard } from "../../components/CastCard/CastCard";
 import { TrailerCard } from "../../components/TrailerCard/TrailerCard";
-import { getFullYearReleaseDate } from "../../utils/GetFullYearReleaseDate";
+import { getFullYearReleaseDate } from "../../utils";
 import { SwiperButtons } from "../../components/SwiperButtons/SwiperButtons";
 
 export const TVShow = () => {

@@ -14,8 +14,7 @@ import "swiper/css";
 import { CastCard } from "../../components/CastCard/CastCard";
 import { TrailerCard } from "../../components/TrailerCard/TrailerCard";
 import { SwiperButtons } from "../../components/SwiperButtons/SwiperButtons";
-import { getFullYearReleaseDate } from "../../utils/GetFullYearReleaseDate";
-import { convertMinutesToHour } from "../../utils/ConvertMinutesToHour";
+import { getFullYearReleaseDate, convertMinutesToHour } from "../../utils";
 
 export const Movie = () => {
   /**

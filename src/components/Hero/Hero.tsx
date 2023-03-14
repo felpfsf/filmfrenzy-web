@@ -14,9 +14,8 @@ import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/swiper-bundle.css";
-import { getFullYearReleaseDate } from "../../utils/GetFullYearReleaseDate";
 import { SwiperButtons } from "../SwiperButtons/SwiperButtons";
-import { truncateOverviewText } from "../../utils/";
+import { getFullYearReleaseDate, truncateOverviewText } from "../../utils/";
 import { AiFillStar } from "react-icons/ai";
 
 SwiperCore.use([Autoplay]);
