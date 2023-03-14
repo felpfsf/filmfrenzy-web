@@ -1,19 +1,19 @@
 import { useQuery } from "react-query";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { fetchSearch } from "../data/queries";
+import { fetchSearch } from "../../data/queries";
 import { motion } from "framer-motion";
 import {
   MOTION_OPACITY_ANIMATE,
   MOTION_OPACITY_INITIAL,
   MOTION_TRANSITION_DURATION,
-} from "../utils/motionProps";
-import { MediaCard } from "../components/MediaCard";
+} from "../../utils/MotionProps";
+import { MediaCard } from "../../components/MediaCard/MediaCard";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Grid } from "swiper";
 import "swiper/css";
 import "swiper/css/grid";
-import { SwiperButtons } from "../components/SwiperButtons";
+import { SwiperButtons } from "../../components/SwiperButtons/SwiperButtons";
 
 interface SearchResult {
   id: number;

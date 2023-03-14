@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TMDB_API_KEY, TMDB_BASE_URL } from "../utils/env";
+import { TMDB_API_KEY, TMDB_BASE_URL } from "../utils";
 
 // TODO - TRANSFORM INTO fetchMoviesPopular, fetchMoviesNowPlaying, fetchTvShowsOnAir, fetchTvShowsPopular
 

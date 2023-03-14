@@ -1,4 +1,4 @@
-import { Cast } from "../types";
+import { Cast } from "../../types";
 
 export const CastCard = ({ name, profile_path }: Cast) => {
   return (

@@ -1,5 +1,5 @@
-import { CardProps } from "../types";
-import { useNavigateToMedia } from "../hooks/useNavigateToMedia";
+import { CardProps } from "../../types";
+import { useNavigateToMedia } from "../../hooks/useNavigateToMedia";
 
 export const MediaCard = ({ title, name, poster_path, id }: CardProps) => {
   const navigateToMedia = useNavigateToMedia();
@@ -29,7 +29,7 @@ export const MediaCard = ({ title, name, poster_path, id }: CardProps) => {
           alt=''
           className='h-full w-full object-cover'
         />
-        <div className='hidden h-20 w-full items-center md:flex md:bg-none px-2'>
+        <div className='hidden h-20 w-full items-center px-2 md:flex md:bg-none'>
           <h3 className='text-xs font-bold md:text-base'>{title || name}</h3>
         </div>
       </div>

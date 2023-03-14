@@ -1,22 +1,22 @@
 import { useCallback } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { fetchCast, fetchDetails, fetchVideo } from "../data/queries";
+import { fetchCast, fetchDetails, fetchVideo } from "../../data/queries";
 import { motion } from "framer-motion";
 import {
   MOTION_OPACITY_ANIMATE,
   MOTION_OPACITY_INITIAL,
   MOTION_TRANSITION_DURATION,
-} from "../utils/motionProps";
-import { TMDB_BACKDROP_POSTER } from "../utils/env";
-import { Cast, Trailer, TVShowDetails } from "../types";
+} from "../../utils/MotionProps";
+import { TMDB_BACKDROP_POSTER } from "../../utils/env";
+import { Cast, Trailer, TVShowDetails } from "../../types";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { CastCard } from "../components/CastCard";
-import { TrailerCard } from "../components/TrailerCard";
-import { getFullYearReleaseDate } from "../utils/GetFullYearReleaseDate";
-import { SwiperButtons } from "../components/SwiperButtons";
+import { CastCard } from "../../components/CastCard/CastCard";
+import { TrailerCard } from "../../components/TrailerCard/TrailerCard";
+import { getFullYearReleaseDate } from "../../utils/GetFullYearReleaseDate";
+import { SwiperButtons } from "../../components/SwiperButtons/SwiperButtons";
 
 export const TVShow = () => {
   /**
@@ -104,7 +104,7 @@ export const TVShow = () => {
                 <span>({getFullYearReleaseDate(tvshow.first_air_date)})</span>
               )}
             </h1>
-            <div className='my-1 flex gap-2 flex-wrap'>
+            <div className='my-1 flex flex-wrap gap-2'>
               {tvshow?.genres.map(({ id, name }) => (
                 <span
                   key={id}

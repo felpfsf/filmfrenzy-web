@@ -1,14 +1,14 @@
 import { useQuery } from "react-query";
-import { fetchMoviesPopular } from "../data/queries";
-import { MediaCard } from "./MediaCard";
+import { fetchMoviesPopular } from "../../data/queries";
+import { MediaCard } from "../MediaCard/MediaCard";
 
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import "swiper/css";
-import { CardProps } from "../types";
+import { CardProps } from "../../types";
 
-import { SwiperButtons } from "./SwiperButtons";
+import { SwiperButtons } from "../SwiperButtons/SwiperButtons";
 
-export const MoviesRow = ({ title }: { title: string }) => {
+export const MediaRow = ({ title }: { title: string }) => {
   const { data: movies } = useQuery<CardProps[]>(
     "getPop",
     () => fetchMoviesPopular(),

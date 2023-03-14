@@ -1,10 +1,14 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import { Hero } from "../components/Hero";
-import { MoviesRow } from "../components/MoviesRow";
-import { TMDB_API_KEY, TMDB_BASE_URL } from "../utils/env";
-
+import { Hero } from "../../components/Hero/Hero";
+import { MediaRow } from "../../components/MediaRow/MoviesRow";
+import { TMDB_API_KEY, TMDB_BASE_URL } from "../../utils";
 import { motion } from "framer-motion";
+import {
+  MOTION_OPACITY_ANIMATE,
+  MOTION_OPACITY_INITIAL,
+  MOTION_TRANSITION_DURATION,
+} from "../../utils";
 
 export const Home = () => {
   const { data: items } = useQuery(
@@ -29,12 +33,15 @@ export const Home = () => {
   return (
     <motion.main
       className='w-full'
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.5 } }}
+      initial={{ opacity: MOTION_OPACITY_INITIAL }}
+      animate={{ opacity: MOTION_OPACITY_ANIMATE }}
+      exit={{
+        opacity: 0,
+        transition: { duration: MOTION_TRANSITION_DURATION },
+      }}
     >
       <Hero type={""} shuffledItems={shuffledItems} />
-      <MoviesRow title='Most Popular' />
+      <MediaRow title='Most Popular' />
     </motion.main>
   );
 };

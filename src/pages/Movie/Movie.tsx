@@ -1,21 +1,21 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { fetchCast, fetchDetails, fetchVideo } from "../data/queries";
+import { fetchCast, fetchDetails, fetchVideo } from "../../data/queries";
 import { motion } from "framer-motion";
 import {
   MOTION_OPACITY_ANIMATE,
   MOTION_OPACITY_INITIAL,
   MOTION_TRANSITION_DURATION,
-} from "../utils/motionProps";
-import { TMDB_BACKDROP_POSTER } from "../utils/env";
-import { Cast, MovieDetails, Trailer } from "../types";
+} from "../../utils/MotionProps";
+import { TMDB_BACKDROP_POSTER } from "../../utils/env";
+import { Cast, MovieDetails, Trailer } from "../../types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { CastCard } from "../components/CastCard";
-import { TrailerCard } from "../components/TrailerCard";
-import { SwiperButtons } from "../components/SwiperButtons";
-import { getFullYearReleaseDate } from "../utils/GetFullYearReleaseDate";
-import { convertMinutesToHour } from "../utils/ConvertMinutesToHour";
+import { CastCard } from "../../components/CastCard/CastCard";
+import { TrailerCard } from "../../components/TrailerCard/TrailerCard";
+import { SwiperButtons } from "../../components/SwiperButtons/SwiperButtons";
+import { getFullYearReleaseDate } from "../../utils/GetFullYearReleaseDate";
+import { convertMinutesToHour } from "../../utils/ConvertMinutesToHour";
 
 export const Movie = () => {
   /**
@@ -104,7 +104,7 @@ export const Movie = () => {
                 <span>({getFullYearReleaseDate(movie?.release_date)})</span>
               )}
             </h1>
-            <div className='mt-1 flex gap-2 flex-wrap'>
+            <div className='mt-1 flex flex-wrap gap-2'>
               {movie?.genres.map(({ id, name }) => (
                 <span
                   key={id}
@@ -114,7 +114,8 @@ export const Movie = () => {
                 </span>
               ))}
               <span>
-                - Duration: {movie?.runtime && convertMinutesToHour(movie?.runtime)}
+                - Duration:{" "}
+                {movie?.runtime && convertMinutesToHour(movie?.runtime)}
               </span>
             </div>
           </div>

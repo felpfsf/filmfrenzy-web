@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import {
@@ -6,25 +6,24 @@ import {
   fetchMoviesPopular,
   fetchTvShowsOnAir,
   fetchTvShowsPopular,
-} from "../data/queries";
-import { HeroProps, MediaDetails } from "../types";
-import { TMDB_BACKDROP_POSTER } from "../utils/env";
-import { Button } from "./ui/Button";
-import { useNavigateToMedia } from "../hooks/useNavigateToMedia";
+} from "../../data/queries";
+import { HeroProps, MediaDetails } from "../../types";
+import { TMDB_BACKDROP_POSTER } from "../../utils/env";
+import { Button } from "../ui/Button";
+import { useNavigateToMedia } from "../../hooks/useNavigateToMedia";
 import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/swiper-bundle.css";
-import { getFullYearReleaseDate } from "../utils/GetFullYearReleaseDate";
-import { SwiperButtons } from "./SwiperButtons";
-import { truncateOverviewText } from "../utils/truncateOverviewText";
+import { getFullYearReleaseDate } from "../../utils/GetFullYearReleaseDate";
+import { SwiperButtons } from "../SwiperButtons/SwiperButtons";
+import { truncateOverviewText } from "../../utils/TruncateOverviewText";
 SwiperCore.use([Autoplay]);
 
 const HERO_OVERVIEW_TRUNCATE_LENGTH = 160;
 const HERO_SLIDER_DELAY = 5000;
 
 export const Hero = ({ type, shuffledItems }: HeroProps) => {
-  const nav = useNavigate();
   const navigateToMedia = useNavigateToMedia();
   const [currentIndex, setCurrentIndex] = useState(0);
 
