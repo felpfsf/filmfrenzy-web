@@ -99,10 +99,10 @@ export const Navbar = () => {
         </div>
         <div className='flex gap-2'>
           <Link to={"/login"} onClick={toggleNavMenu}>
-            <Button label='Sign In' />
+            <Button label='Entrar' />
           </Link>
           <Link to={"/register"} onClick={toggleNavMenu}>
-            <Button label='Sign Up' />
+            <Button label='Registrar' />
           </Link>
         </div>
       </nav>
