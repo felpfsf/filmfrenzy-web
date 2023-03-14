@@ -9,7 +9,7 @@ import {
 export const SignUp = () => {
   return (
     <motion.div
-      className=' h-full min-h-screen w-full'
+      className='flex h-full min-h-screen  w-full items-start md:items-center justify-center'
       initial={{ opacity: MOTION_OPACITY_INITIAL }}
       animate={{ opacity: MOTION_OPACITY_ANIMATE }}
       exit={{

@@ -9,7 +9,7 @@ import {
 export const SignIn = () => {
   return (
     <motion.div
-      className=' h-full min-h-screen w-full'
+      className='flex h-full min-h-screen  w-full items-start md:items-center justify-center'
       initial={{ opacity: MOTION_OPACITY_INITIAL }}
       animate={{ opacity: MOTION_OPACITY_ANIMATE }}
       exit={{
@@ -23,7 +23,7 @@ export const SignIn = () => {
         alt=''
       />
       <div className='absolute top-0 left-0 h-screen w-full bg-black/60'></div>
-      <div className='fixed mt-20 w-full px-4 md:mt-32'>
+      <div className='fixed mt-20 w-full px-4'>
         <FormController page='login' title='entrar' />
       </div>
     </motion.div>
