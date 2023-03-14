@@ -3,7 +3,7 @@ import {
   MOTION_OPACITY_ANIMATE,
   MOTION_OPACITY_INITIAL,
   MOTION_TRANSITION_DURATION,
-} from "../../utils/MotionProps";
+} from "../../utils/";
 
 export const NotFound = () => {
   return (

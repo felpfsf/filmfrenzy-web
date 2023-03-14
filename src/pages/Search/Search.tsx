@@ -1,12 +1,12 @@
 import { useQuery } from "react-query";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { fetchSearch } from "../../data/queries";
 import { motion } from "framer-motion";
 import {
   MOTION_OPACITY_ANIMATE,
   MOTION_OPACITY_INITIAL,
   MOTION_TRANSITION_DURATION,
-} from "../../utils/MotionProps";
+} from "../../utils/";
 import { MediaCard } from "../../components/MediaCard/MediaCard";
 
 import { Swiper, SwiperSlide } from "swiper/react";

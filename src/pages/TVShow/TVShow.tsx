@@ -7,7 +7,7 @@ import {
   MOTION_OPACITY_ANIMATE,
   MOTION_OPACITY_INITIAL,
   MOTION_TRANSITION_DURATION,
-} from "../../utils/MotionProps";
+} from "../../utils/";
 import { TMDB_BACKDROP_POSTER } from "../../utils/env";
 import { Cast, Trailer, TVShowDetails } from "../../types";
 
