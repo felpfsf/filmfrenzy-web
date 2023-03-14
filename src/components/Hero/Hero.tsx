@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import {
   fetchMoviesNowPlaying,
@@ -18,6 +17,8 @@ import "swiper/swiper-bundle.css";
 import { getFullYearReleaseDate } from "../../utils/GetFullYearReleaseDate";
 import { SwiperButtons } from "../SwiperButtons/SwiperButtons";
 import { truncateOverviewText } from "../../utils/";
+import { AiFillStar } from "react-icons/ai";
+
 SwiperCore.use([Autoplay]);
 
 const HERO_OVERVIEW_TRUNCATE_LENGTH = 160;
@@ -79,21 +80,23 @@ export const Hero = ({ type, shuffledItems }: HeroProps) => {
               aria-atomic='true'
               aria-label={
                 currentItem?.title
-                  ? `image of ${currentItem?.title}`
+                  ? `Imagem de ${currentItem?.title}`
                     ? currentItem.name
-                    : `image of ${currentItem?.name}`
+                    : `Imagem de ${currentItem?.name}`
                   : "image placeholder"
               }
             >
               <div className='h-full w-full bg-posterGradient'>
-                <div className='flex h-full w-full flex-col justify-end bg-contentPosterGradient px-8 pb-14 md:pl-8 md:pb-32'>
+                <div className='flex h-full w-full flex-col justify-end bg-contentPosterGradient px-8 pb-32 md:pl-8 md:pb-32'>
                   <h1 className='text-lg font-bold md:text-6xl'>
                     {currentItem?.title || currentItem?.name}
                   </h1>
                   <div className='mt-2 flex flex-col gap-2 md:w-[50%]'>
                     <div className='flex gap-4'>
                       {/* Todo - change to api rating */}
-                      <p>rating: {currentItem?.vote_average}</p>
+                      <p className="flex items-center gap-x-2">
+                        <AiFillStar /> {currentItem?.vote_average}
+                      </p>
                       <p>
                         Lançamento:{" "}
                         {currentItem?.release_date
@@ -117,8 +120,8 @@ export const Hero = ({ type, shuffledItems }: HeroProps) => {
                       </p>
                     ) : null}
                     <div className='mt-2 flex gap-4'>
-                      <Button label='▶ Watch Trailer' />
-                      <Button label='+ More Info' handleClick={handleClick} />
+                      <Button label='▶ Trailer' />
+                      <Button label='+ Info' handleClick={handleClick} />
                     </div>
                   </div>
                 </div>
