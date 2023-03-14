@@ -9,6 +9,8 @@ import { Movie } from "./pages/Movie/Movie";
 import { Movies } from "./pages/Movies/Movies";
 import { NotFound } from "./pages/NotFound/NotFound";
 import { Search } from "./pages/Search/Search";
+import { SignIn } from "./pages/SignIn/SignIn";
+import { SignUp } from "./pages/SignUp/SignUp";
 import { TVShow } from "./pages/TVShow/TVShow";
 import { TVShows } from "./pages/TVShows/TVShows";
 import "./styles/index.css";
@@ -42,6 +44,14 @@ const routes = createBrowserRouter([
       {
         path: "/search",
         element: <Search />,
+      },
+      {
+        path: "/signin",
+        element: <SignIn />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
       },
     ],
   },

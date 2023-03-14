@@ -17,7 +17,7 @@ import "swiper/css";
 import "swiper/swiper-bundle.css";
 import { getFullYearReleaseDate } from "../../utils/GetFullYearReleaseDate";
 import { SwiperButtons } from "../SwiperButtons/SwiperButtons";
-import { truncateOverviewText } from "../../utils/TruncateOverviewText";
+import { truncateOverviewText } from "../../utils/";
 SwiperCore.use([Autoplay]);
 
 const HERO_OVERVIEW_TRUNCATE_LENGTH = 160;
