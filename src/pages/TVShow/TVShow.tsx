@@ -4,18 +4,18 @@ import { useParams } from "react-router-dom";
 import { fetchCast, fetchDetails, fetchVideo } from "../../data/queries";
 import { motion } from "framer-motion";
 import {
+  getFullYearReleaseDate,
   MOTION_OPACITY_ANIMATE,
   MOTION_OPACITY_INITIAL,
   MOTION_TRANSITION_DURATION,
+  TMDB_BACKDROP_POSTER,
 } from "../../utils/";
-import { TMDB_BACKDROP_POSTER } from "../../utils/env";
 import { Cast, Trailer, TVShowDetails } from "../../types";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { CastCard } from "../../components/CastCard/CastCard";
 import { TrailerCard } from "../../components/TrailerCard/TrailerCard";
-import { getFullYearReleaseDate } from "../../utils";
 import { SwiperButtons } from "../../components/SwiperButtons/SwiperButtons";
 
 export const TVShow = () => {

@@ -7,7 +7,6 @@ import {
   fetchTvShowsPopular,
 } from "../../data/queries";
 import { HeroProps, MediaDetails } from "../../types";
-import { TMDB_BACKDROP_POSTER } from "../../utils/env";
 import { Button } from "../ui/Button";
 import { useNavigateToMedia } from "../../hooks/useNavigateToMedia";
 import SwiperCore, { Autoplay } from "swiper";
@@ -15,8 +14,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/swiper-bundle.css";
 import { SwiperButtons } from "../SwiperButtons/SwiperButtons";
-import { getFullYearReleaseDate, truncateOverviewText } from "../../utils/";
 import { AiFillStar } from "react-icons/ai";
+import {
+  getFullYearReleaseDate,
+  TMDB_BACKDROP_POSTER,
+  truncateOverviewText,
+} from "../../utils";
 
 SwiperCore.use([Autoplay]);
 
@@ -93,7 +96,7 @@ export const Hero = ({ type, shuffledItems }: HeroProps) => {
                   <div className='mt-2 flex flex-col gap-2 md:w-[50%]'>
                     <div className='flex gap-4'>
                       {/* Todo - change to api rating */}
-                      <p className="flex items-center gap-x-2">
+                      <p className='flex items-center gap-x-2'>
                         <AiFillStar /> {currentItem?.vote_average}
                       </p>
                       <p>
