@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { fetchCast, fetchDetails, fetchVideo } from "../../data/queries";
 import { motion } from "framer-motion";
 import {
-  getFullYearReleaseDate,
+  getYearReleaseDate,
   MOTION_OPACITY_ANIMATE,
   MOTION_OPACITY_INITIAL,
   MOTION_TRANSITION_DURATION,
@@ -101,7 +101,7 @@ export const TVShow = () => {
             <h1 className='text-2xl font-semibold md:text-3xl'>
               {tvshow?.name}{" "}
               {tvshow?.first_air_date && (
-                <span>({getFullYearReleaseDate(tvshow.first_air_date)})</span>
+                <span>({getYearReleaseDate(tvshow.first_air_date)})</span>
               )}
             </h1>
             <div className='my-1 flex flex-wrap gap-2'>

@@ -4,7 +4,7 @@ import { fetchCast, fetchDetails, fetchVideo } from "../../data/queries";
 import { motion } from "framer-motion";
 import {
   convertMinutesToHour,
-  getFullYearReleaseDate,
+  getYearReleaseDate,
   MOTION_OPACITY_ANIMATE,
   MOTION_OPACITY_INITIAL,
   MOTION_TRANSITION_DURATION,
@@ -101,7 +101,7 @@ export const Movie = () => {
             <h1 className='text-2xl font-semibold md:text-3xl'>
               {movie?.title}{" "}
               {movie?.release_date && (
-                <span>({getFullYearReleaseDate(movie?.release_date)})</span>
+                <span>({getYearReleaseDate(movie?.release_date)})</span>
               )}
             </h1>
             <div className='mt-1 flex flex-wrap gap-2'>
