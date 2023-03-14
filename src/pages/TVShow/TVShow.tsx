@@ -113,7 +113,7 @@ export const TVShow = () => {
                   {name}
                 </span>
               ))}
-              <span>- Total Seasons: {tvshow?.seasons.length}</span>
+              <span>- Total de temporadas: {tvshow?.seasons.length}</span>
             </div>
             {tvshow?.tagline && <em>"{tvshow?.tagline}"</em>}
           </div>
@@ -122,7 +122,7 @@ export const TVShow = () => {
       </div>
       {/* Cast */}
       <div className='my-8 flex flex-col gap-4'>
-        <h1 className='text-2xl font-semibold'>Cast</h1>
+        <h1 className='text-2xl font-semibold'>Elenco</h1>
         <div className='w-full'>
           <Swiper
             slidesPerView={1.9}

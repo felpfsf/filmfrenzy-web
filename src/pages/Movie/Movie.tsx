@@ -114,7 +114,7 @@ export const Movie = () => {
                 </span>
               ))}
               <span>
-                - Duration:{" "}
+                - Duração:{" "}
                 {movie?.runtime && convertMinutesToHour(movie?.runtime)}
               </span>
             </div>
@@ -124,7 +124,7 @@ export const Movie = () => {
       </div>
       {/* Cast */}
       <div className='my-8 flex flex-col gap-4'>
-        <h1 className='text-2xl font-semibold'>Cast</h1>
+        <h1 className='text-2xl font-semibold'>Elenco</h1>
         <div className='w-full'>
           <Swiper
             slidesPerView={1.9}
