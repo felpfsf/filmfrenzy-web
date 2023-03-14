@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchCast, fetchDetails, fetchVideo } from "../../data/queries";
 import { motion } from "framer-motion";
 import {
-  convertMinutesToHour,
+  convertMinutesToHours,
   getYearReleaseDate,
   MOTION_OPACITY_ANIMATE,
   MOTION_OPACITY_INITIAL,
@@ -115,7 +115,7 @@ export const Movie = () => {
               ))}
               <span>
                 - Duração:{" "}
-                {movie?.runtime && convertMinutesToHour(movie?.runtime)}
+                {movie?.runtime && convertMinutesToHours(movie?.runtime)}
               </span>
             </div>
           </div>
