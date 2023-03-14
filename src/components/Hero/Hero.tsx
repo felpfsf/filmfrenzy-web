@@ -16,7 +16,7 @@ import "swiper/swiper-bundle.css";
 import { SwiperButtons } from "../SwiperButtons/SwiperButtons";
 import { AiFillStar } from "react-icons/ai";
 import {
-  getFullYearReleaseDate,
+  getYearReleaseDate,
   TMDB_BACKDROP_POSTER,
   truncateOverviewText,
 } from "../../utils";
@@ -102,8 +102,8 @@ export const Hero = ({ type, shuffledItems }: HeroProps) => {
                       <p>
                         Lançamento:{" "}
                         {currentItem?.release_date
-                          ? getFullYearReleaseDate(currentItem.release_date)
-                          : getFullYearReleaseDate(
+                          ? getYearReleaseDate(currentItem.release_date)
+                          : getYearReleaseDate(
                               currentItem?.first_air_date ?? ""
                             )}
                       </p>
