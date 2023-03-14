@@ -33,7 +33,7 @@ export const Navbar = () => {
         </h1>
       </Link>
       <button
-        className='z-10 block h-8 w-8 xl:hidden'
+        className='z-10 block h-8 w-8 lg:hidden'
         onClick={toggleNavMenu}
         aria-label='Toggle navigation menu'
         aria-expanded={isNavbarOpen}
@@ -44,7 +44,7 @@ export const Navbar = () => {
           <RxHamburgerMenu className='h-full w-full' />
         )}
       </button>
-      <nav className='hidden flex-1 justify-between xl:flex'>
+      <nav className='hidden flex-1 justify-between lg:flex'>
         <div className='ml-12 flex items-center gap-8'>
           {menuItems.map((item) => (
             <NavLink
