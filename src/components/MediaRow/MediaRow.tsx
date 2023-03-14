@@ -1,12 +1,10 @@
 import { useQuery } from "react-query";
 import { fetchMoviesPopular } from "../../data/queries";
-import { MediaCard } from "../MediaCard/MediaCard";
-
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-import "swiper/css";
 import { CardProps } from "../../types";
-
+import { MediaCard } from "../MediaCard/MediaCard";
 import { SwiperButtons } from "../SwiperButtons/SwiperButtons";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 export const MediaRow = ({ title }: { title: string }) => {
   const { data: movies } = useQuery<CardProps[]>(
@@ -16,7 +14,6 @@ export const MediaRow = ({ title }: { title: string }) => {
   );
   // console.log(movies);
 
-  const swiper = useSwiper();
   return (
     <section className='w-full px-4 pb-4 lg:px-8'>
       <h2 className='my-4 text-2xl font-bold'>{title}</h2>
