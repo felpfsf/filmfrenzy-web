@@ -7,7 +7,7 @@ import {
   fetchTvShowsPopular,
 } from "../../data/queries";
 import { HeroProps, MediaDetails } from "../../types";
-import { Button } from "../ui/Button";
+import { ButtonLink } from "../ui/ButtonLink";
 import { useNavigateToMedia } from "../../hooks/useNavigateToMedia";
 import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -122,8 +122,8 @@ export const Hero = ({ type, shuffledItems }: HeroProps) => {
                       </p>
                     ) : null}
                     <div className='mt-2 flex gap-4'>
-                      <Button label='▶ Trailer' />
-                      <Button label='+ Info' handleClick={handleClick} />
+                      <ButtonLink label='▶ Trailer' />
+                      <ButtonLink label='+ Info' handleClick={handleClick} />
                     </div>
                   </div>
                 </div>

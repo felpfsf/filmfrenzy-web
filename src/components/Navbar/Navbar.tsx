@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 import { Link, NavLink } from "react-router-dom";
-import { Button } from "../ui/Button";
+import { ButtonLink } from "../ui/ButtonLink";
 import { Searchbar } from "../Searchbar/Searchbar";
 import { useNavbarColor } from "./useNavbarColor";
 
@@ -64,10 +64,10 @@ export const Navbar = () => {
         </div>
         <div className='flex gap-2'>
           <Link to={"/login"}>
-            <Button label='Entrar' />
+            <ButtonLink label='Entrar' />
           </Link>
           <Link to={"/register"}>
-            <Button label='Registrar' />
+            <ButtonLink label='Registrar' />
           </Link>
         </div>
       </nav>
@@ -99,10 +99,10 @@ export const Navbar = () => {
         </div>
         <div className='flex gap-2'>
           <Link to={"/login"} onClick={toggleNavMenu}>
-            <Button label='Entrar' />
+            <ButtonLink label='Entrar' />
           </Link>
           <Link to={"/register"} onClick={toggleNavMenu}>
-            <Button label='Registrar' />
+            <ButtonLink label='Registrar' />
           </Link>
         </div>
       </nav>
