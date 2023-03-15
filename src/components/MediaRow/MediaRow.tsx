@@ -1,10 +1,7 @@
 import { useQuery } from "react-query";
 import { fetchMoviesPopular } from "../../data/queries";
 import { CardProps } from "../../types";
-import { MediaCard } from "../MediaCard/MediaCard";
-import { SwiperButtons } from "../SwiperButtons/SwiperButtons";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+import { SwiperComponent } from "../SwiperComponent/SwiperComponent";
 
 export const MediaRow = ({ title }: { title: string }) => {
   const { data: movies } = useQuery<CardProps[]>(
@@ -17,7 +14,7 @@ export const MediaRow = ({ title }: { title: string }) => {
   return (
     <section className='w-full px-4 pb-4 lg:px-8'>
       <h2 className='my-4 text-2xl font-bold'>{title}</h2>
-      <Swiper
+      <SwiperComponent
         spaceBetween={6}
         slidesPerView={1.2}
         breakpoints={{
@@ -44,17 +41,8 @@ export const MediaRow = ({ title }: { title: string }) => {
           },
         }}
         className='group relative'
-      >
-        {/* map */}
-        {movies &&
-          movies.map((movie) => (
-            <SwiperSlide key={movie.id}>
-              <MediaCard {...movie} />
-            </SwiperSlide>
-          ))}
-        {/* map */}
-        <SwiperButtons />
-      </Swiper>
+        items={movies}
+      />
     </section>
   );
 };
