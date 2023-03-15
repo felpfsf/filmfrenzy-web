@@ -16,6 +16,7 @@ import "swiper/css";
 import { CastCard } from "../../components/CastCard/CastCard";
 import { TrailerCard } from "../../components/TrailerCard/TrailerCard";
 import { SwiperButtons } from "../../components/SwiperButtons/SwiperButtons";
+import { SwiperComponent } from "../../components/SwiperComponent/SwiperComponent";
 
 export const Movie = () => {
   /**
@@ -126,7 +127,10 @@ export const Movie = () => {
       <div className='my-8 flex flex-col gap-4'>
         <h1 className='text-2xl font-semibold'>Elenco</h1>
         <div className='w-full'>
-          <Swiper
+          <SwiperComponent
+            cardComponent={CastCard}
+            items={cast_data}
+            className='group relative'
             slidesPerView={1.9}
             spaceBetween={10}
             breakpoints={{
@@ -144,16 +148,7 @@ export const Movie = () => {
                 spaceBetween: 10,
               },
             }}
-            className='group relative'
-          >
-            {cast_data &&
-              cast_data.map((cast, index) => (
-                <SwiperSlide key={`${cast.id}_${cast.name}${index}`}>
-                  <CastCard {...cast} />
-                </SwiperSlide>
-              ))}
-            <SwiperButtons />
-          </Swiper>
+          />
         </div>
       </div>
       {/* Cast */}
@@ -162,7 +157,7 @@ export const Movie = () => {
         <div className='my-8 flex flex-col gap-4'>
           <h1 className='text-2xl font-semibold'>Trailers</h1>
           <div className='w-full'>
-            <Swiper
+            {/* <Swiper
               slidesPerView={1}
               spaceBetween={10}
               className='group relative'
@@ -174,7 +169,14 @@ export const Movie = () => {
                   </SwiperSlide>
                 ))}
               <SwiperButtons />
-            </Swiper>
+            </Swiper> */}
+            <SwiperComponent
+              items={video_data}
+              cardComponent={TrailerCard}
+              slidesPerView={1}
+              spaceBetween={10}
+              className='group relative'
+            />
           </div>
         </div>
       )}

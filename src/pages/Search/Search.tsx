@@ -9,6 +9,7 @@ import {
 } from "../../utils/";
 import { SwiperComponent } from "../../components/SwiperComponent/SwiperComponent";
 import { Grid } from "swiper";
+import { MediaCard } from "../../components/MediaCard/MediaCard";
 
 export const Search = () => {
   const [searchParams] = useSearchParams();
@@ -82,35 +83,7 @@ export const Search = () => {
           <div className=''>
             <h1 className='text-2xl font-semibold'>Movies</h1>
             <SwiperComponent
-              className='group relative mt-4'
-              slidesPerView={4}
-              spaceBetween={5}
-              // modules={[Grid]}
-              breakpoints={{
-                320: {
-                  slidesPerView: 1.2,
-                  spaceBetween: 5,
-                },
-                768: {
-                  slidesPerView: 4.5,
-                  spaceBetween: 5,
-                },
-                // 1024: {
-                //   grid: {
-                //     rows: 2,
-                //     fill: "row",
-                //   },
-                // },
-              }}
-              items={movies}
-            />
-          </div>
-        )}
-
-        {tvShows.length > 0 && (
-          <div className=''>
-            <h1 className='text-2xl font-semibold'>TV Shows</h1>
-            <SwiperComponent
+              cardComponent={MediaCard}
               className='group relative mt-4'
               slidesPerView={4}
               spaceBetween={5}
@@ -124,12 +97,46 @@ export const Search = () => {
                   slidesPerView: 4.5,
                   spaceBetween: 5,
                 },
-                // 1024: {
-                //   grid: {
-                //     rows: 2,
-                //     fill: "row",
-                //   },
-                // },
+                1024: {
+                  slidesPerView: 4.5,
+                  spaceBetween: 5,
+                  grid: {
+                    rows: 2,
+                    fill: "row",
+                  },
+                },
+              }}
+              items={movies}
+            />
+          </div>
+        )}
+
+        {tvShows.length > 0 && (
+          <div className=''>
+            <h1 className='text-2xl font-semibold'>TV Shows</h1>
+            <SwiperComponent
+              cardComponent={MediaCard}
+              className='group relative mt-4'
+              slidesPerView={4}
+              spaceBetween={5}
+              modules={[Grid]}
+              breakpoints={{
+                320: {
+                  slidesPerView: 1.2,
+                  spaceBetween: 5,
+                },
+                768: {
+                  slidesPerView: 4.5,
+                  spaceBetween: 5,
+                },
+                1024: {
+                  slidesPerView: 4.5,
+                  spaceBetween: 5,
+                  grid: {
+                    rows: 2,
+                    fill: "row",
+                  },
+                },
               }}
               items={tvShows}
             />

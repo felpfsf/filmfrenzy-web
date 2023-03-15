@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import { fetchMoviesPopular } from "../../data/queries";
 import { CardProps } from "../../types";
+import { MediaCard } from "../MediaCard/MediaCard";
 import { SwiperComponent } from "../SwiperComponent/SwiperComponent";
 
 export const MediaRow = ({ title }: { title: string }) => {
@@ -42,6 +43,7 @@ export const MediaRow = ({ title }: { title: string }) => {
         }}
         className='group relative'
         items={movies}
+        cardComponent={MediaCard}
       />
     </section>
   );
