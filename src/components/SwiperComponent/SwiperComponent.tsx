@@ -1,31 +1,37 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { CardProps } from "../../types";
-import { SwiperModule } from "swiper/types";
-import { MediaCard } from "../MediaCard/MediaCard";
+import { GridOptions, SwiperModule } from "swiper/types";
 import { SwiperButtons } from "../SwiperButtons/SwiperButtons";
 import "swiper/css";
 import "swiper/css/grid";
+import React from "react";
 
-interface SwiperProps {
-  items: CardProps[] | undefined;
+interface SwiperProps<T extends { id: string | number }> {
+  items: T[] | undefined;
+  cardComponent: React.FC<T & { trailer_key: string }>;
   className: string;
   slidesPerView?: number | "auto";
   spaceBetween?: number | string;
   modules?: SwiperModule[];
   breakpoints?: Record<
     number,
-    { slidesPerView: number; spaceBetween?: number }
+    { slidesPerView: number; spaceBetween?: number; grid?: GridOptions }
   >;
 }
 
-export const SwiperComponent = ({
+export const SwiperComponent = <
+  T extends {
+    key?: string;
+    id: string | number;
+  }
+>({
   items,
   className,
   breakpoints,
   modules,
   slidesPerView,
   spaceBetween,
-}: SwiperProps) => {
+  cardComponent: CardComponent,
+}: SwiperProps<T>) => {
   return (
     <Swiper
       className={className}
@@ -33,31 +39,11 @@ export const SwiperComponent = ({
       spaceBetween={spaceBetween}
       modules={modules}
       breakpoints={breakpoints}
-      // className='mt-4'
-      // slidesPerView={4}
-      // spaceBetween={5}
-      // modules={[Grid]}
-      // breakpoints={{
-      //   320: {
-      //     slidesPerView: 1.2,
-      //     spaceBetween: 5,
-      //   },
-      //   768: {
-      //     slidesPerView: 2.2,
-      //     spaceBetween: 5,
-      //   },
-      //   1024: {
-      //     grid: {
-      //       rows: 2,
-      //       fill: "row",
-      //     },
-      //   },
-      // }}
     >
       {items &&
         items.map((item) => (
           <SwiperSlide key={item.id}>
-            <MediaCard {...item} />
+            <CardComponent {...item} trailer_key={item.key || ""} />
           </SwiperSlide>
         ))}
       <SwiperButtons />
