@@ -1,43 +1,14 @@
 import { useQuery } from "react-query";
 import { useSearchParams } from "react-router-dom";
-import { fetchSearch } from "../../data/queries";
+import { fetchSearchResults } from "./fetchSearchResults";
 import { motion } from "framer-motion";
 import {
   MOTION_OPACITY_ANIMATE,
   MOTION_OPACITY_INITIAL,
   MOTION_TRANSITION_DURATION,
 } from "../../utils/";
-import { MediaCard } from "../../components/MediaCard/MediaCard";
-
-import { Swiper, SwiperSlide } from "swiper/react";
+import { SwiperComponent } from "../../components/SwiperComponent/SwiperComponent";
 import { Grid } from "swiper";
-import "swiper/css";
-import "swiper/css/grid";
-import { SwiperButtons } from "../../components/SwiperButtons/SwiperButtons";
-
-interface SearchResult {
-  id: number;
-  media_type: "movie" | "tv";
-  title?: string;
-  name?: string;
-}
-
-interface SearchResults {
-  movies: SearchResult[];
-  tvShows: SearchResult[];
-}
-
-const fetchSearchResults = async (query: string) => {
-  const searchResult = await fetchSearch(query);
-  const movies = searchResult?.filter(
-    (result: SearchResult) => result.media_type === "movie"
-  );
-  const tvShows = searchResult?.filter(
-    (result: SearchResult) => result.media_type === "tv"
-  );
-
-  return { movies, tvShows };
-};
 
 export const Search = () => {
   const [searchParams] = useSearchParams();
@@ -54,7 +25,7 @@ export const Search = () => {
   if (isLoading) {
     return (
       <div className='mx-auto h-full w-full max-w-screen-2xl pt-32'>
-        <p>Loading...</p>
+        <p>Carregando...</p>
       </div>
     );
   }
@@ -87,7 +58,7 @@ export const Search = () => {
     );
   }
 
-  const { movies, tvShows } = (searchResult || {}) as SearchResults;
+  const { movies = [], tvShows = [] } = searchResult ?? {};
 
   return (
     <motion.div
@@ -110,71 +81,58 @@ export const Search = () => {
         {movies.length > 0 && (
           <div className=''>
             <h1 className='text-2xl font-semibold'>Movies</h1>
-            <Swiper
+            <SwiperComponent
+              className='group relative mt-4'
               slidesPerView={4}
               spaceBetween={5}
-              modules={[Grid]}
-              className='mt-4'
+              // modules={[Grid]}
               breakpoints={{
                 320: {
                   slidesPerView: 1.2,
                   spaceBetween: 5,
                 },
                 768: {
-                  slidesPerView: 2.2,
+                  slidesPerView: 4.5,
                   spaceBetween: 5,
                 },
-                1024: {
-                  grid: {
-                    rows: 2,
-                    fill: "row",
-                  },
-                },
+                // 1024: {
+                //   grid: {
+                //     rows: 2,
+                //     fill: "row",
+                //   },
+                // },
               }}
-            >
-              {movies &&
-                movies.map((movie: any) => (
-                  <SwiperSlide key={movie.id}>
-                    <MediaCard {...movie} />
-                  </SwiperSlide>
-                ))}
-              <SwiperButtons />
-            </Swiper>
+              items={movies}
+            />
           </div>
         )}
 
         {tvShows.length > 0 && (
           <div className=''>
             <h1 className='text-2xl font-semibold'>TV Shows</h1>
-            <Swiper
+            <SwiperComponent
+              className='group relative mt-4'
               slidesPerView={4}
               spaceBetween={5}
               modules={[Grid]}
-              className='mt-4'
               breakpoints={{
                 320: {
                   slidesPerView: 1.2,
                   spaceBetween: 5,
                 },
                 768: {
-                  slidesPerView: 2.2,
+                  slidesPerView: 4.5,
                   spaceBetween: 5,
                 },
-                1024: {
-                  grid: {
-                    rows: 2,
-                    fill: "row",
-                  },
-                },
+                // 1024: {
+                //   grid: {
+                //     rows: 2,
+                //     fill: "row",
+                //   },
+                // },
               }}
-            >
-              {tvShows &&
-                tvShows.map((tvshow: any) => (
-                  <SwiperSlide key={tvshow.id}>
-                    <MediaCard {...tvshow} />
-                  </SwiperSlide>
-                ))}
-            </Swiper>
+              items={tvShows}
+            />
           </div>
         )}
       </div>
