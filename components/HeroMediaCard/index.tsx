@@ -6,6 +6,7 @@ import Link from "next/link";
 
 const HeroMediaCard = (media: MediaDetails) => {
   const posterUrl = process.env.NEXT_PUBLIC_POSTER_URL;
+  const dummyPosterUrl = process.env.NEXT_PUBLIC_DUMMY_POSTER_URL;
   const releaseDate = getYearReleaseDate(
     media.first_air_date || media.release_date
   );
@@ -13,7 +14,11 @@ const HeroMediaCard = (media: MediaDetails) => {
     <div className='relative h-[90vh] w-full bg-gradient-poster'>
       <div className='absolute left-0 top-0 -z-10 flex h-full w-full items-center justify-center'>
         <Image
-          src={`${posterUrl}/${media.backdrop_path}`}
+          src={
+            media.backdrop_path
+              ? `${posterUrl}/${media.backdrop_path}`
+              : `${dummyPosterUrl}&text=Poster+de+${media.name || media.title}`
+          }
           alt={`Poster de ${media.title || media.name}`}
           width={3326}
           height={1870}
@@ -37,7 +42,7 @@ const HeroMediaCard = (media: MediaDetails) => {
             </div>
             <Link
               href={media.title ? `/movie/${media.id}` : `/tv/${media.id}`}
-              className='flex h-12 items-center justify-center rounded-lg bg-accent px-10 py-2 text-sm font-bold uppercase text-primary transition-colors duration-200 ease-in-out hover:bg-accent-hover'
+              className='flex h-12 w-full max-w-[160px] items-center justify-center rounded-lg bg-accent px-10 py-2 text-sm font-bold uppercase text-primary transition-colors duration-200 ease-in-out hover:bg-accent-hover'
             >
               Mais Info
             </Link>

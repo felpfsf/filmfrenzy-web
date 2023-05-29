@@ -58,7 +58,7 @@ const Media = async ({
                     details.name || details.title
                   }`
             }
-            alt={""}
+            alt={`Poster de ${details.title || details.name}`}
             width={384}
             height={576}
             className='h-full w-full object-cover'
