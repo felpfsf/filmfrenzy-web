@@ -1,7 +1,12 @@
-import React from 'react'
+import Hero from "@/components/Hero";
+import { getMedia } from "@/utils/getMedia";
 
-export default function Home() {
+export default async function Home() {
+  const data = await getMedia();
+  // console.log("Hero Media =>", data?.randomHeroMedia);
   return (
-    <div>Home</div>
-  )
+    <section>
+      <Hero randomHeroMedia={data?.randomHeroMedia} />
+    </section>
+  );
 }
