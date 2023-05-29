@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import { Bebas_Neue, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${bebas.variable} ${inter.variable} font-sans`}>
+        <Header />
         {children}
       </body>
     </html>
