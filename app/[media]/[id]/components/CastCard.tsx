@@ -19,7 +19,7 @@ const CastCard = ({ character, name, profile_path }: Credits) => {
       </div>
       <div>
         <p className='mt-2 text-center text-sm leading-none'>{name}</p>
-        <p className='mt-2 text-center text-xs leading-none text-gray-500'>
+        <p className='mt-2 text-center text-xs leading-none text-gray-400'>
           {character}
         </p>
       </div>

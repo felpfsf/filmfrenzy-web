@@ -6,7 +6,8 @@ import Link from "next/link";
 
 const HeroMediaCard = (media: MediaDetails) => {
   const posterUrl = process.env.NEXT_PUBLIC_POSTER_URL;
-  const dummyPosterUrl = process.env.NEXT_PUBLIC_DUMMY_POSTER_URL;
+  const dummyPosterUrl =
+    "https://dummyimage.com/2000x3000/000/fff.png&text=Poster+de+";
   const releaseDate = getYearReleaseDate(
     media.first_air_date || media.release_date
   );
@@ -17,7 +18,7 @@ const HeroMediaCard = (media: MediaDetails) => {
           src={
             media.backdrop_path
               ? `${posterUrl}/${media.backdrop_path}`
-              : `${dummyPosterUrl}&text=Poster+de+${media.name || media.title}`
+              : `${dummyPosterUrl}${media.name || media.title}`
           }
           alt={`Poster de ${media.title || media.name}`}
           width={3326}
