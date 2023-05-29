@@ -1,29 +1,34 @@
-# FilmFrenzy
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-A work-in-progress web application built with React, TypeScript, react-query, axios, and router-dom.
+## Getting Started
 
-## Description
+First, run the development server:
 
-FilmFrenzy is an app that provides users with information about movies and TV shows including top-rated, featured, and upcoming releases. The app consumes data from a third-party API and also includes user reviews and ratings for movies and TV shows through a custom REST API.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
 
-## Key Features
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- Display information about movies and TV shows including top-rated, featured, and upcoming releases
-- User reviews and ratings for movies and TV shows
-- Consume data from a third-party API and a custom REST API
-- Built with React, TypeScript, react-query, axios, and router-dom
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## How to Use
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-- Clone the repository to your local machine using git clone <https://github.com/felpfsf/filmfrenzy-web.git>
-- Install the dependencies by running yarn add in the project directory
-- Start the development server by running yarn dev
-- Access the app by navigating to <http://localhost:5173/> in your browser
+## Learn More
 
-## Contributions
+To learn more about Next.js, take a look at the following resources:
 
-This project is still a work-in-progress and contributions are welcome. If you find any bugs or have any suggestions, please feel free to open an issue or submit a pull request.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## License
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-This project is licensed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
