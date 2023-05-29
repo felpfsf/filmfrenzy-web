@@ -33,6 +33,10 @@ module.exports = {
           caption: "#A16207",
         },
       },
+      fontFamily: {
+        sans: "var(--font-inter)",
+        logo: "var(--font-bebas)",
+      },
       keyframes: {
         contentShown: {
           from: { opacity: 0, transform: "scale(0.8)" },
@@ -45,7 +49,7 @@ module.exports = {
     },
   },
   plugins: [
-    require('prettier-plugin-tailwindcss'),
-    require('tailwindcss-text-fill')
+    require("prettier-plugin-tailwindcss"),
+    require("tailwindcss-text-fill"),
   ],
 };
