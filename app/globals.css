@@ -3,6 +3,27 @@
 @tailwind utilities;
 
 @layer base {
+  .mainSlider .swiper-pagination-bullets {
+    bottom: 1.5rem;
+  }
+  .mainSlider .swiper-pagination-bullet,
+  .mediaSlider .swiper-pagination-bullet {
+    background: #f6cd46;
+  }
+
+  .mediaSlider .swiper-button-prev::after {
+    font-size: 3rem;
+  }
+
+  .mediaSlider .swiper-button-prev::after,
+  .mediaSlider .swiper-button-next::after {
+    font-size: 2rem;
+    color: #f6cd46;
+    padding: 1rem;
+    width: 200px;
+    /* margin-top: -4rem; */
+  }
+
   body {
     @apply bg-body text-neutral-100 antialiased;
   }

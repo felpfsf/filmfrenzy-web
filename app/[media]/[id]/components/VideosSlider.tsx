@@ -18,7 +18,7 @@ const VideosSlider = ({ videos }: VideoSliderProps) => {
       modules={[Navigation]}
       loop={false}
       navigation={true}
-      className='w-full'
+      className='w-full mediaSlider'
       breakpoints={{
         320: {
           slidesPerView: 1.5,

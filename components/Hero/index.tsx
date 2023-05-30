@@ -13,6 +13,7 @@ const Hero = ({ randomHeroMedia }: any) => {
       autoplay={{ delay: 6000 }}
       loop={true}
       pagination={{ clickable: true, dynamicBullets: true }}
+      className="mainSlider"
     >
       {randomHeroMedia.map((media: any) => (
         <SwiperSlide key={media.id}>

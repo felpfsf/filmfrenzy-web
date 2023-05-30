@@ -5,7 +5,17 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
-import CastCard from "./CastCard";
+// import CastCard from "./CastCard";
+//
+import dynamic from "next/dynamic";
+const CastCard = dynamic(() => import("./CastCard"), {
+  ssr: false,
+  loading: () => (
+    <div className='flex h-32 w-32 animate-pulse items-center justify-center self-center overflow-hidden rounded-full bg-slate-300'>
+      <p className='text-sm font-semibold text-red-500'>Carregando...</p>
+    </div>
+  ),
+});
 
 interface CastSlideProps {
   cast: Credits[];
@@ -15,8 +25,8 @@ const CastSlider = ({ cast }: CastSlideProps) => {
     <Swiper
       modules={[Navigation]}
       loop={false}
-      // navigation={true}
-      className='w-full'
+      navigation={true}
+      className='w-full mediaSlider'
       breakpoints={{
         320: {
           slidesPerView: 2.5,
