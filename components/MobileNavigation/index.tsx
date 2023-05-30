@@ -22,7 +22,7 @@ const MobileNavigation = () => {
       </button>
       <nav
         ref={navMenuRef}
-        className={`fixed top-[70px] flex max-h-screen w-full justify-center bg-body p-4 transition-all duration-500 ease-in-out lg:hidden
+        className={`fixed top-[68px] flex max-h-screen w-full justify-center p-4 transition-all duration-500 ease-in-out lg:hidden bg-body/80
         ${isMenuOpen ? "right-0 animate-contentShown" : "-right-full"}
         `}
       >
