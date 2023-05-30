@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
+import VideoCard from "./VideoCard";
 
 interface VideoSliderProps {
   videos: Trailer[];
@@ -35,15 +36,7 @@ const VideosSlider = ({ videos }: VideoSliderProps) => {
       <>
         {videos.map((video) => (
           <SwiperSlide key={video.id}>
-            <div className='flex max-w-xs overflow-hidden rounded-lg'>
-              <iframe
-                width='100%'
-                height='100%'
-                src={`https://www.youtube.com/embed/${video.key}`}
-                title='YouTube video player'
-                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-              ></iframe>
-            </div>
+            <VideoCard videoKey={video.key} videoName={video.name} />
           </SwiperSlide>
         ))}
       </>
