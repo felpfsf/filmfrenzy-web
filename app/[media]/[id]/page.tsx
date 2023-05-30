@@ -1,9 +1,10 @@
+import DialogTrigger from "@/components/Dialog/DialogTrigger";
 import { Credits, MediaDetails, Trailer } from "@/types/MediaModels";
 import { convertMinutesToHours } from "@/utils/convertMinutesToHours";
 import { formatDate } from "@/utils/formatDate";
 import { getMediaDetails } from "@/utils/getMediaDetails";
 import { getYearReleaseDate } from "@/utils/getYearReleaseDate";
-import { PlayCircleIcon, StarIcon } from "@heroicons/react/24/outline";
+import { StarIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import React from "react";
 import CastSlider from "./components/CastSlider";
@@ -31,6 +32,7 @@ const Media = async ({
   const releaseDate = getYearReleaseDate(
     details.first_air_date! || details.release_date!
   );
+  console.log(officialTrailer);
   return (
     <div className='mx-auto w-full max-w-screen-xl px-4 py-24'>
       <Image
@@ -87,10 +89,9 @@ const Media = async ({
               <StarIcon className='h-6 w-6' />
               <p>{details.vote_average}</p>
             </div>
-            <div className='flex items-center gap-2'>
-              <PlayCircleIcon className='h-6 w-6' />
-              <p>Trailer</p>
-            </div>
+            {officialTrailer.length > 0 && (
+              <DialogTrigger officialTrailer={officialTrailer[0]} />
+            )}
           </div>
           {/* Overview */}
           <div className='mt-6 flex flex-col space-y-2'>
@@ -156,7 +157,9 @@ const Media = async ({
         {cast.length > 0 ? (
           <CastSlider cast={cast} />
         ) : (
-          <p className='self-center lg:self-start text-sm text-gray-400'>Não há informações sobre elenco :(</p>
+          <p className='self-center text-sm text-gray-400 lg:self-start'>
+            Não há informações sobre elenco :(
+          </p>
         )}
       </div>
       {/* Trailer */}
@@ -165,7 +168,9 @@ const Media = async ({
         {videos.length > 0 ? (
           <VideosSlider videos={videos} />
         ) : (
-          <p className='self-center lg:self-start text-sm text-gray-400'>Não há informações sobre trailers :(</p>
+          <p className='self-center text-sm text-gray-400 lg:self-start'>
+            Não há informações sobre trailers :(
+          </p>
         )}
       </div>
     </div>
