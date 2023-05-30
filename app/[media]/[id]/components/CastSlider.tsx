@@ -35,7 +35,6 @@ const CastSlider = ({ cast }: CastSlideProps) => {
       <>
         {cast.map((cast) => (
           <SwiperSlide key={cast.id}>
-            
             <CastCard {...cast} />
           </SwiperSlide>
         ))}
