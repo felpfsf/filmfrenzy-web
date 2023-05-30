@@ -19,7 +19,7 @@ const CastSlider = ({ cast }: CastSlideProps) => {
       className='w-full'
       breakpoints={{
         320: {
-          slidesPerView: 3.2,
+          slidesPerView: 2.5,
           spaceBetween: 16,
         },
         640: {
