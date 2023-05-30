@@ -49,8 +49,12 @@ const SearchForm = ({
         { "flex border lg:hidden": variant === "mobile" }
       )}
     >
-      <label className='relative flex w-full items-center justify-center lg:max-w-xs'>
+      <label
+        htmlFor='searchField'
+        className='relative flex w-full items-center justify-center lg:max-w-xs'
+      >
         <input
+          name='searchField'
           type='text'
           placeholder='Busque por seus filmes e séries'
           aria-label='Busque por seus filmes e séries e aperte enter para iniciar a pesquisa'
@@ -69,12 +73,12 @@ const SearchForm = ({
           aria-label='Limpar campo de pesquisa'
           className={clsx(
             "absolute leading-none",
-            { "right-2 top-3": variant === "mobile" },
-            { "right-2 top-0": variant === "desktop" }
+            { "right-2 top-1/3": variant === "mobile" },
+            { "right-2 top-1/4": variant === "desktop" }
           )}
           onClick={handleClearInput}
         >
-          <XMarkIcon className='h-6 w-6 text-primary' />
+          <XMarkIcon className='h-4 w-4 text-primary' />
         </button>
       </label>
     </form>
