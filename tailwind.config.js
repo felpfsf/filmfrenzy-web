@@ -42,13 +42,22 @@ module.exports = {
           from: { opacity: 0, transform: "scale(0.8)" },
           to: { opacity: 1, transform: "scale(1)" },
         },
+        overlayShown: {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
+        modalShown: {
+          from: { opacity: 0, transform: "translate(-50%, -48%) scale(0.96)" },
+          to: { opacity: 1, transform: "translate(-50%, -50%) scale(1)" },
+        },
       },
       animation: {
         contentShown: "contentShown 0.2s ease-in-out",
+        overlayShown: "overlayShown 0.2s ease-in-out",
+        modalShown: "modalShown 0.2s ease-in-out",
+        
       },
     },
   },
-  plugins: [
-    require("tailwindcss-text-fill"),
-  ],
+  plugins: [require("tailwindcss-text-fill")],
 };
