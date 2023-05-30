@@ -37,9 +37,7 @@ const VideosSlider = ({ videos }: VideoSliderProps) => {
       <>
         {videos.map((video) => (
           <SwiperSlide key={video.id}>
-            <Suspense fallback={<div>Loading...</div>}>
               <VideoCard videoKey={video.key} videoName={video.name} />
-            </Suspense>
           </SwiperSlide>
         ))}
       </>
