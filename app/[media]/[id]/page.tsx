@@ -67,11 +67,11 @@ const Media = async ({
         </div>
         {/* Title */}
         <div className='mt-8 flex flex-col gap-2'>
-          <h1 className='flex gap-2 text-left text-2xl'>
+          <h1 className='flex gap-1 text-left text-2xl'>
             {details.name || details.title}
             <span className='inline-block'>({releaseDate})</span>
           </h1>
-          <h6 className='italic text-gray-600'>{details.tagline}</h6>
+          <h6 className='italic text-gray-400'>{details.tagline}</h6>
           {/* Genres List */}
           <div className='mt-4 flex flex-wrap gap-2'>
             {details.genres.map(({ id, name }) => (
