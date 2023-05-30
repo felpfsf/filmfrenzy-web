@@ -5,7 +5,7 @@ interface VideoCardProps {
 }
 const VideoCard = ({ videoKey, videoName }: VideoCardProps) => {
   return (
-    <div className='flex max-w-xs flex-col overflow-hidden rounded-lg'>
+    <div className='flex max-w-xs aspect-video flex-col overflow-hidden rounded-lg'>
       <ReactPlayer
         url={`https://www.youtube.com/watch?v=${videoKey}`}
         controls

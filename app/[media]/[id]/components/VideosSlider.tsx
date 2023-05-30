@@ -1,5 +1,6 @@
 "use client";
 import { Trailer } from "@/types/MediaModels";
+import { Suspense } from "react";
 import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -36,7 +37,9 @@ const VideosSlider = ({ videos }: VideoSliderProps) => {
       <>
         {videos.map((video) => (
           <SwiperSlide key={video.id}>
-            <VideoCard videoKey={video.key} videoName={video.name} />
+            <Suspense fallback={<div>Loading...</div>}>
+              <VideoCard videoKey={video.key} videoName={video.name} />
+            </Suspense>
           </SwiperSlide>
         ))}
       </>
