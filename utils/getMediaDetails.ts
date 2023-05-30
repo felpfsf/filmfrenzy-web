@@ -38,7 +38,7 @@ export const getMediaDetails = async (id: number, mediaType: string) => {
       ({ job }) => job === "Story" || job === "Screenplay" || job === "Writer"
     );
     const officialTrailer = videos.filter(
-      ({ name }) => name === "Official Trailer"
+      ({ type }) => type === "Trailer"
     );
 
     return { cast, details, directors, writers, videos, officialTrailer };
