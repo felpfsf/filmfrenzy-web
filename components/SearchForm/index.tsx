@@ -55,6 +55,7 @@ const SearchForm = ({
       >
         <input
           name='searchField'
+          id='searchField'
           type='text'
           placeholder='Busque por seus filmes e séries'
           aria-label='Busque por seus filmes e séries e aperte enter para iniciar a pesquisa'
