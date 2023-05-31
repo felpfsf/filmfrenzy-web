@@ -1,4 +1,5 @@
 import DialogTrigger from "@/components/Dialog/DialogTrigger";
+import LazyImage from "@/components/LazyImage";
 import { Credits, MediaDetails, Trailer } from "@/types/MediaModels";
 import { convertMinutesToHours } from "@/utils/convertMinutesToHours";
 import { formatDate } from "@/utils/formatDate";
@@ -32,7 +33,6 @@ const Media = async ({
   const releaseDate = getYearReleaseDate(
     details.first_air_date! || details.release_date!
   );
-  console.log(officialTrailer);
   return (
     <div className='mx-auto w-full max-w-screen-xl px-4 py-24'>
       <Image
@@ -51,7 +51,7 @@ const Media = async ({
       <div className='flex flex-col lg:flex-row lg:gap-8'>
         {/* Poster */}
         <div className='w-full min-w-[10rem] max-w-sm self-center overflow-hidden rounded-xl'>
-          <Image
+          {/* <Image
             src={
               details.poster_path
                 ? `${posterUrl}/${details.poster_path}`
@@ -63,6 +63,18 @@ const Media = async ({
             width={384}
             height={576}
             className='h-full w-full object-cover'
+          /> */}
+          <LazyImage
+            image={{
+              alt: `Poster de ${details.title || details.name}`,
+              src: details.poster_path
+                ? `${posterUrl}/${details.poster_path}`
+                : `${dummyPosterUrl}&text=Poster+de+${
+                    details.name || details.title
+                  }`,
+              width: 384,
+              height: 576,
+            }}
           />
         </div>
         {/* Title */}
