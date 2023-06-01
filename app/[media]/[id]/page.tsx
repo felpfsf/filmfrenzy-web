@@ -7,8 +7,8 @@ import { formatDate } from "@/utils/formatDate";
 import { getMediaDetails } from "@/utils/getMediaDetails";
 import { getYearReleaseDate } from "@/utils/getYearReleaseDate";
 import { StarIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
 import React from "react";
+import BackdropImage from "./components/BackdropImage";
 import CastSlider from "./components/CastSlider";
 import Overview from "./components/Overview";
 import VideosSlider from "./components/VideosSlider";
@@ -27,40 +27,24 @@ const Media = async ({
 }: {
   params: { id: number; media: string };
 }) => {
-  const posterUrl = process.env.NEXT_PUBLIC_POSTER_URL;
-  const dummyPosterUrl =
-    "https://dummyimage.com/2000x3000/000/fff.png&text=Poster+de+";
   const data = (await getMediaDetails(id, media)) as Props;
   const { cast, details, directors, writers, officialTrailer, videos } = data;
+  const title = details.title || details.name;
   const releaseDate = getYearReleaseDate(
     details.first_air_date! || details.release_date!
   );
+
   return (
     <div className='mx-auto w-full max-w-screen-xl px-4 py-24'>
-      <Image
-        src={
-          details.backdrop_path
-            ? `${posterUrl}/${details.backdrop_path}`
-            : `${dummyPosterUrl}${details.name || details.title}`
-        }
-        alt={""}
-        fill
-        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8dtatnoEIwDiqkL4KASH/GVugFkABAAAAAElFTkSuQmCC'
-        placeholder='blur'
-        className='absolute left-0 top-0 -z-10 object-cover opacity-20'
-      />
-      <div className='absolute inset-0 -z-10 w-full bg-gradient-poster' />
+      <BackdropImage backdropPath={details.backdrop_path} title={title} />
       <div className='flex flex-col lg:flex-row lg:gap-8'>
         {/* Poster */}
-        <MediaPoster
-          posterPath={details.poster_path}
-          title={details.name || details.title}
-        />
+        <MediaPoster posterPath={details.poster_path} title={title} />
         {/* Title */}
         <div className='mt-8 flex flex-col gap-2'>
           <MediaTitle
             releaseDate={releaseDate}
-            title={details.name || details.title}
+            title={title}
             tagline={details.tagline}
             className='text-left text-2xl'
           />
