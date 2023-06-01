@@ -31,6 +31,7 @@ export const getMedia = async () => {
     const popularShows: MediaRespose = await tvPopularResponse.json();
 
     const shuffledMedia = [...popularMovies.results, ...popularShows.results]
+      .filter((media) => media.backdrop_path)
       .slice()
       .sort(() => SHUFFLE_THRESHOLD - Math.random());
     const randomHeroMedia: MediaDetails[] = shuffledMedia.slice(
