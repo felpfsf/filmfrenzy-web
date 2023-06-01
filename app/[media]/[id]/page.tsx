@@ -1,5 +1,6 @@
 import DialogTrigger from "@/components/Dialog/DialogTrigger";
-import LazyImage from "@/components/LazyImage";
+import MediaPoster from "@/components/MediaPoster";
+import MediaTitle from "@/components/MediaTitle";
 import { Credits, MediaDetails, Trailer } from "@/types/MediaModels";
 import { convertMinutesToHours } from "@/utils/convertMinutesToHours";
 import { formatDate } from "@/utils/formatDate";
@@ -9,6 +10,7 @@ import { StarIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import React from "react";
 import CastSlider from "./components/CastSlider";
+import Overview from "./components/Overview";
 import VideosSlider from "./components/VideosSlider";
 
 interface Props {
@@ -50,40 +52,18 @@ const Media = async ({
       <div className='absolute inset-0 -z-10 w-full bg-gradient-poster' />
       <div className='flex flex-col lg:flex-row lg:gap-8'>
         {/* Poster */}
-        <div className='w-full min-w-[10rem] max-w-sm self-center overflow-hidden rounded-xl'>
-          {/* <Image
-            src={
-              details.poster_path
-                ? `${posterUrl}/${details.poster_path}`
-                : `${dummyPosterUrl}&text=Poster+de+${
-                    details.name || details.title
-                  }`
-            }
-            alt={`Poster de ${details.title || details.name}`}
-            width={384}
-            height={576}
-            className='h-full w-full object-cover'
-          /> */}
-          <LazyImage
-            image={{
-              alt: `Poster de ${details.title || details.name}`,
-              src: details.poster_path
-                ? `${posterUrl}/${details.poster_path}`
-                : `${dummyPosterUrl}&text=Poster+de+${
-                    details.name || details.title
-                  }`,
-              width: 384,
-              height: 576,
-            }}
-          />
-        </div>
+        <MediaPoster
+          posterPath={details.poster_path}
+          title={details.name || details.title}
+        />
         {/* Title */}
         <div className='mt-8 flex flex-col gap-2'>
-          <h1 className='flex gap-1 text-left text-2xl'>
-            {details.name || details.title}
-            <span className='inline-block'>({releaseDate})</span>
-          </h1>
-          <h6 className='italic text-gray-400'>{details.tagline}</h6>
+          <MediaTitle
+            releaseDate={releaseDate}
+            title={details.name || details.title}
+            tagline={details.tagline}
+            className='text-left text-2xl'
+          />
           {/* Genres List */}
           <div className='mt-4 flex flex-wrap gap-2'>
             {details.genres.map(({ id, name }) => (
@@ -106,12 +86,7 @@ const Media = async ({
             )}
           </div>
           {/* Overview */}
-          <div className='mt-6 flex flex-col space-y-2'>
-            <h1 className='font-semibold'>Sinopse</h1>
-            <p className='text-sm leading-relaxed'>
-              {details.overview ? details.overview : "Sinopse não disponível"}
-            </p>
-          </div>
+          <Overview overview={details.overview} />
           {/* Info */}
           <div className='mt-6 grid min-w-0 max-w-full grid-cols-3 gap-2 text-sm'>
             <div>
