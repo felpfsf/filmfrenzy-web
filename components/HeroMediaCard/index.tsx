@@ -27,15 +27,6 @@ const HeroMediaCard = (media: MediaDetails) => {
           placeholder='blur'
           className='h-full w-full object-cover'
         />
-
-        {/* <LazyImage image={{
-          alt: `Poster de ${media.title || media.name}`,
-          src: media.backdrop_path
-          ? `${posterUrl}/${media.backdrop_path}`
-          : `${dummyPosterUrl}${media.name || media.title}`,
-          width: 1920,
-          height: 1080
-        }}/> */}
       </div>
       <div className='z-10 flex h-full flex-col justify-end bg-gradient-content px-8 pb-16'>
         <div className='flex w-full max-w-screen-xl flex-col gap-4'>
