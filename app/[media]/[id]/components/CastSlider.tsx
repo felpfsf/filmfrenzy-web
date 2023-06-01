@@ -36,6 +36,10 @@ const CastSlider = ({ cast }: CastSlideProps) => {
           slidesPerView: 4.5,
           spaceBetween: 16,
         },
+        960: {
+          slidesPerView: 6.5,
+          spaceBetween: 16,
+        },
         1440: {
           slidesPerView: 9.5,
           spaceBetween: 16,
