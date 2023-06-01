@@ -6,6 +6,7 @@ import { getMediaDetails } from "@/utils/getMediaDetails";
 import { getYearReleaseDate } from "@/utils/getYearReleaseDate";
 import { StarIcon } from "@heroicons/react/24/outline";
 import BackdropImage from "./components/BackdropImage";
+import Caption from "./components/Caption";
 import CastSlider from "./components/CastSlider";
 import MediaInfo from "./components/MediaInfo";
 import Overview from "./components/Overview";
@@ -36,9 +37,7 @@ const Media = async ({
     <div className='mx-auto w-full max-w-screen-xl px-4 py-24'>
       <BackdropImage backdropPath={details.backdrop_path} title={title} />
       <div className='flex flex-col lg:flex-row lg:gap-8'>
-        {/* Poster */}
         <MediaPoster posterPath={details.poster_path} title={title} />
-        {/* Title */}
         <div className='mt-8 flex flex-col gap-2'>
           <MediaTitle
             releaseDate={releaseDate}
@@ -46,15 +45,9 @@ const Media = async ({
             tagline={details.tagline}
             className='text-left text-2xl'
           />
-          {/* Genres List */}
           <div className='mt-4 flex flex-wrap gap-2'>
             {details.genres.map(({ id, name }) => (
-              <span
-                key={id}
-                className='rounded bg-accent px-2 py-px text-xs font-semibold text-primary'
-              >
-                {name}
-              </span>
+              <Caption key={id} name={name} />
             ))}
           </div>
           {/* Votes and Trailer modal */}
@@ -67,18 +60,14 @@ const Media = async ({
               <DialogTrigger officialTrailer={officialTrailer[0]} />
             )}
           </div>
-          {/* Overview */}
           <Overview overview={details.overview} />
-          {/* Info */}
           <MediaInfo
             details={details}
             directors={directors}
             writers={writers}
           />
-          {/*  */}
         </div>
       </div>
-      {/* Cast Slider */}
       <div className='mt-6 flex flex-col gap-6'>
         <h1>Elenco</h1>
         {cast.length > 0 ? (
