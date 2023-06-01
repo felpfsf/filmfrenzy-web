@@ -8,18 +8,28 @@ export const getMediaDetails = async (id: number, mediaType: string) => {
 
   const detailsUrl = `${baseUrl}/${mediaType}/${id}?api_key=${apiKey}&language=${language}`;
 
+  const recommendedMediaUrl = `${baseUrl}/${mediaType}/${id}/recommendations?api_key=${apiKey}&language=${language}&page=1`;
+
+  const similarMediaUrl = `${baseUrl}/${mediaType}/${id}/similar?api_key=${apiKey}&language=${language}&page=1`;
+
   const creditsUrl = `${baseUrl}/${mediaType}/${id}/credits?api_key=${apiKey}&language=${language}`;
 
   const videoUrl = `${baseUrl}/${mediaType}/${id}/videos?api_key=${apiKey}&language=${language}`;
 
   try {
-    const [detailsResponse, creditsResponse, videoResponse] = await Promise.all(
-      [
-        fetch(detailsUrl, { next: { revalidate: REVALIDATE_TIME } }),
-        fetch(creditsUrl, { next: { revalidate: REVALIDATE_TIME } }),
-        fetch(videoUrl, { next: { revalidate: REVALIDATE_TIME } }),
-      ]
-    );
+    const [
+      detailsResponse,
+      creditsResponse,
+      videoResponse,
+      recommendationsResponse,
+      similarResponse,
+    ] = await Promise.all([
+      fetch(detailsUrl, { next: { revalidate: REVALIDATE_TIME } }),
+      fetch(creditsUrl, { next: { revalidate: REVALIDATE_TIME } }),
+      fetch(videoUrl, { next: { revalidate: REVALIDATE_TIME } }),
+      fetch(recommendedMediaUrl, { next: { revalidate: REVALIDATE_TIME } }),
+      fetch(similarMediaUrl, { next: { revalidate: REVALIDATE_TIME } }),
+    ]);
 
     if (!detailsResponse.ok || !creditsResponse.ok || !videoResponse.ok) {
       throw new Error("Falha ao carregar os dados");
@@ -37,11 +47,22 @@ export const getMediaDetails = async (id: number, mediaType: string) => {
     const writers = crew.filter(
       ({ job }) => job === "Story" || job === "Screenplay" || job === "Writer"
     );
-    const officialTrailer = videos.filter(
-      ({ type }) => type === "Trailer"
-    );
+    const officialTrailer = videos.filter(({ type }) => type === "Trailer");
 
-    return { cast, details, directors, writers, videos, officialTrailer };
+    const recommendedMedia: MediaDetails[] =
+      await recommendationsResponse.json();
+    const similarMedia: MediaDetails[] = await similarResponse.json();
+
+    return {
+      cast,
+      details,
+      directors,
+      writers,
+      videos,
+      officialTrailer,
+      recommendedMedia,
+      similarMedia,
+    };
   } catch (error) {
     console.error(error);
   }
