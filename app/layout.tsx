@@ -28,9 +28,7 @@ export default function RootLayout({
     <html lang='pt-Br'>
       <body className={`${bebas.variable} ${inter.variable} font-sans`}>
         <Header />
-        <main>
           {children}
-        </main>
       </body>
     </html>
   );
