@@ -27,10 +27,12 @@ export const getMedia = async () => {
       throw new Error("Falha ao carregar dados");
     }
 
-    const popularMovies: MediaRespose = await moviePopularResponse.json();
-    const popularShows: MediaRespose = await tvPopularResponse.json();
+    const popularMovies: MediaDetails[] = (await moviePopularResponse.json())
+      .results;
+    const popularShows: MediaDetails[] = (await tvPopularResponse.json())
+      .results;
 
-    const shuffledMedia = [...popularMovies.results, ...popularShows.results]
+    const shuffledMedia = [...popularMovies, ...popularShows]
       .filter((media) => media.backdrop_path)
       .slice()
       .sort(() => SHUFFLE_THRESHOLD - Math.random());
