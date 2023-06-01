@@ -1,29 +1,33 @@
-import dynamic from "next/dynamic";
-const ReactPlayer = dynamic(() => import("react-player/lazy"), {
-  ssr: false,
-  loading: () => (
-    <div className='flex h-full w-full animate-pulse items-center justify-center self-center overflow-hidden rounded-lg bg-slate-300'>
-      <p className='text-sm font-semibold text-red-500'>Carregando...</p>
-    </div>
-  ),
-});
+import DialogModal from "@/components/Dialog/DialogModal";
+import { PlayCircleIcon } from "@heroicons/react/24/outline";
+import * as Dialog from "@radix-ui/react-dialog";
+import Image from "next/image";
+
 interface VideoCardProps {
   videoKey: string;
   videoName: string;
 }
 const VideoCard = ({ videoKey, videoName }: VideoCardProps) => {
   return (
-    <div className='flex aspect-video max-w-xs flex-col overflow-hidden rounded-lg'>
-      <ReactPlayer
-        url={`https://www.youtube.com/watch?v=${videoKey}`}
-        controls
-        width='100%'
-        height='100%'
-      />
-      <p className='mt-2 text-center text-xs leading-none text-gray-400'>
-        {videoName}
-      </p>
-    </div>
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
+        <div className='group relative flex aspect-video max-w-xs cursor-pointer flex-col overflow-hidden rounded-lg duration-700 ease-in-out hover:opacity-75'>
+          <Image
+            src={`https://img.youtube.com/vi/${videoKey}/mqdefault.jpg`}
+            alt={""}
+            width={290}
+            height={163}
+          />
+          <p className='mt-2 text-center text-xs leading-none text-gray-400'>
+            {videoName}
+          </p>
+          <button className='absolute left-1/2 top-1/2 flex w-fit -translate-x-1/2 -translate-y-1/2 items-center gap-2 text-accent-hover duration-200 ease-in-out group-hover:text-accent-caption'>
+            <PlayCircleIcon className='w-h-14 h-14' />
+          </button>
+        </div>
+      </Dialog.Trigger>
+      <DialogModal videoKey={videoKey} />
+    </Dialog.Root>
   );
 };
 
