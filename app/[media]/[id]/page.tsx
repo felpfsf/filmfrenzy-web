@@ -37,7 +37,7 @@ const Media = async ({
     <div className='mx-auto w-full max-w-screen-xl px-4 py-24'>
       <BackdropImage backdropPath={details.backdrop_path} title={title} />
       <div className='flex flex-col lg:flex-row lg:gap-8'>
-        <MediaPoster posterPath={details.poster_path} title={title} />
+        <MediaPoster posterPath={details.poster_path} title={title} className="max-w-sm" />
         <div className='mt-8 flex flex-col gap-2'>
           <MediaTitle
             releaseDate={releaseDate}
