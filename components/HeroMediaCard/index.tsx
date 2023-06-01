@@ -29,7 +29,7 @@ const HeroMediaCard = (media: MediaDetails) => {
         />
       </div>
       <div className='z-10 flex h-full flex-col justify-end bg-gradient-content px-8 pb-16'>
-        <div className='flex w-full max-w-screen-xl flex-col gap-4'>
+        <div className='container mx-auto flex flex-col gap-4'>
           <h1 className='text-xl font-bold md:text-4xl'>
             {media.name || media.title}
           </h1>
