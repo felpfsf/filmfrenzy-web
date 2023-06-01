@@ -1,19 +1,14 @@
+import { MediaDetails } from "@/types/MediaModels";
 import Link from "next/link";
 import MediaPoster from "../MediaPoster";
 
-interface MediaCardProps {
-  id: number;
-  posterPath: string;
-  title: string;
-}
-
-const MediaCard = ({ id, posterPath, title }: MediaCardProps) => {
-  const mediaUrl = title ? `/movie/${id}` : `/tv/${id}`;
+const MediaCard = (media: MediaDetails) => {
+  const mediaUrl = media.title ? `/movie/${media.id}` : `/tv/${media.id}`;
   return (
     <Link href={mediaUrl}>
       <MediaPoster
-        posterPath={posterPath}
-        title={title}
+        posterPath={media.poster_path}
+        title={media.name || media.title}
         className='max-w-[216px]'
       />
     </Link>

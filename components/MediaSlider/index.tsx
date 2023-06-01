@@ -1,11 +1,16 @@
 "use client";
+import { MediaDetails } from "@/types/MediaModels";
 import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import MediaCard from "../MediaCard";
 
-const MediaSlider = ({ popularMedia }: any) => {
+interface MediaSliderProps {
+  popularMedia: MediaDetails[];
+}
+
+const MediaSlider = ({ popularMedia }: MediaSliderProps) => {
   return (
     <Swiper
       modules={[Navigation]}
@@ -32,7 +37,7 @@ const MediaSlider = ({ popularMedia }: any) => {
       className='mediaSlider container'
     >
       <>
-        {popularMedia.map((media: any) => (
+        {popularMedia.map((media) => (
           <SwiperSlide key={media.id}>
             {/* <Link href={media.title ? `/movie/${media.id}` : `/tv/${media.id}`}>
               <MediaPoster
@@ -41,11 +46,7 @@ const MediaSlider = ({ popularMedia }: any) => {
                 className='max-w-[216px]'
               />
             </Link> */}
-            <MediaCard
-              id={media.id}
-              posterPath={media.poster_path}
-              title={media.name || media.title}
-            />
+            <MediaCard {...media} />
           </SwiperSlide>
         ))}
       </>
