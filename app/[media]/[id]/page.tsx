@@ -1,5 +1,6 @@
 import DialogTrigger from "@/components/Dialog/DialogTrigger";
 import MediaPoster from "@/components/MediaPoster";
+import MediaSlider from "@/components/MediaSlider";
 import MediaTitle from "@/components/MediaTitle";
 import { Credits, MediaDetails, Trailer } from "@/types/MediaModels";
 import { getMediaDetails } from "@/utils/getMediaDetails";
@@ -11,6 +12,7 @@ import CastSlider from "./components/CastSlider";
 import MediaInfo from "./components/MediaInfo";
 import Overview from "./components/Overview";
 import VideosSlider from "./components/VideosSlider";
+import MediaSection from "./components/MediaSection";
 
 interface Props {
   details: MediaDetails;
@@ -19,6 +21,8 @@ interface Props {
   writers: Credits[];
   videos: Trailer[];
   officialTrailer: Trailer[];
+  recommendedMedia: MediaDetails[];
+  similarMedia: MediaDetails[];
 }
 
 const Media = async ({
@@ -27,17 +31,30 @@ const Media = async ({
   params: { id: number; media: string };
 }) => {
   const data = (await getMediaDetails(id, media)) as Props;
-  const { cast, details, directors, writers, officialTrailer, videos } = data;
+  const {
+    cast,
+    details,
+    directors,
+    writers,
+    officialTrailer,
+    videos,
+    recommendedMedia,
+    similarMedia,
+  } = data;
   const title = details.title || details.name;
   const releaseDate = getYearReleaseDate(
     details.first_air_date! || details.release_date!
   );
 
   return (
-    <div className='mx-auto w-full max-w-screen-xl px-4 py-24'>
+    <main className='mx-auto w-full max-w-screen-xl px-4 py-24'>
       <BackdropImage backdropPath={details.backdrop_path} title={title} />
-      <div className='flex flex-col lg:flex-row lg:gap-8'>
-        <MediaPoster posterPath={details.poster_path} title={title} className="max-w-sm" />
+      <section className='flex flex-col lg:flex-row lg:gap-8'>
+        <MediaPoster
+          posterPath={details.poster_path}
+          title={title}
+          className='max-w-sm'
+        />
         <div className='mt-8 flex flex-col gap-2'>
           <MediaTitle
             releaseDate={releaseDate}
@@ -67,29 +84,21 @@ const Media = async ({
             writers={writers}
           />
         </div>
-      </div>
-      <div className='mt-6 flex flex-col gap-6'>
-        <h1>Elenco</h1>
-        {cast.length > 0 ? (
-          <CastSlider cast={cast} />
-        ) : (
-          <p className='self-center text-sm text-gray-400 lg:self-start'>
-            Não há informações sobre elenco :(
-          </p>
-        )}
-      </div>
-      {/* Trailer */}
-      <div className='mt-6 flex flex-col gap-6'>
-        <h1>Trailers</h1>
-        {videos.length > 0 ? (
-          <VideosSlider videos={videos} />
-        ) : (
-          <p className='self-center text-sm text-gray-400 lg:self-start'>
-            Não há informações sobre trailers :(
-          </p>
-        )}
-      </div>
-    </div>
+      </section>
+      <MediaSection title={"Elenco:"} content={<CastSlider cast={cast} />} />
+      <MediaSection
+        title={"Trailers:"}
+        content={<VideosSlider videos={videos} />}
+      />
+      <MediaSection
+        title={"Você também pode gostar:"}
+        content={<MediaSlider popularMedia={recommendedMedia} />}
+      />
+      <MediaSection
+        title={"Similares a este:"}
+        content={<MediaSlider popularMedia={similarMedia} />}
+      />
+    </main>
   );
 };
 

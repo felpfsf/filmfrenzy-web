@@ -50,8 +50,8 @@ export const getMediaDetails = async (id: number, mediaType: string) => {
     const officialTrailer = videos.filter(({ type }) => type === "Trailer");
 
     const recommendedMedia: MediaDetails[] =
-      await recommendationsResponse.json();
-    const similarMedia: MediaDetails[] = await similarResponse.json();
+      (await recommendationsResponse.json()).results;
+    const similarMedia: MediaDetails[] = (await similarResponse.json()).results;
 
     return {
       cast,
