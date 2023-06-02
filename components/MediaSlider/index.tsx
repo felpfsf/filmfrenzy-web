@@ -7,10 +7,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import MediaCard from "../MediaCard";
 
 interface MediaSliderProps {
-  popularMedia: MediaDetails[];
+  media: MediaDetails[];
 }
 
-const MediaSlider = ({ popularMedia }: MediaSliderProps) => {
+const MediaSlider = ({ media }: MediaSliderProps) => {
   return (
     <Swiper
       modules={[Navigation]}
@@ -37,15 +37,8 @@ const MediaSlider = ({ popularMedia }: MediaSliderProps) => {
       className='mediaSlider container'
     >
       <>
-        {popularMedia.map((media) => (
+        {media.map((media) => (
           <SwiperSlide key={media.id}>
-            {/* <Link href={media.title ? `/movie/${media.id}` : `/tv/${media.id}`}>
-              <MediaPoster
-                posterPath={media.poster_path}
-                title={media.name || media.title}
-                className='max-w-[216px]'
-              />
-            </Link> */}
             <MediaCard {...media} />
           </SwiperSlide>
         ))}

@@ -18,7 +18,7 @@ export default async function Home() {
           </h2>
         </div>
         {data?.popularMovies && (
-          <MediaSlider popularMedia={data.popularMovies} />
+          <MediaSlider media={data.popularMovies} />
         )}
       </section>
       <section className='mb-16 pl-8'>
@@ -27,7 +27,7 @@ export default async function Home() {
             Séries Populares:
           </h2>
         </div>
-        {data?.popularShows && <MediaSlider popularMedia={data.popularShows} />}
+        {data?.popularShows && <MediaSlider media={data.popularShows} />}
       </section>
     </main>
   );

@@ -98,7 +98,7 @@ const Media = async ({
         title={"Você também pode gostar:"}
         content={
           recommendedMedia.length > 0 && (
-            <MediaSlider popularMedia={recommendedMedia} />
+            <MediaSlider media={recommendedMedia} />
           )
         }
       />
@@ -106,7 +106,7 @@ const Media = async ({
       <MediaSection
         title={"Similares a este:"}
         content={
-          similarMedia.length > 0 && <MediaSlider popularMedia={similarMedia} />
+          similarMedia.length > 0 && <MediaSlider media={similarMedia} />
         }
       />
     </main>
