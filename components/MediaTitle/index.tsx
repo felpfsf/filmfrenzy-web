@@ -13,8 +13,7 @@ const MediaTitle = ({ releaseDate, title, className, tagline }: TitleProps) => {
   return (
     <div>
       <h1 className={style}>
-        {title}
-        <span className='inline-block'>({releaseDate})</span>
+        {title} ({releaseDate})
       </h1>
       <h6 className='italic text-gray-400'>{tagline}</h6>
     </div>
