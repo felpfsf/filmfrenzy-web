@@ -4,7 +4,6 @@ import { getMedia } from "@/utils/getMedia";
 
 export default async function Home() {
   const data = await getMedia();
-  console.log("Hero Media =>", data?.popularMovies);
   return (
     <main>
       <section>
