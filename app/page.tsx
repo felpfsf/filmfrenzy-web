@@ -8,7 +8,9 @@ export default async function Home() {
   return (
     <main>
       <section>
-        <Hero randomHeroMedia={data?.randomHeroMedia} />
+        {data?.randomHeroMedia && (
+          <Hero randomHeroMedia={data.randomHeroMedia} />
+        )}
       </section>
       <section className='mb-16 pl-8'>
         <div className='container mx-auto'>
