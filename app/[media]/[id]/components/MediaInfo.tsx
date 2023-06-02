@@ -10,6 +10,8 @@ interface Props {
 }
 
 const MediaInfo = ({ details, directors, writers }: Props) => {
+  const releaseDate = details.first_air_date || details.release_date;
+  const runtime = details.runtime || details.episode_run_time;
   return (
     <div className='mt-6 grid min-w-0 max-w-full grid-cols-3 gap-2 text-sm'>
       <div>
@@ -18,14 +20,12 @@ const MediaInfo = ({ details, directors, writers }: Props) => {
       </div>
       <div>
         <h2>Lançamento:</h2>
-        <p className='text-gray-400'>
-          {formatDate(details.first_air_date! || details.release_date!)}
-        </p>
+        <p className='text-gray-400'>{formatDate(releaseDate)}</p>
       </div>
       <div>
         <h2>Duração:</h2>
         <p className='text-gray-400'>
-          {convertMinutesToHours(details.runtime! || details.episode_run_time!)}
+          {runtime > 0 ? convertMinutesToHours(runtime) : "N/A"}
         </p>
       </div>
       {/* Second row */}
