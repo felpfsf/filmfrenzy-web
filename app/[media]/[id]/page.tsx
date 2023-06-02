@@ -10,9 +10,9 @@ import BackdropImage from "./components/BackdropImage";
 import Caption from "./components/Caption";
 import CastSlider from "./components/CastSlider";
 import MediaInfo from "./components/MediaInfo";
+import MediaSection from "./components/MediaSection";
 import Overview from "./components/Overview";
 import VideosSlider from "./components/VideosSlider";
-import MediaSection from "./components/MediaSection";
 
 interface Props {
   details: MediaDetails;
@@ -85,18 +85,29 @@ const Media = async ({
           />
         </div>
       </section>
-      <MediaSection title={"Elenco:"} content={<CastSlider cast={cast} />} />
+      <MediaSection
+        title={"Elenco:"}
+        content={cast.length > 0 && <CastSlider cast={cast} />}
+      />
       <MediaSection
         title={"Trailers:"}
-        content={<VideosSlider videos={videos} />}
+        content={videos.length > 0 && <VideosSlider videos={videos} />}
       />
+
       <MediaSection
         title={"Você também pode gostar:"}
-        content={<MediaSlider popularMedia={recommendedMedia} />}
+        content={
+          recommendedMedia.length > 0 && (
+            <MediaSlider popularMedia={recommendedMedia} />
+          )
+        }
       />
+
       <MediaSection
         title={"Similares a este:"}
-        content={<MediaSlider popularMedia={similarMedia} />}
+        content={
+          similarMedia.length > 0 && <MediaSlider popularMedia={similarMedia} />
+        }
       />
     </main>
   );

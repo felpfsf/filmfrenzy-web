@@ -13,7 +13,7 @@ const MediaSection = ({ content, title }: SectionProps) => {
         content
       ) : (
         <p className='self-center text-sm text-gray-400 lg:self-start lg:text-xl'>
-          Não há informações disponíveis:(
+          Não há informações de mídia disponíveis:(
         </p>
       )}
     </section>
