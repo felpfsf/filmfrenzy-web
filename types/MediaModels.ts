@@ -24,9 +24,11 @@ export interface MediaDetails {
   genres: Genres[];
 
   runtime: number;
-  episode_run_time:number
+  episode_run_time: number;
 
   status: string;
+
+  media_type: string;
 
   vote_average: string;
 }
