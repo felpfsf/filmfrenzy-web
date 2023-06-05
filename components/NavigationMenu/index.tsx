@@ -1,12 +1,19 @@
+import Link from "next/link";
 
 const NavigationMenu = () => {
   return (
-    <ul className='flex gap-4 flex-col lg:flex-row'>
-      <li>Filmes</li>
-      <li>Series</li>
-      <li>Login</li>
+    <ul className='flex flex-col gap-4 lg:flex-row'>
+      <li>
+        <Link href={"/movie"}>Filmes</Link>
+      </li>
+      <li>
+        <Link href={"/tv"}>Series</Link>
+      </li>
+      <li>
+        <Link href={"/register"}>Login</Link>
+      </li>
     </ul>
   );
 };
 
-export default NavigationMenu
+export default NavigationMenu;
