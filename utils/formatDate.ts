@@ -1,4 +1,5 @@
-export const formatDate = (date: string):string => {
+export const formatDate = (date: string | undefined): string | undefined => {
+  if (!date) return "Sem data";
   const newDate = new Date(date);
   const options: Intl.DateTimeFormatOptions = {
     month: "short",

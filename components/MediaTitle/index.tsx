@@ -1,7 +1,7 @@
 import clsx from "clsx";
 
 interface TitleProps {
-  releaseDate: number;
+  releaseDate: number | string;
   title: string;
   tagline?: string;
   className?: string;
