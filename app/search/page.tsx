@@ -14,11 +14,15 @@ const Search = async ({
         <em className='underline underline-offset-2'>&quot;{q}&quot;</em>
       </p>
       <section>
-        <h1>Filmes</h1>
+        <h1 className='my-6 text-left text-2xl font-semibold capitalize'>
+          Filmes
+        </h1>
         {data?.moviesResult && <MediaSlider media={data.moviesResult} />}
       </section>
       <section>
-        <h1>Séries</h1>
+        <h1 className='my-6 text-left text-2xl font-semibold capitalize'>
+          Séries
+        </h1>
         {data?.tvsResult && <MediaSlider media={data.tvsResult} />}
       </section>
     </main>
