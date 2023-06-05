@@ -28,34 +28,40 @@ const MediaInfo = ({ details, directors, writers }: Props) => {
           {runtime > 0 ? convertMinutesToHours(runtime) : "N/A"}
         </p>
       </div>
-      {/* Second row */}
       <div className='col-span-3 grid grid-flow-col grid-cols-[auto,1fr] gap-2 border-t border-gray-700 pt-2'>
         <h2>Diretor:</h2>
         <div className='flex flex-wrap'>
-          {directors.map((director, index) => (
-            <React.Fragment key={director.id}>
-              <p className='break-words text-gray-400'>{director.name}</p>
-              {index !== directors.length - 1 && (
-                <span className='pr-1 text-gray-400'>, </span>
-              )}
-            </React.Fragment>
-          ))}
+          {directors.length > 0 ? (
+            directors.map((director, index) => (
+              <React.Fragment key={director.id}>
+                <p className='break-words text-gray-400'>{director.name}</p>
+                {index !== directors.length - 1 && (
+                  <span className='pr-1 text-gray-400'>, </span>
+                )}
+              </React.Fragment>
+            ))
+          ) : (
+            <p className='text-gray-400'>Sem informações</p>
+          )}
         </div>
       </div>
       <div className='col-span-3 grid grid-flow-col grid-cols-[auto,1fr] gap-2 border-t border-gray-700 pt-2'>
         <h2>Roteiristas:</h2>
         <div className='flex flex-wrap'>
-          {writers.map((writer, index) => (
-            <React.Fragment key={writer.id}>
-              <p className='break-words text-gray-400'>{writer.name}</p>
-              {index !== writers.length - 1 && (
-                <span className='pr-1 text-gray-400'>,</span>
-              )}
-            </React.Fragment>
-          ))}
+          {writers.length > 0 ? (
+            writers.map((writer, index) => (
+              <React.Fragment key={writer.id}>
+                <p className='break-words text-gray-400'>{writer.name}</p>
+                {index !== writers.length - 1 && (
+                  <span className='pr-1 text-gray-400'>,</span>
+                )}
+              </React.Fragment>
+            ))
+          ) : (
+            <p className='text-gray-400'>Sem informações</p>
+          )}
         </div>
       </div>
-      {/*  */}
     </div>
   );
 };
