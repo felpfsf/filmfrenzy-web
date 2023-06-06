@@ -114,5 +114,6 @@ export const getMediaDetails = async (id: number, mediaType: string) => {
     };
   } catch (error) {
     console.error(error);
+    throw new Error("Falha ao carregar dados");
   }
 };
