@@ -2,9 +2,7 @@ import { MediaDetails } from "@/types/MediaModels";
 
 const fetchJSON = async (url: RequestInfo | URL) => {
   const response = await fetch(url, { next: { revalidate: 60 * 60 * 1 } });
-  if (!response.ok) {
-    throw new Error("Falha ao carregar dados");
-  }
+  if (!response.ok) throw new Error("Falha ao carregar dados");
   return response.json();
 };
 
@@ -80,12 +78,8 @@ export const getMedia = async () => {
   const pageCount = 1;
   const RANDOM_MEDIA_COUNT = 20;
 
-  if (!apiKey) {
-    throw new Error("Chave de API necessária");
-  }
-  if (!baseUrl) {
-    throw new Error("URL da API não está especificada");
-  }
+  if (!apiKey) throw new Error("Chave de API necessária");
+  if (!baseUrl) throw new Error("URL da API não está especificada");
 
   try {
     const [
