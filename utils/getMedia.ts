@@ -52,6 +52,7 @@ const fetchPopularShows = async (
   const url = `${baseUrl}/tv/popular?api_key=${apiKey}&page=${pageCount}&language=${language}`;
   return fetchJSON(url);
 };
+
 const fetchTrendingShows = async (
   apiKey: string,
   baseUrl: string,
@@ -61,6 +62,7 @@ const fetchTrendingShows = async (
   const url = `${baseUrl}/trending/tv/week?api_key=${apiKey}&page=${pageCount}&language=${language}`;
   return fetchJSON(url);
 };
+
 const fetchTopRatedShows = async (
   apiKey: string,
   baseUrl: string,
@@ -68,6 +70,16 @@ const fetchTopRatedShows = async (
   pageCount: number
 ) => {
   const url = `${baseUrl}/tv/top_rated?api_key=${apiKey}&page=${pageCount}&language=${language}`;
+  return fetchJSON(url);
+};
+
+const fetchOnTheAirShows = async (
+  apiKey: string,
+  baseUrl: string,
+  language: string,
+  pageCount: number
+) => {
+  const url = `${baseUrl}/tv/on_the_air?api_key=${apiKey}&page=${pageCount}&language=${language}`;
   return fetchJSON(url);
 };
 
@@ -90,6 +102,7 @@ export const getMedia = async () => {
       tvPopularResponse,
       tvTrendingResponse,
       tvTopReponse,
+      tvOnTheAirResponse,
     ] = await Promise.all([
       fetchPopularMovies(apiKey, baseUrl, language, pageCount),
       fetchTrendingMovies(apiKey, baseUrl, language, pageCount),
@@ -98,6 +111,7 @@ export const getMedia = async () => {
       fetchPopularShows(apiKey, baseUrl, language, pageCount),
       fetchTrendingShows(apiKey, baseUrl, language, pageCount),
       fetchTopRatedShows(apiKey, baseUrl, language, pageCount),
+      fetchOnTheAirShows(apiKey, baseUrl, language, pageCount),
     ]);
 
     const popularMovies: MediaDetails[] = moviePopularResponse.results;
@@ -107,6 +121,7 @@ export const getMedia = async () => {
     const popularShows: MediaDetails[] = tvPopularResponse.results;
     const trendingShows: MediaDetails[] = tvTrendingResponse.results;
     const topShows: MediaDetails[] = tvTopReponse.results;
+    const onTheAirShows: MediaDetails[] = tvOnTheAirResponse.results;
 
     const shuffledMedia = [...popularMovies, ...popularShows]
       .filter((media) => media.backdrop_path)
@@ -126,6 +141,7 @@ export const getMedia = async () => {
       trendingShows,
       topShows,
       randomHeroMedia,
+      onTheAirShows,
     };
   } catch (error) {
     console.error(error);
