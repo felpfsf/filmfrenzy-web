@@ -17,12 +17,18 @@ const Search = async ({
       <MediaSection
         title={"Filmes"}
         content={
-          data?.moviesResult && <MediaSlider media={data.moviesResult} />
+          data?.moviesResult &&
+          data?.moviesResult.length > 0 && (
+            <MediaSlider media={data.moviesResult} />
+          )
         }
       />
       <MediaSection
         title={"Séries"}
-        content={data?.tvsResult && <MediaSlider media={data.tvsResult} />}
+        content={
+          data?.tvsResult &&
+          data?.tvsResult.length > 0 && <MediaSlider media={data.tvsResult} />
+        }
       />
     </main>
   );
