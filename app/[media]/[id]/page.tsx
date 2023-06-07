@@ -1,5 +1,6 @@
 import DialogTrigger from "@/components/Dialog/DialogTrigger";
 import MediaPoster from "@/components/MediaPoster";
+import MediaSection from "@/components/MediaSection";
 import MediaSlider from "@/components/MediaSlider";
 import MediaTitle from "@/components/MediaTitle";
 import { Credits, MediaDetails, Trailer } from "@/types/MediaModels";
@@ -10,7 +11,6 @@ import BackdropImage from "./(components)/BackdropImage";
 import Caption from "./(components)/Caption";
 import CastSlider from "./(components)/CastSlider";
 import MediaInfo from "./(components)/MediaInfo";
-import MediaSection from "./(components)/MediaSection";
 import Overview from "./(components)/Overview";
 import VideosSlider from "./(components)/VideosSlider";
 
