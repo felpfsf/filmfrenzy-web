@@ -6,13 +6,13 @@ import { Credits, MediaDetails, Trailer } from "@/types/MediaModels";
 import { getMediaDetails } from "@/utils/getMediaDetails";
 import { getYearReleaseDate } from "@/utils/getYearReleaseDate";
 import { StarIcon } from "@heroicons/react/24/outline";
-import BackdropImage from "./components/BackdropImage";
-import Caption from "./components/Caption";
-import CastSlider from "./components/CastSlider";
-import MediaInfo from "./components/MediaInfo";
-import MediaSection from "./components/MediaSection";
-import Overview from "./components/Overview";
-import VideosSlider from "./components/VideosSlider";
+import BackdropImage from "./(components)/BackdropImage";
+import Caption from "./(components)/Caption";
+import CastSlider from "./(components)/CastSlider";
+import MediaInfo from "./(components)/MediaInfo";
+import MediaSection from "./(components)/MediaSection";
+import Overview from "./(components)/Overview";
+import VideosSlider from "./(components)/VideosSlider";
 
 interface Props {
   details: MediaDetails;
