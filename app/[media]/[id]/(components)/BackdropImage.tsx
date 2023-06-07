@@ -9,7 +9,7 @@ const BackdropImage = ({
   title: string;
 }) => {
   const posterUrl = `${posterBaseUrl}/${backdropPath}`;
-  const dummyPosterUrl = `https://dummyimage.com/2000x3000/000/fff.png&text=Poster+de+${title}`;
+  const dummyPosterUrl = "/no-poster.png";
   return (
     <>
       <Image
