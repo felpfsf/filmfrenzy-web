@@ -26,7 +26,6 @@ const SearchForm = ({
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
-    console.log(query);
   };
 
   const handleSubmitSearch = (e: FormEvent<HTMLFormElement>) => {

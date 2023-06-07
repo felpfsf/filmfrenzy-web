@@ -15,6 +15,7 @@ export const fetchSearch = async (query: string) => {
     const searchedMediaResponse = await fetch(searchUrl, {
       next: { revalidate: REVALIDATE_TIME },
     });
+
     if (!searchedMediaResponse.ok) {
       throw new Error("Falha ao carregar os dados");
     }
@@ -25,10 +26,12 @@ export const fetchSearch = async (query: string) => {
     const moviesResult = searchResult.filter(
       (item) => item.media_type === "movie"
     );
+    
     const tvsResult = searchResult.filter((item) => item.media_type === "tv");
 
     return { moviesResult, tvsResult };
   } catch (error) {
     console.error(error);
+    throw new Error("Falha ao carregar os dados");
   }
 };
