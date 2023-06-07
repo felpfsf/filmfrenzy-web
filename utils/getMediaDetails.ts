@@ -36,8 +36,6 @@ const fetchVideos = async (
   mediaType: string
 ) => {
   const url = `${baseUrl}/${mediaType}/${id}/videos?api_key=${apiKey}&language=${language}`;
-  console.log(url);
-
   return fetchJSON(url);
 };
 
