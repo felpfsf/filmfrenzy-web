@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ReactNode } from "react";
 
 interface SectionProps {
@@ -12,9 +13,12 @@ const MediaSection = ({ content, title }: SectionProps) => {
       {content ? (
         content
       ) : (
-        <p className='self-center text-sm text-gray-400 lg:self-start lg:text-xl'>
-          Não há informações de mídia disponíveis:(
-        </p>
+        <div className='flex items-center w-full justify-center lg:justify-start'>
+          <Image src="/no-results.png" alt="" width={96} height={96} className="w-24 h-24"/>
+          <p className='self-center text-sm text-gray-400 lg:text-xl'>
+            Não há informações de mídia disponíveis:(
+          </p>
+        </div>
       )}
     </section>
   );

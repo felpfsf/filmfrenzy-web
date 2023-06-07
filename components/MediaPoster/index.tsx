@@ -19,7 +19,7 @@ const MediaPoster = ({ className, posterPath, title }: PosterProps) => {
           alt: `Poster de ${title}`,
           src: posterPath
             ? `${posterUrl}/${posterPath}`
-            : `${dummyPosterUrl}&text=Poster+de+${title}`,
+            : "/no-poster.png",
           width: 384,
           height: 576,
         }}
