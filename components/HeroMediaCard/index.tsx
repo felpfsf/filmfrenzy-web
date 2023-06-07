@@ -18,7 +18,7 @@ const HeroMediaCard = (media: MediaDetails) => {
           src={
             media.backdrop_path
               ? `${posterUrl}/${media.backdrop_path}`
-              : `${dummyPosterUrl}${media.name || media.title}`
+              : "/no-poster.png"
           }
           alt={`Poster de ${media.title || media.name}`}
           width={3326}
