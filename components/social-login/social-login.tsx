@@ -1,3 +1,5 @@
+"use client";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 
 const SocialLogin = () => {
@@ -7,7 +9,11 @@ const SocialLogin = () => {
         Ou continue com
       </h1>
       <div className='mt-4 flex items-center space-x-8'>
-        <button className='inline-flex' title='Entre usando sua conta Google'>
+        <button
+          className='inline-flex'
+          title='Entre usando sua conta Google'
+          onClick={() => signIn("google")}
+        >
           <Image
             src={"/google_icon.svg"}
             alt='Icone do Google'
