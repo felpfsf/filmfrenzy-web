@@ -26,7 +26,7 @@ const Media = async ({ params: { media } }: { params: { media: string } }) => {
       </section>
 
       <section className='mb-16 pl-8'>
-        <div className='container mx-auto'>
+        <div className='container p-0'>
           <h2 className='my-6 text-left text-2xl font-semibold capitalize'>
             Melhores avaliados:
           </h2>
@@ -36,7 +36,7 @@ const Media = async ({ params: { media } }: { params: { media: string } }) => {
       </section>
 
       <section className='mb-16 pl-8'>
-        <div className='container mx-auto'>
+        <div className='container p-0'>
           <h2 className='my-6 text-left text-2xl font-semibold capitalize'>
             Em Alta:
           </h2>
@@ -50,7 +50,7 @@ const Media = async ({ params: { media } }: { params: { media: string } }) => {
       </section>
 
       <section className='mb-16 pl-8'>
-        <div className='container mx-auto'>
+        <div className='container p-0'>
           <h2 className='my-6 text-left text-2xl font-semibold capitalize'>
             {media === "movie" ? "Em breve:" : "Séries No ar:"}
           </h2>

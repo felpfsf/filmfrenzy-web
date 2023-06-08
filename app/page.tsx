@@ -12,7 +12,7 @@ export default async function Home() {
         )}
       </section>
       <section className='mb-16 pl-8'>
-        <div className='container mx-auto'>
+        <div className='container p-0'>
           <h2 className='my-6 text-left text-2xl font-semibold capitalize'>
             Filmes Populares:
           </h2>
@@ -22,7 +22,7 @@ export default async function Home() {
         )}
       </section>
       <section className='mb-16 pl-8'>
-        <div className='container mx-auto'>
+        <div className='container p-0'>
           <h2 className='my-6 text-left text-2xl font-semibold capitalize'>
             Séries Populares:
           </h2>
