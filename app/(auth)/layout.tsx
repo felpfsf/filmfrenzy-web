@@ -1,8 +1,16 @@
+"use client";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 interface AuthLayoutProps {
   children: React.ReactNode;
 }
 const AuthLayout = ({ children }: AuthLayoutProps) => {
+  const { data: session } = useSession();
+  console.log("USUARIO =>", session?.user);
+  if (session) {
+    redirect("/");
+  }
   return (
     <main>
       <Image
