@@ -32,9 +32,9 @@ const NavigationMenu = () => {
       </li>
       <li>
         <Link
-          href={"/register"}
+          href={"/login"}
           className={`border-b-2 font-bold hover:border-b-accent hover:text-accent-hover ${
-            pathname === "/register"
+            pathname === "/login"
               ? "border-b-2 border-b-accent font-bold text-accent-hover"
               : "border-b-transparent "
           }`}
