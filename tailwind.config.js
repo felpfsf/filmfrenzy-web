@@ -6,6 +6,10 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    container: {
+      center: true,
+      padding: "1rem",
+    },
     screens: {
       sm: "640px",
       md: "768px",
@@ -55,7 +59,6 @@ module.exports = {
         contentShown: "contentShown 0.2s ease-in-out",
         overlayShown: "overlayShown 0.2s ease-in-out",
         modalShown: "modalShown 0.2s ease-in-out",
-        
       },
     },
   },
