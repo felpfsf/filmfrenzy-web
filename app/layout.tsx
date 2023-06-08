@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import { AuthProvider } from "@/components/Providers/auth-provider";
 import { Bebas_Neue, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -47,8 +48,10 @@ export default function RootLayout({
         <link rel='manifest' href='/site.webmanifest' />
       </head>
       <body className={`${bebas.variable} ${inter.variable} font-sans`}>
-        <Header />
-        {children}
+        <AuthProvider>
+          <Header />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
