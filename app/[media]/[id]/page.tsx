@@ -25,6 +25,20 @@ interface Props {
   similarMedia: MediaDetails[];
 }
 
+// export const metadata = {
+//   title: 'My website',
+//   description: 'This is a test website',
+// }
+
+export async function generateMetadata({
+  params: { id, media },
+}: {
+  params: { id: number; media: string };
+}) {
+  const data = (await getMediaDetails(id, media)) as Props;
+  return { title: data.details.title || data.details.name };
+}
+
 const Media = async ({
   params: { id, media },
 }: {
