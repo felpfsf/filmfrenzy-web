@@ -55,7 +55,7 @@ const Media = async ({
           title={title}
           className='max-w-sm'
         />
-        <div className='mt-8 flex flex-col gap-2'>
+        <div className='mt-8 flex flex-col gap-2 flex-1'>
           <MediaTitle
             releaseDate={releaseDate}
             title={title}
