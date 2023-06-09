@@ -37,7 +37,11 @@ const NavigationMenu = () => {
       {session && session?.user ? (
         <>
           {session.user.name}
-          <button onClick={() => signOut()}>
+          <button
+            onClick={() =>
+              signOut({ callbackUrl: `${window.location.origin}/login` })
+            }
+          >
             <LogOut />
           </button>
         </>

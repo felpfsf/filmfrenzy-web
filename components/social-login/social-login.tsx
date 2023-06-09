@@ -12,7 +12,7 @@ const SocialLogin = () => {
         <button
           className='inline-flex'
           title='Entre usando sua conta Google'
-          onClick={() => signIn("google")}
+          onClick={() => signIn("google", { callbackUrl: `${window.location.origin}` })}
         >
           <Image
             src={"/google_icon.svg"}
@@ -24,7 +24,9 @@ const SocialLogin = () => {
         <button
           className='inline-flex'
           title='Entre usando sua conta Github'
-          onClick={() => signIn("github")}
+          onClick={() =>
+            signIn("github", { callbackUrl: `${window.location.origin}` })
+          }
         >
           <Image
             src={"/github_icon.svg"}
