@@ -23,7 +23,8 @@ const SocialLogin = () => {
         </button>
         <button
           className='inline-flex'
-          title='Entre usando sua conta Github - Ainda não implementado'
+          title='Entre usando sua conta Github'
+          onClick={() => signIn("github")}
         >
           <Image
             src={"/github_icon.svg"}
