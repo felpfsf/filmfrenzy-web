@@ -28,8 +28,6 @@ const LoginAuthForm = () => {
         ...data,
       });
 
-      console.log("Essa é a resposta", res);
-
       if (res?.ok) {
         router.push("/");
       } else {

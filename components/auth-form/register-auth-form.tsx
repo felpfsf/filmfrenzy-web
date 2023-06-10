@@ -27,7 +27,7 @@ const RegisterAuthForm = () => {
 
   const onSubmitUser = async (data: RegisterInputProps) => {
     try {
-      const response = await api.post("/user", data);
+      const response = await api.post("/user/register", data);
 
       if (response.status === 200) {
         router.push("/login");
@@ -35,7 +35,7 @@ const RegisterAuthForm = () => {
     } catch (error) {
       if (error instanceof AxiosError) {
         if (error.response) {
-          console.log(error.response.data.message);
+          console.error(error.response.data.message);
           setAuthError(error.response.data.message);
         }
       } else {
