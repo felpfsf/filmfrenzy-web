@@ -5,8 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
-// import CastCard from "./CastCard";
-//
+
 import dynamic from "next/dynamic";
 const CastCard = dynamic(() => import("./CastCard"), {
   ssr: false,
