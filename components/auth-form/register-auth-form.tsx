@@ -1,23 +1,48 @@
 "use client";
+import { api } from "@/lib/axios";
 import {
   RegisterInputProps,
   RegisterSchema,
-} from "@/utils/validations/auth-schemas";
+} from "@/lib/validations/auth-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { AxiosError } from "axios";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Input } from "../UI/input-form";
 import { Button } from "../UI/submit-button";
 
 const RegisterAuthForm = () => {
+  const { data: session } = useSession();
+  const router = useRouter();
   const [authError, setAuthError] = useState<string>("");
   const methods = useForm<RegisterInputProps>({
     resolver: zodResolver(RegisterSchema),
   });
+
+  if(session){
+    router.replace('/')
+  }
+
   const onSubmitUser = async (data: RegisterInputProps) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log("sending data => ", data);
-    methods.reset();
+    try {
+      const response = await api.post("/user", data);
+
+      if (response.status === 200) {
+        router.push("/login");
+      }
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response) {
+          console.log(error.response.data.message);
+          setAuthError(error.response.data.message);
+        }
+      } else {
+        console.error("Erro inexperado", error);
+        setAuthError(error as string);
+      }
+    }
   };
   return (
     <FormProvider {...methods}>
