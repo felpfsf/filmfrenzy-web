@@ -2,7 +2,7 @@ import { MediaDetails } from "@/types/MediaModels";
 
 export const fetchSearch = async (query: string) => {
   const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_TMDB_BASE_URL;
   const language = "pt-BR";
   const pageCount = 1;
 
@@ -26,7 +26,7 @@ export const fetchSearch = async (query: string) => {
     const moviesResult = searchResult.filter(
       (item) => item.media_type === "movie"
     );
-    
+
     const tvsResult = searchResult.filter((item) => item.media_type === "tv");
 
     return { moviesResult, tvsResult };

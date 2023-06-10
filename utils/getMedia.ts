@@ -85,7 +85,7 @@ const fetchOnTheAirShows = async (
 
 export const getMedia = async () => {
   const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_TMDB_BASE_URL;
   const language = "pt-BR";
   const pageCount = 1;
   const RANDOM_MEDIA_COUNT = 20;

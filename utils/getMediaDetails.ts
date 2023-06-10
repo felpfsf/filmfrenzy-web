@@ -63,7 +63,7 @@ const fetchSimilar = async (
 
 export const getMediaDetails = async (id: number, mediaType: string) => {
   const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_TMDB_BASE_URL;
   const language = "pt-BR";
 
   if (!apiKey) throw new Error("Chave de API necessária");
