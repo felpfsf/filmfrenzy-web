@@ -3,6 +3,7 @@ import MediaPoster from "@/components/MediaPoster";
 import MediaSection from "@/components/MediaSection";
 import MediaSlider from "@/components/MediaSlider";
 import MediaTitle from "@/components/MediaTitle";
+import ReviewEditor from "@/components/review-media/review-editor";
 import { Credits, MediaDetails, Trailer } from "@/types/MediaModels";
 import { getMediaDetails } from "@/utils/getMediaDetails";
 import { getYearReleaseDate } from "@/utils/getYearReleaseDate";
@@ -69,7 +70,7 @@ const Media = async ({
           title={title}
           className='max-w-sm'
         />
-        <div className='mt-8 flex flex-col gap-2 flex-1'>
+        <div className='mt-8 flex flex-1 flex-col gap-2'>
           <MediaTitle
             releaseDate={releaseDate}
             title={title}
@@ -123,6 +124,15 @@ const Media = async ({
           similarMedia.length > 0 && <MediaSlider media={similarMedia} />
         }
       />
+
+      <section className='mt-8 grid grid-cols-[repeat(auto-fit,minmax(450px,_1fr))] lg:mt-16'>
+        <div className='flex items-center justify-center p-4'>
+          <ReviewEditor mediaTitle={title} mediaId={id} />
+        </div>
+        <div className='flex items-center justify-center border p-4'>
+          Reviews
+        </div>
+      </section>
     </main>
   );
 };
