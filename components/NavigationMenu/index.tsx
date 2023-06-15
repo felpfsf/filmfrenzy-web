@@ -3,13 +3,14 @@ import { LogOut } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import UserAvatar from "../user-avatar/user-avatar";
 
 const NavigationMenu = () => {
   const { data: session } = useSession();
   const pathname = usePathname();
 
   return (
-    <ul className='flex flex-col gap-4 lg:flex-row'>
+    <ul className='flex flex-col gap-4 lg:flex-row items-center'>
       <li>
         <Link
           href={"/movie"}
@@ -36,7 +37,8 @@ const NavigationMenu = () => {
       </li>
       {session && session?.user ? (
         <>
-          {session.user.name}
+          {/* {session.user.name} */}
+          <UserAvatar user={session.user} />
           <button
             onClick={() =>
               signOut({ callbackUrl: `${window.location.origin}/login` })
