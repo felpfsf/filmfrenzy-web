@@ -26,9 +26,15 @@ const ReviewEditor = ({ mediaId, mediaTitle }: ReviewEditorProps) => {
     },
   });
 
-  const { control, handleSubmit, reset } = methods;
+  const {
+    control,
+    formState: { isSubmitting },
+    handleSubmit,
+    reset,
+  } = methods;
 
-  const submitReview = (data: ReviewInputProps) => {
+  const submitReview = async (data: ReviewInputProps) => {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     const reviewData = { ...data, mediaId, userId };
     console.log(reviewData);
     reset();
@@ -61,7 +67,7 @@ const ReviewEditor = ({ mediaId, mediaTitle }: ReviewEditorProps) => {
             )}
           />
           <Textarea name={"review"} />
-          <Button text={"Enviar"} error={""} loading={false} />
+          <Button text={"Enviar"} error={""} loading={isSubmitting} />
         </form>
       </FormProvider>
     </div>
