@@ -21,7 +21,7 @@ const SocialLogin = () => {
             height={40}
           />
         </button>
-        <button
+        {/* <button
           className='inline-flex'
           title='Entre usando sua conta Github'
           onClick={() =>
@@ -34,7 +34,7 @@ const SocialLogin = () => {
             width={40}
             height={40}
           />
-        </button>
+        </button> */}
       </div>
     </div>
   );
