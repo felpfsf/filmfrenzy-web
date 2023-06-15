@@ -26,11 +26,12 @@ const ReviewEditor = ({ mediaId, mediaTitle }: ReviewEditorProps) => {
     },
   });
 
-  const { control, handleSubmit } = methods;
+  const { control, handleSubmit, reset } = methods;
 
   const submitReview = (data: ReviewInputProps) => {
     const reviewData = { ...data, mediaId, userId };
     console.log(reviewData);
+    reset();
   };
   return (
     <div className='w-full'>
