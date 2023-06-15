@@ -38,6 +38,7 @@ const RatingStar = ({
             checked={index < selectedStars}
             onClick={() => handleStarClick(index)}
             onChange={() => handleStarClick(index)}
+            className="hidden"
           />
           <Star className={clsx({ "fill-accent": index < selectedStars })} />
         </label>
