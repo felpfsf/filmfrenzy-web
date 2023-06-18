@@ -125,7 +125,7 @@ const Media = async ({
         }
       />
 
-      <section className='mt-8 grid grid-cols-[repeat(auto-fit,minmax(450px,_1fr))] lg:mt-16'>
+      <section className='mt-8 grid grid-cols-[repeat(auto-fit,minmax(320px,_1fr))] lg:mt-16'>
         <div className='flex items-center justify-center p-4'>
           <ReviewEditor mediaTitle={title} mediaId={id} />
         </div>
