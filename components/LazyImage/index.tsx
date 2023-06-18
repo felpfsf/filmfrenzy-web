@@ -26,6 +26,7 @@ const LazyImage = ({ image }: ImageProps) => {
         { "scale-100 blur-0 grayscale-0": !isLoading }
       )}
       onLoadingComplete={() => setIsLoading(false)}
+      unoptimized
     />
   );
 };

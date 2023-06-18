@@ -26,6 +26,7 @@ const HeroMediaCard = (media: MediaDetails) => {
           blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8dtatnoEIwDiqkL4KASH/GVugFkABAAAAAElFTkSuQmCC'
           placeholder='blur'
           className='h-full w-full object-cover'
+          unoptimized
         />
       </div>
       <div className='z-10 flex h-full flex-col justify-end bg-gradient-content px-8 pb-16'>
